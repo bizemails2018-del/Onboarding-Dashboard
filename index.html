@@ -1,0 +1,1547 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RISE Training & Onboarding Dashboard</title>
+    <style>
+        *{box-sizing:border-box;margin:0;padding:0}
+        :root{--navy:#1B2A4A;--blue:#2E86AB;--green:#28a745;--amber:#ffc107;--red:#dc3545;--bg:#f4f6f9;--card:#fff;--text:#333;--muted:#6c757d;--border:#e0e4e8;--shadow:0 2px 8px rgba(0,0,0,.08);--radius:10px;--teal:#20c997;--purple:#6f42c1;--orange:#fd7e14;--pink:#e83e8c}
+        body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.5;min-height:100vh}
+        header{background:var(--navy);color:#fff;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
+        header h1{font-size:1.3rem;font-weight:700;letter-spacing:.5px}
+        header .header-right{display:flex;align-items:center;gap:16px;font-size:.85rem}
+        header .header-right select{background:rgba(255,255,255,.15);color:#fff;border:1px solid rgba(255,255,255,.3);padding:6px 10px;border-radius:6px;font-size:.82rem}
+        header .header-right select option{color:#333;background:#fff}
+        .tabs{background:#fff;border-bottom:2px solid var(--border);display:flex;overflow-x:auto;padding:0 16px}
+        .tabs button{background:none;border:none;padding:12px 20px;font-size:.9rem;font-weight:600;color:var(--muted);cursor:pointer;border-bottom:3px solid transparent;white-space:nowrap;transition:.2s}
+        .tabs button:hover{color:var(--navy)}
+        .tabs button.active{color:var(--navy);border-bottom-color:var(--blue)}
+        .sub-tabs{background:#f8f9fa;border-bottom:1px solid var(--border);display:flex;overflow-x:auto;padding:0 16px}
+        .sub-tabs button{background:none;border:none;padding:8px 16px;font-size:.82rem;font-weight:600;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap;transition:.2s}
+        .sub-tabs button:hover{color:var(--blue)}
+        .sub-tabs button.active{color:var(--blue);border-bottom-color:var(--blue)}
+        .tab-content{display:none;padding:20px;max-width:1400px;margin:0 auto}
+        .tab-content.active{display:block}
+        .sub-content{display:none}
+        .sub-content.active{display:block}
+        .grid{display:grid;gap:16px}
+        .g2{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+        .g3{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+        .g4{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+        .g5{grid-template-columns:repeat(auto-fit,minmax(160px,1fr))}
+        .card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:20px;transition:.15s}
+        .card:hover{box-shadow:0 4px 16px rgba(0,0,0,.12)}
+        .card h3{font-size:.95rem;color:var(--navy);margin-bottom:12px;display:flex;align-items:center;gap:6px}
+        .stat{font-size:1.8rem;font-weight:700;color:var(--navy)}
+        .stat-label{font-size:.78rem;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px}
+        .stat-sub{font-size:.82rem;color:var(--muted);margin-top:2px}
+        .badge{display:inline-block;padding:2px 10px;border-radius:20px;font-size:.75rem;font-weight:600}
+        .badge-green{background:#d4edda;color:#155724}
+        .badge-amber{background:#fff3cd;color:#856404}
+        .badge-red{background:#f8d7da;color:#721c24}
+        .badge-blue{background:#d1ecf1;color:#0c5460}
+        .badge-gray{background:#e9ecef;color:#495057}
+        .badge-purple{background:#e8d5f5;color:#4a1a6b}
+        .badge-teal{background:#d1f2eb;color:#0c5460}
+        table{width:100%;border-collapse:collapse;font-size:.85rem}
+        th{text-align:left;padding:10px 12px;background:var(--navy);color:#fff;font-weight:600}
+        td{padding:10px 12px;border-bottom:1px solid var(--border)}
+        tr:nth-child(even){background:#f8f9fa}
+        tr:hover{background:#e9ecef}
+        .section-title{font-size:1.1rem;font-weight:700;color:var(--navy);margin:24px 0 12px;padding-bottom:6px;border-bottom:2px solid var(--blue)}
+        .section-title:first-child{margin-top:0}
+        .progress-bar{background:#e9ecef;border-radius:8px;height:10px;overflow:hidden;margin-top:6px}
+        .progress-bar.lg{height:16px}
+        .progress-fill{height:100%;border-radius:8px;transition:width .5s}
+        .btn{padding:8px 18px;border:none;border-radius:6px;font-size:.82rem;font-weight:600;cursor:pointer;transition:.15s;display:inline-block}
+        .btn:hover{opacity:.85}
+        .btn-green{background:var(--green);color:#fff}
+        .btn-red{background:var(--red);color:#fff}
+        .btn-amber{background:var(--amber);color:#333}
+        .btn-blue{background:var(--blue);color:#fff}
+        .btn-navy{background:var(--navy);color:#fff}
+        .btn-outline{background:none;border:2px solid var(--border);color:var(--text)}
+        .btn-sm{padding:5px 12px;font-size:.78rem}
+        .form-group{margin-bottom:14px}
+        .form-group label{display:block;font-size:.82rem;font-weight:600;color:var(--navy);margin-bottom:4px}
+        .form-group input,.form-group select,.form-group textarea{width:100%;padding:8px 12px;border:1px solid var(--border);border-radius:6px;font-size:.85rem;font-family:inherit}
+        .chip{display:inline-block;padding:3px 10px;border-radius:14px;font-size:.75rem;background:var(--bg);border:1px solid var(--border);margin:2px}
+        .chip.active{background:var(--blue);color:#fff;border-color:var(--blue)}
+        .flex{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+        .ml-auto{margin-left:auto}
+        .mt{margin-top:16px}
+        .mb{margin-bottom:16px}
+        .text-green{color:var(--green)}
+        .text-red{color:var(--red)}
+        .text-amber{color:var(--amber)}
+        .text-muted{color:var(--muted)}
+        .tooltip-icon{display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;border-radius:50%;background:var(--blue);color:#fff;font-size:.65rem;font-weight:700;cursor:help;position:relative}
+        .tooltip-icon:hover::after{content:attr(data-tip);position:absolute;bottom:120%;left:50%;transform:translateX(-50%);background:var(--navy);color:#fff;padding:6px 10px;border-radius:6px;font-size:.75rem;white-space:nowrap;z-index:10;font-weight:400}
+        .approval-flow{display:flex;align-items:center;gap:4px;flex-wrap:wrap;margin:12px 0;font-size:.82rem}
+        .flow-step{padding:6px 14px;border-radius:20px;font-weight:600;white-space:nowrap}
+        .flow-step.done{background:#d4edda;color:#155724}
+        .flow-step.current{background:#d1ecf1;color:#0c5460;border:2px solid var(--blue)}
+        .flow-step.pending{background:#e9ecef;color:#6c757d}
+        .legend{display:flex;gap:16px;flex-wrap:wrap;padding:8px 12px;background:#f8f9fa;border-radius:8px;font-size:.78rem;margin-bottom:12px;align-items:center}
+        .legend-item{display:flex;align-items:center;gap:5px}
+        .legend-dot{width:10px;height:10px;border-radius:50%;display:inline-block}
+        .milestone-card{background:#fff;border:2px solid var(--border);border-radius:var(--radius);padding:16px;text-align:center;transition:.2s;position:relative}
+        .milestone-card.completed{border-color:var(--green);background:#f0fff4}
+        .milestone-card.in-progress{border-color:var(--blue);background:#f0f7fa}
+        .milestone-card .milestone-icon{font-size:2rem;margin-bottom:8px}
+        .milestone-card .milestone-title{font-size:.85rem;font-weight:700;color:var(--navy)}
+        .milestone-card .milestone-date{font-size:.75rem;color:var(--muted);margin-top:4px}
+        .milestone-card .milestone-badge{position:absolute;top:-8px;right:-8px;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:700;color:#fff}
+        .calendar-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+        .cal-header{background:var(--navy);color:#fff;padding:8px;text-align:center;font-size:.78rem;font-weight:600;border-radius:4px}
+        .cal-day{background:#fff;border:1px solid var(--border);border-radius:6px;min-height:90px;padding:6px;font-size:.75rem;position:relative;cursor:pointer;transition:.15s}
+        .cal-day:hover{box-shadow:0 2px 8px rgba(0,0,0,.15)}
+        .cal-day .day-num{font-weight:700;font-size:.82rem;color:var(--navy);margin-bottom:4px}
+        .cal-day.today{border-color:var(--blue);box-shadow:0 0 0 2px rgba(46,134,171,.3)}
+        .cal-day.empty{background:transparent;border-color:transparent;pointer-events:none}
+        .cal-event{padding:2px 4px;border-radius:3px;margin-bottom:2px;font-size:.68rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;cursor:pointer}
+        .cal-event.compliance{background:#f8d7da;color:#721c24}
+        .cal-event.systems{background:#d1ecf1;color:#0c5460}
+        .cal-event.leasing{background:#d4edda;color:#155724}
+        .cal-event.safety{background:#fff3cd;color:#856404}
+        .cal-event.checkin{background:#e8d5f5;color:#4a1a6b}
+        .cal-event.milestone{background:#ffe0b2;color:#e65100}
+        .onboarding-phase{background:#fff;border-radius:var(--radius);border-left:5px solid var(--blue);margin-bottom:12px;box-shadow:var(--shadow);overflow:hidden}
+        .onboarding-phase.phase-1{border-left-color:var(--blue)}
+        .onboarding-phase.phase-2{border-left-color:var(--green)}
+        .onboarding-phase.phase-3{border-left-color:var(--amber)}
+        .onboarding-phase.phase-4{border-left-color:var(--purple)}
+        .onboarding-phase.phase-5{border-left-color:var(--orange)}
+        .onboarding-phase.phase-6{border-left-color:var(--red)}
+        .phase-header{display:flex;align-items:center;justify-content:space-between;cursor:pointer;padding:16px;user-select:none;transition:background .15s}
+        .phase-header:hover{background:#f8f9fa}
+        .phase-header h3{font-size:1rem;color:var(--navy);margin:0}
+        .phase-header .arrow{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;background:var(--bg);font-size:.75rem;margin-right:8px;transition:transform .2s}
+        .phase-header .arrow.open{transform:rotate(90deg)}
+        .phase-progress{padding:0 16px 12px;display:flex;align-items:center;gap:12px}
+        .phase-progress .progress-bar{flex:1}
+        .phase-progress .phase-pct{font-size:.85rem;font-weight:700;min-width:40px;text-align:right}
+        .phase-body{padding:0 16px 16px;display:none}
+        .phase-body.open{display:block}
+        .training-item{display:flex;align-items:center;gap:12px;padding:10px;border-bottom:1px solid var(--border);font-size:.85rem}
+        .training-item:last-child{border-bottom:none}
+        .training-item input[type="checkbox"]{width:18px;height:18px;accent-color:var(--green);cursor:pointer}
+        .training-item .item-name{flex:1;font-weight:500}
+        .training-item .item-category{font-size:.72rem;padding:2px 8px;border-radius:10px}
+        .training-item .item-due{font-size:.78rem;color:var(--muted)}
+        .training-item.completed-item{opacity:.65;text-decoration:line-through}
+        .readiness-gauge{width:160px;height:160px;position:relative;display:inline-block}
+        .readiness-gauge svg{transform:rotate(-90deg)}
+        .readiness-gauge .gauge-text{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center}
+        .readiness-gauge .gauge-text .score{font-size:2rem;font-weight:800;color:var(--navy)}
+        .readiness-gauge .gauge-text .label{font-size:.72rem;color:var(--muted);text-transform:uppercase}
+        .alert-banner{padding:12px 16px;border-radius:8px;margin-bottom:12px;font-size:.85rem;display:flex;align-items:center;gap:10px}
+        .alert-banner.alert-red{background:#f8d7da;border:1px solid #f5c6cb;color:#721c24}
+        .alert-banner.alert-amber{background:#fff3cd;border:1px solid #ffeeba;color:#856404}
+        .alert-banner.alert-blue{background:#d1ecf1;border:1px solid #bee5eb;color:#0c5460}
+        .signoff-modal{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.5);z-index:1000;align-items:center;justify-content:center}
+        .signoff-modal.active{display:flex}
+        .signoff-modal .modal-content{background:#fff;border-radius:var(--radius);padding:24px;max-width:500px;width:90%;max-height:80vh;overflow-y:auto}
+        .signoff-modal .modal-content h3{color:var(--navy);margin-bottom:16px}
+        .gamification-badges{display:flex;gap:12px;flex-wrap:wrap}
+        .badge-item{width:80px;text-align:center;opacity:.3;transition:.3s}
+        .badge-item.earned{opacity:1}
+        .badge-item .badge-icon{width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin:0 auto 6px;border:3px solid var(--border)}
+        .badge-item.earned .badge-icon{border-color:var(--green);box-shadow:0 0 12px rgba(40,167,69,.3)}
+        .badge-item .badge-name{font-size:.68rem;font-weight:600;color:var(--navy)}
+        .filter-bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;align-items:center}
+        .filter-bar select,.filter-bar input{padding:8px 12px;border:1px solid var(--border);border-radius:6px;font-size:.82rem}
+        .week-view-item{background:#fff;border-radius:8px;padding:14px;border-left:4px solid var(--blue);margin-bottom:8px;box-shadow:var(--shadow)}
+        .week-view-item h4{font-size:.88rem;color:var(--navy);margin-bottom:4px}
+        .week-view-item .wv-meta{font-size:.78rem;color:var(--muted)}
+        @media(max-width:768px){header{padding:10px 16px}header h1{font-size:1.1rem}.tabs button{padding:10px 14px;font-size:.82rem}.tab-content{padding:14px}.stat{font-size:1.4rem}.calendar-grid{grid-template-columns:1fr}.cal-day{min-height:auto}}
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>RISE Training & Onboarding Dashboard</h1>
+    <div class="header-right">
+        <select id="roleSelect" onchange="changeRole(this.value)">
+            <option value="community-manager">Community Manager</option>
+            <option value="leasing-consultant">Leasing Consultant</option>
+            <option value="assistant-manager">Assistant Community Manager</option>
+            <option value="maintenance-tech">Maintenance Technician</option>
+            <option value="maintenance-super">Maintenance Supervisor</option>
+            <option value="groundskeeper">Groundskeeper / Porter</option>
+            <option value="corporate">Corporate Staff</option>
+        </select>
+        <span>Jessica Harper | Day 42 of 180</span>
+    </div>
+</header>
+
+<div class="tabs" id="tabBar">
+    <button class="active" onclick="showTab('employee')">My Onboarding</button>
+    <button onclick="showTab('calendar')">Calendar</button>
+    <button onclick="showTab('progress')">Progress & Milestones</button>
+    <button onclick="showTab('manager')">Manager View</button>
+    <button onclick="showTab('reports')">Reports</button>
+</div>
+
+<!-- ==================== MY ONBOARDING TAB ==================== -->
+<div id="tab-employee" class="tab-content active">
+    <div class="sub-tabs">
+        <button class="active" onclick="showSubTab('employee','overview')">Overview</button>
+        <button onclick="showSubTab('employee','training')">Training Tasks</button>
+        <button onclick="showSubTab('employee','reflections')">Weekly Reflections</button>
+    </div>
+
+    <div id="employee-overview" class="sub-content active">
+        <!-- Alerts -->
+        <div id="alertsContainer">
+            <div class="alert-banner alert-red">
+                <strong>Overdue:</strong> Understanding Human Trafficking Awareness was due 3 days ago. Complete immediately.
+            </div>
+            <div class="alert-banner alert-amber">
+                <strong>Due Soon:</strong> Lockout/Tagout Safety training due in 2 days (Day 44).
+            </div>
+            <div class="alert-banner alert-blue">
+                <strong>Upcoming:</strong> 60-Day Evaluation with your manager is scheduled for Day 60.
+            </div>
+        </div>
+
+        <!-- Readiness + Overview Cards -->
+        <div class="grid g2 mb" style="margin-top:16px">
+            <div class="card" style="display:flex;align-items:center;gap:24px">
+                <div class="readiness-gauge">
+                    <svg width="160" height="160">
+                        <circle cx="80" cy="80" r="70" fill="none" stroke="#e9ecef" stroke-width="12"/>
+                        <circle cx="80" cy="80" r="70" fill="none" stroke="var(--blue)" stroke-width="12" stroke-dasharray="440" stroke-dashoffset="220" stroke-linecap="round"/>
+                    </svg>
+                    <div class="gauge-text">
+                        <div class="score" id="readinessScore">50</div>
+                        <div class="label">Readiness</div>
+                    </div>
+                </div>
+                <div>
+                    <h3 style="color:var(--navy);margin-bottom:8px">Readiness-to-Operate Score</h3>
+                    <p style="font-size:.82rem;color:var(--muted);margin-bottom:8px">Based on completed competencies, compliance training, and manager evaluations.</p>
+                    <div style="font-size:.82rem"><strong>Current Phase:</strong> Month 2 — Skill Building</div>
+                    <div style="font-size:.82rem;margin-top:4px"><strong>Target:</strong> Semi-independent operation by Day 60</div>
+                </div>
+            </div>
+            <div class="card">
+                <h3>Onboarding Progress</h3>
+                <div style="margin-bottom:12px">
+                    <div class="flex" style="justify-content:space-between"><span class="stat-label">Overall Completion</span><span style="font-weight:700;font-size:.85rem" id="overallPct">38%</span></div>
+                    <div class="progress-bar lg"><div class="progress-fill" id="overallBar" style="width:38%;background:var(--blue)"></div></div>
+                </div>
+                <div style="margin-bottom:12px">
+                    <div class="flex" style="justify-content:space-between"><span class="stat-label">Compliance & Safety</span><span style="font-weight:700;font-size:.85rem">65%</span></div>
+                    <div class="progress-bar"><div class="progress-fill" style="width:65%;background:var(--green)"></div></div>
+                </div>
+                <div style="margin-bottom:12px">
+                    <div class="flex" style="justify-content:space-between"><span class="stat-label">Systems Training</span><span style="font-weight:700;font-size:.85rem">22%</span></div>
+                    <div class="progress-bar"><div class="progress-fill" style="width:22%;background:var(--amber)"></div></div>
+                </div>
+                <div style="margin-bottom:12px">
+                    <div class="flex" style="justify-content:space-between"><span class="stat-label">Competency Milestones</span><span style="font-weight:700;font-size:.85rem">33%</span></div>
+                    <div class="progress-bar"><div class="progress-fill" style="width:33%;background:var(--purple)"></div></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stats Cards -->
+        <div class="grid g4 mb">
+            <div class="card">
+                <div class="stat-label">Days Completed</div>
+                <div class="stat">42</div>
+                <div class="stat-sub">of 180 total</div>
+            </div>
+            <div class="card">
+                <div class="stat-label">Tasks Completed</div>
+                <div class="stat" id="tasksCompleted">23</div>
+                <div class="stat-sub" id="tasksSub">of 61 total</div>
+            </div>
+            <div class="card">
+                <div class="stat-label">Overdue Items</div>
+                <div class="stat text-red">1</div>
+                <div class="stat-sub">Requires immediate action</div>
+            </div>
+            <div class="card">
+                <div class="stat-label">Next Evaluation</div>
+                <div class="stat" style="font-size:1.4rem">Day 60</div>
+                <div class="stat-sub">18 days remaining</div>
+            </div>
+        </div>
+
+        <!-- Gamification Badges -->
+        <div class="section-title">Achievement Badges</div>
+        <div class="gamification-badges mb">
+            <div class="badge-item earned"><div class="badge-icon" style="background:#d4edda">&#127919;</div><div class="badge-name">Day 1 Complete</div></div>
+            <div class="badge-item earned"><div class="badge-icon" style="background:#d1ecf1">&#128218;</div><div class="badge-name">Fair Housing Certified</div></div>
+            <div class="badge-item earned"><div class="badge-icon" style="background:#fff3cd">&#9889;</div><div class="badge-name">Systems Starter</div></div>
+            <div class="badge-item earned"><div class="badge-icon" style="background:#e8d5f5">&#128101;</div><div class="badge-name">Shadow Complete</div></div>
+            <div class="badge-item"><div class="badge-icon" style="background:#f8d7da">&#127942;</div><div class="badge-name">30-Day Certified</div></div>
+            <div class="badge-item"><div class="badge-icon" style="background:#ffe0b2">&#128640;</div><div class="badge-name">First Solo Tour</div></div>
+            <div class="badge-item"><div class="badge-icon" style="background:#d1ecf1">&#128221;</div><div class="badge-name">First Lease</div></div>
+            <div class="badge-item"><div class="badge-icon" style="background:#d4edda">&#127775;</div><div class="badge-name">60-Day Star</div></div>
+            <div class="badge-item"><div class="badge-icon" style="background:#e8d5f5">&#128170;</div><div class="badge-name">Independence</div></div>
+            <div class="badge-item"><div class="badge-icon" style="background:#fff3cd">&#127891;</div><div class="badge-name">Graduate</div></div>
+        </div>
+
+        <!-- Current Phase Detail -->
+        <div class="section-title">Your Onboarding Phases</div>
+        <div id="phasesContainer"></div>
+    </div>
+
+    <!-- TRAINING TASKS SUB-TAB -->
+    <div id="employee-training" class="sub-content">
+        <div class="section-title">Training Tasks</div>
+        <div class="filter-bar">
+            <select id="categoryFilter" onchange="filterTraining()">
+                <option value="all">All Categories</option>
+                <option value="compliance">Compliance & Safety</option>
+                <option value="systems">Systems Training</option>
+                <option value="leasing">Leasing Fundamentals</option>
+                <option value="customer">Customer Experience</option>
+                <option value="fairhousing">Fair Housing</option>
+                <option value="emergency">Emergency Protocols</option>
+                <option value="sales">Sales Skills</option>
+                <option value="reporting">Reporting/General</option>
+            </select>
+            <select id="statusFilter" onchange="filterTraining()">
+                <option value="all">All Statuses</option>
+                <option value="pending">Pending</option>
+                <option value="completed">Completed</option>
+                <option value="overdue">Overdue</option>
+            </select>
+            <select id="phaseFilter" onchange="filterTraining()">
+                <option value="all">All Phases</option>
+                <option value="1">Month 1: Foundations</option>
+                <option value="2">Month 2: Skill Building</option>
+                <option value="3">Month 3: Mastery</option>
+                <option value="4">Month 4: Autonomy</option>
+                <option value="5">Month 5: Excellence</option>
+                <option value="6">Month 6: Leadership Readiness</option>
+            </select>
+            <button class="btn btn-outline btn-sm" onclick="exportTrainingCSV()">Export CSV</button>
+        </div>
+        <table id="trainingTable">
+            <thead>
+                <tr>
+                    <th style="width:30px"></th>
+                    <th>Training Topic</th>
+                    <th>Category</th>
+                    <th>Delivery</th>
+                    <th>Duration</th>
+                    <th>Due By</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="trainingBody"></tbody>
+        </table>
+    </div>
+
+    <!-- WEEKLY REFLECTIONS SUB-TAB -->
+    <div id="employee-reflections" class="sub-content">
+        <div class="section-title">Weekly Reflection Notes</div>
+        <div class="card mb">
+            <h3>Week 6 Reflection</h3>
+            <div class="form-group">
+                <label>What went well this week?</label>
+                <textarea rows="3" placeholder="Describe your successes and wins..."></textarea>
+            </div>
+            <div class="form-group">
+                <label>What challenges did you face?</label>
+                <textarea rows="3" placeholder="Describe obstacles or difficulties..."></textarea>
+            </div>
+            <div class="form-group">
+                <label>What do you need from your manager?</label>
+                <textarea rows="2" placeholder="Support, training, resources needed..."></textarea>
+            </div>
+            <div class="form-group">
+                <label>Goals for next week</label>
+                <textarea rows="2" placeholder="What do you plan to accomplish?"></textarea>
+            </div>
+            <button class="btn btn-blue">Submit Reflection</button>
+        </div>
+        <div class="card" style="opacity:.7">
+            <h3>Week 5 Reflection <span class="badge badge-green">Submitted</span></h3>
+            <p style="font-size:.85rem;color:var(--muted)">Submitted on Feb 10, 2026 — Reviewed by Manager on Feb 11, 2026</p>
+            <p style="font-size:.85rem;margin-top:8px"><strong>Manager Feedback:</strong> Great progress on Entrata proficiency. Focus on improving follow-up timing with prospects this week.</p>
+        </div>
+    </div>
+</div>
+
+<!-- ==================== CALENDAR TAB ==================== -->
+<div id="tab-calendar" class="tab-content">
+    <div class="sub-tabs">
+        <button class="active" onclick="showSubTab('calendar','monthly');renderCalendar()">Monthly</button>
+        <button onclick="showSubTab('calendar','weekly')">Weekly</button>
+        <button onclick="showSubTab('calendar','daily')">Daily</button>
+    </div>
+
+    <div id="calendar-monthly" class="sub-content active">
+        <div class="flex mb" style="justify-content:space-between">
+            <button class="btn btn-outline btn-sm" onclick="changeMonth(-1)">&larr; Previous</button>
+            <h2 style="color:var(--navy)" id="calMonthTitle">February 2026</h2>
+            <button class="btn btn-outline btn-sm" onclick="changeMonth(1)">Next &rarr;</button>
+        </div>
+        <div class="legend mb">
+            <div class="legend-item"><span class="legend-dot" style="background:#f8d7da"></span>Compliance</div>
+            <div class="legend-item"><span class="legend-dot" style="background:#d1ecf1"></span>Systems</div>
+            <div class="legend-item"><span class="legend-dot" style="background:#d4edda"></span>Leasing</div>
+            <div class="legend-item"><span class="legend-dot" style="background:#fff3cd"></span>Safety</div>
+            <div class="legend-item"><span class="legend-dot" style="background:#e8d5f5"></span>Manager Check-in</div>
+            <div class="legend-item"><span class="legend-dot" style="background:#ffe0b2"></span>Milestone</div>
+        </div>
+        <div class="calendar-grid" id="calendarGrid"></div>
+    </div>
+
+    <div id="calendar-weekly" class="sub-content">
+        <div class="flex mb" style="justify-content:space-between">
+            <button class="btn btn-outline btn-sm" onclick="changeWeek(-1)">&larr; Previous Week</button>
+            <h2 style="color:var(--navy)" id="weekTitle">Week 6 — Feb 16-22, 2026</h2>
+            <button class="btn btn-outline btn-sm" onclick="changeWeek(1)">Next Week &rarr;</button>
+        </div>
+        <div class="section-title">Week 6: Conflict Resolution & Difficult Conversations</div>
+        <p style="font-size:.85rem;color:var(--muted);margin-bottom:16px">Focus: De-escalation techniques, handling complaints, lease violations conversations</p>
+        <div id="weeklyItems">
+            <div class="week-view-item" style="border-left-color:var(--red)">
+                <h4>Monday — De-escalation Techniques Workshop</h4>
+                <div class="wv-meta">9:00 AM - 11:00 AM | In Person | Compliance & Safety</div>
+            </div>
+            <div class="week-view-item" style="border-left-color:var(--blue)">
+                <h4>Monday — Entrata: Managing Leads (Online)</h4>
+                <div class="wv-meta">Self-paced | 45 min | Systems Training</div>
+            </div>
+            <div class="week-view-item" style="border-left-color:var(--green)">
+                <h4>Tuesday — Handling Complaints & Service Failures</h4>
+                <div class="wv-meta">10:00 AM - 12:00 PM | Workshop | Customer Experience</div>
+            </div>
+            <div class="week-view-item" style="border-left-color:var(--purple)">
+                <h4>Wednesday — Manager Check-in (1-on-1)</h4>
+                <div class="wv-meta">2:00 PM - 2:30 PM | Office | Manager Evaluation</div>
+            </div>
+            <div class="week-view-item" style="border-left-color:var(--amber)">
+                <h4>Thursday — Lease Violations & Collections Conversations</h4>
+                <div class="wv-meta">9:00 AM - 11:00 AM | Workshop | Leasing Fundamentals</div>
+            </div>
+            <div class="week-view-item" style="border-left-color:var(--blue)">
+                <h4>Thursday — Knock CRM Training</h4>
+                <div class="wv-meta">1:00 PM - 2:30 PM | Virtual | Systems Training</div>
+            </div>
+            <div class="week-view-item" style="border-left-color:var(--green)">
+                <h4>Friday — Documentation Requirements Review</h4>
+                <div class="wv-meta">Self-paced | 30 min | Compliance</div>
+            </div>
+            <div class="week-view-item" style="border-left-color:var(--purple)">
+                <h4>Friday — Weekly Reflection Due</h4>
+                <div class="wv-meta">Submit by 5:00 PM | Self | Reflection</div>
+            </div>
+        </div>
+    </div>
+
+    <div id="calendar-daily" class="sub-content">
+        <div class="flex mb" style="justify-content:space-between">
+            <button class="btn btn-outline btn-sm" onclick="changeDay(-1)">&larr; Previous Day</button>
+            <h2 style="color:var(--navy)" id="dayTitle">Wednesday, February 18, 2026 — Day 42</h2>
+            <button class="btn btn-outline btn-sm" onclick="changeDay(1)">Next Day &rarr;</button>
+        </div>
+        <div class="grid g2">
+            <div>
+                <div class="section-title">Today's Schedule</div>
+                <div class="week-view-item" style="border-left-color:var(--purple)">
+                    <h4>2:00 PM — Manager Check-in (1-on-1)</h4>
+                    <div class="wv-meta">With: Regional Manager | Duration: 30 min</div>
+                </div>
+                <div class="week-view-item" style="border-left-color:var(--blue)">
+                    <h4>Self-Paced — Entrata: Leasing Module</h4>
+                    <div class="wv-meta">Online | 60 min | Due today</div>
+                </div>
+                <div class="week-view-item" style="border-left-color:var(--green)">
+                    <h4>Ongoing — Shadow experienced team member</h4>
+                    <div class="wv-meta">Observe 2 resident interactions</div>
+                </div>
+            </div>
+            <div>
+                <div class="section-title">Competency Focus</div>
+                <div class="card">
+                    <h3>Week 6 Theme: Conflict Resolution</h3>
+                    <p style="font-size:.85rem;color:var(--muted)">Today's focus: Practice de-escalation techniques learned in Monday's workshop. Document one observed conflict resolution scenario.</p>
+                    <div style="margin-top:12px">
+                        <div class="stat-label">Success Metric</div>
+                        <p style="font-size:.85rem">Successfully resolve two supervised conflict scenarios by end of week</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ==================== PROGRESS & MILESTONES TAB ==================== -->
+<div id="tab-progress" class="tab-content">
+    <div class="sub-tabs">
+        <button class="active" onclick="showSubTab('progress','dashboard')">Progress Dashboard</button>
+        <button onclick="showSubTab('progress','milestones')">Competency Milestones</button>
+        <button onclick="showSubTab('progress','observations')">Skills Observations</button>
+        <button onclick="showSubTab('progress','shadowing')">Shadowing Checklist</button>
+        <button onclick="showSubTab('progress','mentorship')">Peer Mentorship</button>
+    </div>
+
+    <div id="progress-dashboard" class="sub-content active">
+        <div class="section-title">Progress by Training Category</div>
+        <div class="grid g2 mb">
+            <div class="card">
+                <h3>Compliance & Safety</h3>
+                <div class="flex" style="justify-content:space-between"><span style="font-size:.85rem">15 of 23 completed</span><span style="font-weight:700;color:var(--green)">65%</span></div>
+                <div class="progress-bar lg"><div class="progress-fill" style="width:65%;background:var(--green)"></div></div>
+                <div style="margin-top:8px;font-size:.78rem;color:var(--muted)">Includes: Fair Housing, OSHA, Sexual Harassment, Human Trafficking</div>
+            </div>
+            <div class="card">
+                <h3>Systems Training</h3>
+                <div class="flex" style="justify-content:space-between"><span style="font-size:.85rem">5 of 23 completed</span><span style="font-weight:700;color:var(--amber)">22%</span></div>
+                <div class="progress-bar lg"><div class="progress-fill" style="width:22%;background:var(--amber)"></div></div>
+                <div style="margin-top:8px;font-size:.78rem;color:var(--muted)">Includes: Entrata, Knock, Paycor, SOCi, Apartment IQ</div>
+            </div>
+            <div class="card">
+                <h3>Customer Experience</h3>
+                <div class="flex" style="justify-content:space-between"><span style="font-size:.85rem">1 of 4 completed</span><span style="font-weight:700;color:var(--amber)">25%</span></div>
+                <div class="progress-bar lg"><div class="progress-fill" style="width:25%;background:var(--amber)"></div></div>
+                <div style="margin-top:8px;font-size:.78rem;color:var(--muted)">The RISE Experience, Empowered Connections, Crucial Conversations</div>
+            </div>
+            <div class="card">
+                <h3>Reporting & General</h3>
+                <div class="flex" style="justify-content:space-between"><span style="font-size:.85rem">2 of 9 completed</span><span style="font-weight:700;color:var(--amber)">22%</span></div>
+                <div class="progress-bar lg"><div class="progress-fill" style="width:22%;background:var(--amber)"></div></div>
+                <div style="margin-top:8px;font-size:.78rem;color:var(--muted)">Delinquency, Rent Roll, Rental Criteria, Help Desk</div>
+            </div>
+        </div>
+
+        <div class="section-title">Progress by Onboarding Phase</div>
+        <div class="grid g3 mb">
+            <div class="card" style="border-top:4px solid var(--green)">
+                <div class="stat-label">Month 1: Foundations</div>
+                <div class="stat text-green">92%</div>
+                <div class="progress-bar"><div class="progress-fill" style="width:92%;background:var(--green)"></div></div>
+                <div class="stat-sub">Nearly complete</div>
+            </div>
+            <div class="card" style="border-top:4px solid var(--blue)">
+                <div class="stat-label">Month 2: Skill Building</div>
+                <div class="stat" style="color:var(--blue)">35%</div>
+                <div class="progress-bar"><div class="progress-fill" style="width:35%;background:var(--blue)"></div></div>
+                <div class="stat-sub">In progress — current phase</div>
+            </div>
+            <div class="card" style="border-top:4px solid var(--border)">
+                <div class="stat-label">Month 3: Mastery</div>
+                <div class="stat" style="color:var(--muted)">0%</div>
+                <div class="progress-bar"><div class="progress-fill" style="width:0%;background:var(--muted)"></div></div>
+                <div class="stat-sub">Not yet started</div>
+            </div>
+            <div class="card" style="border-top:4px solid var(--border)">
+                <div class="stat-label">Month 4: Autonomy</div>
+                <div class="stat" style="color:var(--muted)">0%</div>
+                <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
+                <div class="stat-sub">Starts Day 91</div>
+            </div>
+            <div class="card" style="border-top:4px solid var(--border)">
+                <div class="stat-label">Month 5: Excellence</div>
+                <div class="stat" style="color:var(--muted)">0%</div>
+                <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
+                <div class="stat-sub">Starts Day 121</div>
+            </div>
+            <div class="card" style="border-top:4px solid var(--border)">
+                <div class="stat-label">Month 6: Leadership</div>
+                <div class="stat" style="color:var(--muted)">0%</div>
+                <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
+                <div class="stat-sub">Starts Day 151</div>
+            </div>
+        </div>
+
+        <div class="section-title">Weekly Completion Trend</div>
+        <div class="card">
+            <svg id="weeklyChart" width="100%" height="200" viewBox="0 0 800 200"></svg>
+        </div>
+    </div>
+
+    <!-- COMPETENCY MILESTONES -->
+    <div id="progress-milestones" class="sub-content">
+        <div class="section-title">Competency Milestones</div>
+        <p style="font-size:.85rem;color:var(--muted);margin-bottom:16px">Each milestone requires manager sign-off to be certified. Click to view details or request sign-off.</p>
+        <div class="grid g4" id="milestonesGrid">
+            <!-- Populated by JS -->
+        </div>
+
+        <div class="section-title" style="margin-top:32px">Formal Evaluations</div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Evaluation</th>
+                    <th>Scheduled</th>
+                    <th>Status</th>
+                    <th>Manager Sign-Off</th>
+                    <th>Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>30-Day Foundations Assessment</strong></td>
+                    <td>Day 30 (Feb 6, 2026)</td>
+                    <td><span class="badge badge-green">Completed</span></td>
+                    <td>Signed — M. Rodriguez, Feb 6</td>
+                    <td>Progressing as expected. Strong on compliance. Improve Entrata speed.</td>
+                </tr>
+                <tr>
+                    <td><strong>60-Day Skill Progression</strong></td>
+                    <td>Day 60 (Feb 26, 2026)</td>
+                    <td><span class="badge badge-blue">Upcoming</span></td>
+                    <td>—</td>
+                    <td>18 days away</td>
+                </tr>
+                <tr>
+                    <td><strong>90-Day Independence Assessment</strong></td>
+                    <td>Day 90 (Mar 28, 2026)</td>
+                    <td><span class="badge badge-gray">Scheduled</span></td>
+                    <td>—</td>
+                    <td>—</td>
+                </tr>
+                <tr>
+                    <td><strong>120-Day Autonomy Confirmed</strong></td>
+                    <td>Day 120</td>
+                    <td><span class="badge badge-gray">Pending</span></td>
+                    <td>—</td>
+                    <td>—</td>
+                </tr>
+                <tr>
+                    <td><strong>150-Day Excellence Review</strong></td>
+                    <td>Day 150</td>
+                    <td><span class="badge badge-gray">Pending</span></td>
+                    <td>—</td>
+                    <td>—</td>
+                </tr>
+                <tr>
+                    <td><strong>180-Day Graduation Certification</strong></td>
+                    <td>Day 180</td>
+                    <td><span class="badge badge-gray">Pending</span></td>
+                    <td>—</td>
+                    <td>—</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- SKILLS OBSERVATIONS -->
+    <div id="progress-observations" class="sub-content">
+        <div class="section-title">Skills Observation Log</div>
+        <p style="font-size:.85rem;color:var(--muted);margin-bottom:16px">Managers document observed skill demonstrations during onboarding.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Skill Observed</th>
+                    <th>Observer</th>
+                    <th>Rating</th>
+                    <th>Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Feb 14</td>
+                    <td>Resident Tour Execution</td>
+                    <td>M. Rodriguez</td>
+                    <td><span class="badge badge-green">Proficient</span></td>
+                    <td>Good rapport building. Improve amenity presentation timing.</td>
+                </tr>
+                <tr>
+                    <td>Feb 10</td>
+                    <td>Phone Inquiry Handling</td>
+                    <td>M. Rodriguez</td>
+                    <td><span class="badge badge-amber">Developing</span></td>
+                    <td>Needs to ask qualifying questions earlier in the call.</td>
+                </tr>
+                <tr>
+                    <td>Feb 5</td>
+                    <td>Entrata Lease Processing</td>
+                    <td>S. Kim</td>
+                    <td><span class="badge badge-green">Proficient</span></td>
+                    <td>Processed application accurately, good attention to detail.</td>
+                </tr>
+                <tr>
+                    <td>Jan 28</td>
+                    <td>Resident Complaint Handling</td>
+                    <td>M. Rodriguez</td>
+                    <td><span class="badge badge-amber">Developing</span></td>
+                    <td>Good empathy, needs to document more thoroughly.</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="card mt">
+            <h3>Log New Observation</h3>
+            <div class="grid g2">
+                <div class="form-group"><label>Skill Observed</label><input type="text" placeholder="e.g., Resident Tour Execution"></div>
+                <div class="form-group"><label>Rating</label><select><option>Proficient</option><option>Developing</option><option>Needs Improvement</option></select></div>
+            </div>
+            <div class="form-group"><label>Notes / Coaching Feedback</label><textarea rows="3" placeholder="Observations and recommendations..."></textarea></div>
+            <button class="btn btn-blue">Save Observation</button>
+        </div>
+    </div>
+
+    <!-- SHADOWING CHECKLIST -->
+    <div id="progress-shadowing" class="sub-content">
+        <div class="section-title">Shadowing Checklist</div>
+        <p style="font-size:.85rem;color:var(--muted);margin-bottom:16px">Track required shadowing experiences during Weeks 1-4.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th style="width:30px"></th>
+                    <th>Activity</th>
+                    <th>Required Count</th>
+                    <th>Completed</th>
+                    <th>Date(s)</th>
+                    <th>Shadowed With</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><input type="checkbox" checked disabled></td><td>Full Property Tour (Shadow)</td><td>8 tours</td><td>8 / 8</td><td>Jan 12 - Jan 23</td><td>Emily Chen</td></tr>
+                <tr><td><input type="checkbox" checked disabled></td><td>Outbound Follow-Up Calls</td><td>10 calls</td><td>10 / 10</td><td>Jan 15 - Jan 24</td><td>Emily Chen</td></tr>
+                <tr><td><input type="checkbox" checked disabled></td><td>Lease Application Processing</td><td>5 applications</td><td>5 / 5</td><td>Jan 19 - Jan 30</td><td>S. Kim</td></tr>
+                <tr><td><input type="checkbox"></td><td>Collections Conversation</td><td>3 calls</td><td>1 / 3</td><td>Feb 3</td><td>M. Rodriguez</td></tr>
+                <tr><td><input type="checkbox"></td><td>Vendor Coordination Call</td><td>2 calls</td><td>0 / 2</td><td>—</td><td>—</td></tr>
+                <tr><td><input type="checkbox"></td><td>Property Walk/Inspection</td><td>2 walks</td><td>1 / 2</td><td>Feb 12</td><td>M. Rodriguez</td></tr>
+                <tr><td><input type="checkbox"></td><td>Resident Move-In</td><td>3 move-ins</td><td>2 / 3</td><td>Feb 1, Feb 8</td><td>Emily Chen</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- PEER MENTORSHIP -->
+    <div id="progress-mentorship" class="sub-content">
+        <div class="section-title">Peer Mentorship</div>
+        <div class="grid g2">
+            <div class="card">
+                <h3>Your Assigned Mentor</h3>
+                <div style="display:flex;align-items:center;gap:16px;margin-top:8px">
+                    <div style="width:60px;height:60px;border-radius:50%;background:var(--blue);display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.5rem;font-weight:700">EC</div>
+                    <div>
+                        <div style="font-weight:700;font-size:1rem">Emily Chen</div>
+                        <div style="font-size:.85rem;color:var(--muted)">Leasing Manager — Riverside Terrace</div>
+                        <div style="font-size:.82rem;color:var(--muted)">3 years experience | NALP Certified</div>
+                    </div>
+                </div>
+                <div style="margin-top:16px;font-size:.85rem">
+                    <strong>Next meeting:</strong> Thursday, Feb 20, 2026 at 3:00 PM<br>
+                    <strong>Topic:</strong> Objection handling techniques
+                </div>
+            </div>
+            <div class="card">
+                <h3>Mentorship Sessions Log</h3>
+                <table style="font-size:.82rem">
+                    <tbody>
+                        <tr><td>Feb 13</td><td>Tour technique review</td><td><span class="badge badge-green">Completed</span></td></tr>
+                        <tr><td>Feb 6</td><td>CRM best practices</td><td><span class="badge badge-green">Completed</span></td></tr>
+                        <tr><td>Jan 30</td><td>Phone skills practice</td><td><span class="badge badge-green">Completed</span></td></tr>
+                        <tr><td>Jan 23</td><td>Property knowledge Q&A</td><td><span class="badge badge-green">Completed</span></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ==================== MANAGER VIEW TAB ==================== -->
+<div id="tab-manager" class="tab-content">
+    <div class="sub-tabs">
+        <button class="active" onclick="showSubTab('manager','team')">Team Overview</button>
+        <button onclick="showSubTab('manager','approvals')">Pending Approvals</button>
+        <button onclick="showSubTab('manager','compliance')">Compliance Tracker</button>
+    </div>
+
+    <div id="manager-team" class="sub-content active">
+        <div class="section-title">Team Onboarding Status</div>
+        <div class="grid g4 mb">
+            <div class="card" style="border-top:4px solid var(--green)">
+                <div class="stat-label">On Track</div>
+                <div class="stat text-green">3</div>
+                <div class="stat-sub">employees</div>
+            </div>
+            <div class="card" style="border-top:4px solid var(--amber)">
+                <div class="stat-label">At Risk</div>
+                <div class="stat text-amber">1</div>
+                <div class="stat-sub">employee</div>
+            </div>
+            <div class="card" style="border-top:4px solid var(--red)">
+                <div class="stat-label">Behind / Overdue</div>
+                <div class="stat text-red">1</div>
+                <div class="stat-sub">employee</div>
+            </div>
+            <div class="card" style="border-top:4px solid var(--blue)">
+                <div class="stat-label">Total New Hires</div>
+                <div class="stat">5</div>
+                <div class="stat-sub">currently onboarding</div>
+            </div>
+        </div>
+
+        <div class="legend mb">
+            <div class="legend-item"><span class="legend-dot" style="background:var(--green)"></span>On Track (&ge;70%)</div>
+            <div class="legend-item"><span class="legend-dot" style="background:var(--amber)"></span>At Risk (50-69%)</div>
+            <div class="legend-item"><span class="legend-dot" style="background:var(--red)"></span>Behind (&lt;50%)</div>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Employee</th>
+                    <th>Role</th>
+                    <th>Start Date</th>
+                    <th>Day</th>
+                    <th>Phase</th>
+                    <th>Completion</th>
+                    <th>Compliance</th>
+                    <th>Overdue</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Jessica Harper</strong></td>
+                    <td>Community Manager</td>
+                    <td>Jan 8, 2026</td>
+                    <td>42</td>
+                    <td>Month 2</td>
+                    <td>
+                        <div style="display:flex;align-items:center;gap:8px"><span style="font-weight:700">38%</span>
+                        <div class="progress-bar" style="flex:1"><div class="progress-fill" style="width:38%;background:var(--amber)"></div></div></div>
+                    </td>
+                    <td><span class="badge badge-amber">65%</span></td>
+                    <td><span class="badge badge-red">1</span></td>
+                    <td><span class="badge badge-amber">At Risk</span></td>
+                    <td><button class="btn btn-outline btn-sm" onclick="openSignoff('Jessica Harper')">View</button></td>
+                </tr>
+                <tr>
+                    <td><strong>Marcus Rivera</strong></td>
+                    <td>Leasing Consultant</td>
+                    <td>Jan 15, 2026</td>
+                    <td>35</td>
+                    <td>Month 2</td>
+                    <td>
+                        <div style="display:flex;align-items:center;gap:8px"><span style="font-weight:700">72%</span>
+                        <div class="progress-bar" style="flex:1"><div class="progress-fill" style="width:72%;background:var(--green)"></div></div></div>
+                    </td>
+                    <td><span class="badge badge-green">100%</span></td>
+                    <td>0</td>
+                    <td><span class="badge badge-green">On Track</span></td>
+                    <td><button class="btn btn-outline btn-sm" onclick="openSignoff('Marcus Rivera')">View</button></td>
+                </tr>
+                <tr>
+                    <td><strong>Aisha Patel</strong></td>
+                    <td>Leasing Consultant</td>
+                    <td>Jan 22, 2026</td>
+                    <td>28</td>
+                    <td>Month 1</td>
+                    <td>
+                        <div style="display:flex;align-items:center;gap:8px"><span style="font-weight:700">85%</span>
+                        <div class="progress-bar" style="flex:1"><div class="progress-fill" style="width:85%;background:var(--green)"></div></div></div>
+                    </td>
+                    <td><span class="badge badge-green">100%</span></td>
+                    <td>0</td>
+                    <td><span class="badge badge-green">On Track</span></td>
+                    <td><button class="btn btn-outline btn-sm" onclick="openSignoff('Aisha Patel')">View</button></td>
+                </tr>
+                <tr>
+                    <td><strong>Tyler Brooks</strong></td>
+                    <td>Maintenance Tech</td>
+                    <td>Feb 3, 2026</td>
+                    <td>16</td>
+                    <td>Month 1</td>
+                    <td>
+                        <div style="display:flex;align-items:center;gap:8px"><span style="font-weight:700">75%</span>
+                        <div class="progress-bar" style="flex:1"><div class="progress-fill" style="width:75%;background:var(--green)"></div></div></div>
+                    </td>
+                    <td><span class="badge badge-green">90%</span></td>
+                    <td>0</td>
+                    <td><span class="badge badge-green">On Track</span></td>
+                    <td><button class="btn btn-outline btn-sm" onclick="openSignoff('Tyler Brooks')">View</button></td>
+                </tr>
+                <tr>
+                    <td><strong>Jordan Lee</strong></td>
+                    <td>Groundskeeper</td>
+                    <td>Feb 10, 2026</td>
+                    <td>9</td>
+                    <td>Month 1</td>
+                    <td>
+                        <div style="display:flex;align-items:center;gap:8px"><span style="font-weight:700">25%</span>
+                        <div class="progress-bar" style="flex:1"><div class="progress-fill" style="width:25%;background:var(--red)"></div></div></div>
+                    </td>
+                    <td><span class="badge badge-red">30%</span></td>
+                    <td><span class="badge badge-red">3</span></td>
+                    <td><span class="badge badge-red">Behind</span></td>
+                    <td><button class="btn btn-outline btn-sm" onclick="openSignoff('Jordan Lee')">View</button></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="section-title">Upcoming Deadlines</div>
+        <table>
+            <thead>
+                <tr><th>Employee</th><th>Item</th><th>Due Date</th><th>Days Remaining</th><th>Priority</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Jessica Harper</td><td>Understanding Human Trafficking Training</td><td>Feb 15, 2026</td><td class="text-red">-3 days (OVERDUE)</td><td><span class="badge badge-red">Critical</span></td></tr>
+                <tr><td>Jessica Harper</td><td>Lockout/Tagout Safety</td><td>Feb 20, 2026</td><td>2 days</td><td><span class="badge badge-amber">High</span></td></tr>
+                <tr><td>Jessica Harper</td><td>60-Day Evaluation</td><td>Feb 26, 2026</td><td>8 days</td><td><span class="badge badge-blue">Scheduled</span></td></tr>
+                <tr><td>Jordan Lee</td><td>Fair Housing Training</td><td>Feb 13, 2026</td><td class="text-red">-5 days (OVERDUE)</td><td><span class="badge badge-red">Critical</span></td></tr>
+                <tr><td>Jordan Lee</td><td>Hazard Communications</td><td>Feb 17, 2026</td><td class="text-red">-1 day (OVERDUE)</td><td><span class="badge badge-red">Critical</span></td></tr>
+                <tr><td>Jordan Lee</td><td>Chemical Safety Certification</td><td>Feb 17, 2026</td><td class="text-red">-1 day (OVERDUE)</td><td><span class="badge badge-red">Critical</span></td></tr>
+                <tr><td>Marcus Rivera</td><td>Entrata: Applications Module</td><td>Feb 22, 2026</td><td>4 days</td><td><span class="badge badge-blue">Normal</span></td></tr>
+                <tr><td>Aisha Patel</td><td>30-Day Foundations Assessment</td><td>Feb 22, 2026</td><td>4 days</td><td><span class="badge badge-amber">High</span></td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- PENDING APPROVALS -->
+    <div id="manager-approvals" class="sub-content">
+        <div class="section-title">Pending Sign-Offs & Approvals</div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Employee</th>
+                    <th>Item</th>
+                    <th>Type</th>
+                    <th>Date Submitted</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Jessica Harper</td>
+                    <td>Fair Housing Certification</td>
+                    <td>Compliance Sign-Off</td>
+                    <td>Jan 14, 2026</td>
+                    <td>
+                        <button class="btn btn-green btn-sm" onclick="approveRow(this)">Approve & Sign</button>
+                        <button class="btn btn-amber btn-sm" onclick="returnRow(this)">Request Redo</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Marcus Rivera</td>
+                    <td>First Solo Tour</td>
+                    <td>Milestone Sign-Off</td>
+                    <td>Feb 12, 2026</td>
+                    <td>
+                        <button class="btn btn-green btn-sm" onclick="approveRow(this)">Approve & Sign</button>
+                        <button class="btn btn-amber btn-sm" onclick="returnRow(this)">Request Redo</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Aisha Patel</td>
+                    <td>Systems Proficiency Test</td>
+                    <td>Competency Assessment</td>
+                    <td>Feb 15, 2026</td>
+                    <td>
+                        <button class="btn btn-green btn-sm" onclick="approveRow(this)">Approve & Sign</button>
+                        <button class="btn btn-amber btn-sm" onclick="returnRow(this)">Request Redo</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Tyler Brooks</td>
+                    <td>OSHA 10-Hour Certification</td>
+                    <td>Compliance Sign-Off</td>
+                    <td>Feb 16, 2026</td>
+                    <td>
+                        <button class="btn btn-green btn-sm" onclick="approveRow(this)">Approve & Sign</button>
+                        <button class="btn btn-amber btn-sm" onclick="returnRow(this)">Request Redo</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- COMPLIANCE TRACKER -->
+    <div id="manager-compliance" class="sub-content">
+        <div class="section-title">Compliance Training Status — All New Hires</div>
+        <div class="alert-banner alert-red mb">
+            <strong>Risk Flags:</strong> Jordan Lee has 3 overdue compliance items. Jessica Harper has 1 overdue compliance item. Immediate action required for legal compliance.
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Training</th>
+                    <th>J. Harper</th>
+                    <th>M. Rivera</th>
+                    <th>A. Patel</th>
+                    <th>T. Brooks</th>
+                    <th>J. Lee</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><strong>Fair Housing</strong></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-red">OVERDUE</span></td></tr>
+                <tr><td><strong>Sexual Harassment Prevention</strong></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-amber">In Progress</span></td></tr>
+                <tr><td><strong>Human Trafficking Awareness</strong></td><td><span class="badge badge-red">OVERDUE</span></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-blue">Upcoming</span></td><td><span class="badge badge-blue">Upcoming</span></td><td><span class="badge badge-gray">Pending</span></td></tr>
+                <tr><td><strong>Miya's Law Compliance</strong></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-blue">Upcoming</span></td><td><span class="badge badge-gray">Pending</span></td></tr>
+                <tr><td><strong>OSHA Recordkeeping</strong></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-amber">In Progress</span></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-red">OVERDUE</span></td></tr>
+                <tr><td><strong>Hazard Communications</strong></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-red">OVERDUE</span></td></tr>
+                <tr><td><strong>PPE Training</strong></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-blue">Upcoming</span></td><td><span class="badge badge-blue">Upcoming</span></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-gray">Pending</span></td></tr>
+                <tr><td><strong>Lockout/Tagout</strong></td><td><span class="badge badge-amber">Due Soon</span></td><td><span class="badge badge-blue">Upcoming</span></td><td><span class="badge badge-blue">Upcoming</span></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-gray">Pending</span></td></tr>
+                <tr><td><strong>Fire Prevention</strong></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-amber">In Progress</span></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-gray">Pending</span></td></tr>
+                <tr><td><strong>Cybersecurity Awareness</strong></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-blue">Upcoming</span></td><td><span class="badge badge-gray">Pending</span></td></tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- ==================== REPORTS TAB ==================== -->
+<div id="tab-reports" class="tab-content">
+    <div class="sub-tabs">
+        <button class="active" onclick="showSubTab('reports','completion')">Training Completion</button>
+        <button onclick="showSubTab('reports','compliance')">Compliance Readiness</button>
+        <button onclick="showSubTab('reports','signoff')">Sign-Off Log</button>
+    </div>
+
+    <div id="reports-completion" class="sub-content active">
+        <div class="section-title">Training Completion Report</div>
+        <div class="filter-bar mb">
+            <select><option>All Employees</option><option>Jessica Harper</option><option>Marcus Rivera</option><option>Aisha Patel</option><option>Tyler Brooks</option><option>Jordan Lee</option></select>
+            <select><option>All Roles</option><option>Community Manager</option><option>Leasing Consultant</option><option>Maintenance Tech</option><option>Groundskeeper</option></select>
+            <select><option>All Categories</option><option>Compliance & Safety</option><option>Systems Training</option><option>Customer Experience</option><option>Reporting</option></select>
+            <input type="date" placeholder="From">
+            <input type="date" placeholder="To">
+            <button class="btn btn-outline btn-sm">Filter</button>
+            <button class="btn btn-blue btn-sm" onclick="exportReport()">Export Report</button>
+        </div>
+
+        <div class="grid g3 mb">
+            <div class="card" style="border-top:4px solid var(--green)">
+                <div class="stat-label">Avg Completion Rate</div>
+                <div class="stat text-green">59%</div>
+                <div class="stat-sub">Across all new hires</div>
+            </div>
+            <div class="card" style="border-top:4px solid var(--red)">
+                <div class="stat-label">Total Overdue Items</div>
+                <div class="stat text-red">4</div>
+                <div class="stat-sub">Across 2 employees</div>
+            </div>
+            <div class="card" style="border-top:4px solid var(--blue)">
+                <div class="stat-label">On-Time Completion Rate</div>
+                <div class="stat" style="color:var(--blue)">87%</div>
+                <div class="stat-sub">For completed items</div>
+            </div>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Employee</th>
+                    <th>Role</th>
+                    <th>Compliance</th>
+                    <th>Systems</th>
+                    <th>Customer Exp.</th>
+                    <th>Reporting</th>
+                    <th>Overall</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Jessica Harper</td><td>Community Manager</td><td>65%</td><td>22%</td><td>25%</td><td>22%</td><td><strong>38%</strong></td><td><span class="badge badge-amber">At Risk</span></td>
+                </tr>
+                <tr>
+                    <td>Marcus Rivera</td><td>Leasing Consultant</td><td>100%</td><td>55%</td><td>50%</td><td>33%</td><td><strong>72%</strong></td><td><span class="badge badge-green">On Track</span></td>
+                </tr>
+                <tr>
+                    <td>Aisha Patel</td><td>Leasing Consultant</td><td>100%</td><td>70%</td><td>75%</td><td>67%</td><td><strong>85%</strong></td><td><span class="badge badge-green">On Track</span></td>
+                </tr>
+                <tr>
+                    <td>Tyler Brooks</td><td>Maintenance Tech</td><td>90%</td><td>60%</td><td>50%</td><td>55%</td><td><strong>75%</strong></td><td><span class="badge badge-green">On Track</span></td>
+                </tr>
+                <tr>
+                    <td>Jordan Lee</td><td>Groundskeeper</td><td>30%</td><td>10%</td><td>0%</td><td>11%</td><td><strong>25%</strong></td><td><span class="badge badge-red">Behind</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div id="reports-compliance" class="sub-content">
+        <div class="section-title">Compliance Readiness Report</div>
+        <p style="font-size:.85rem;color:var(--muted);margin-bottom:16px">Audit-ready documentation of all required compliance training. This report is suitable for regulatory reviews.</p>
+        <div class="alert-banner alert-red mb">
+            <strong>Compliance Gaps Detected:</strong> 4 overdue compliance items across 2 employees. Immediate remediation required.
+        </div>
+
+        <div class="grid g2 mb">
+            <div class="card">
+                <h3>Compliance Summary</h3>
+                <table style="font-size:.82rem">
+                    <tbody>
+                        <tr><td>Total Required Compliance Trainings</td><td style="text-align:right"><strong>115</strong></td></tr>
+                        <tr><td>Completed</td><td style="text-align:right"><strong class="text-green">89</strong></td></tr>
+                        <tr><td>In Progress</td><td style="text-align:right"><strong class="text-amber">12</strong></td></tr>
+                        <tr><td>Pending</td><td style="text-align:right"><strong>10</strong></td></tr>
+                        <tr><td>Overdue</td><td style="text-align:right"><strong class="text-red">4</strong></td></tr>
+                        <tr><td>Compliance Rate</td><td style="text-align:right"><strong>77%</strong></td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="card">
+                <h3>Critical Compliance Items</h3>
+                <div class="alert-banner alert-red" style="margin-top:8px">Jordan Lee — Fair Housing (5 days overdue)</div>
+                <div class="alert-banner alert-red">Jessica Harper — Human Trafficking Awareness (3 days overdue)</div>
+                <div class="alert-banner alert-red">Jordan Lee — Hazard Communications (1 day overdue)</div>
+                <div class="alert-banner alert-red">Jordan Lee — OSHA Recordkeeping (1 day overdue)</div>
+            </div>
+        </div>
+        <button class="btn btn-blue" onclick="exportReport()">Export Compliance Report (PDF)</button>
+    </div>
+
+    <div id="reports-signoff" class="sub-content">
+        <div class="section-title">Manager Sign-Off Log</div>
+        <p style="font-size:.85rem;color:var(--muted);margin-bottom:16px">Complete audit trail of all manager verifications and sign-offs.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Employee</th>
+                    <th>Item</th>
+                    <th>Type</th>
+                    <th>Manager</th>
+                    <th>Action</th>
+                    <th>Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Feb 16, 2026</td><td>Tyler Brooks</td><td>OSHA 10-Hour Certification</td><td>Compliance</td><td>M. Rodriguez</td><td><span class="badge badge-green">Approved</span></td><td>Certification verified</td>
+                </tr>
+                <tr>
+                    <td>Feb 14, 2026</td><td>Marcus Rivera</td><td>First Solo Tour</td><td>Milestone</td><td>M. Rodriguez</td><td><span class="badge badge-green">Approved</span></td><td>Strong performance. Good rapport.</td>
+                </tr>
+                <tr>
+                    <td>Feb 12, 2026</td><td>Aisha Patel</td><td>Entrata Proficiency Test</td><td>Systems</td><td>S. Kim</td><td><span class="badge badge-green">Approved</span></td><td>Scored 92/100</td>
+                </tr>
+                <tr>
+                    <td>Feb 6, 2026</td><td>Jessica Harper</td><td>30-Day Evaluation</td><td>Formal Eval</td><td>M. Rodriguez</td><td><span class="badge badge-green">Approved</span></td><td>Progressing. Improve Entrata speed.</td>
+                </tr>
+                <tr>
+                    <td>Feb 5, 2026</td><td>Jessica Harper</td><td>Fair Housing Certification</td><td>Compliance</td><td>M. Rodriguez</td><td><span class="badge badge-green">Approved</span></td><td>Passed exam 93%</td>
+                </tr>
+                <tr>
+                    <td>Jan 28, 2026</td><td>Marcus Rivera</td><td>Cybersecurity Awareness</td><td>Compliance</td><td>M. Rodriguez</td><td><span class="badge badge-green">Approved</span></td><td>Completed on time</td>
+                </tr>
+                <tr>
+                    <td>Jan 22, 2026</td><td>Aisha Patel</td><td>Fair Housing Certification</td><td>Compliance</td><td>S. Kim</td><td><span class="badge badge-green">Approved</span></td><td>Passed exam 96%</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="mt">
+            <button class="btn btn-blue" onclick="exportReport()">Export Sign-Off Log</button>
+        </div>
+    </div>
+</div>
+
+<!-- SIGN-OFF MODAL -->
+<div class="signoff-modal" id="signoffModal">
+    <div class="modal-content">
+        <div class="flex" style="justify-content:space-between;margin-bottom:16px">
+            <h3 id="modalTitle">Training Sign-Off</h3>
+            <button class="btn btn-outline btn-sm" onclick="closeModal()">Close</button>
+        </div>
+        <div class="form-group">
+            <label>Employee</label>
+            <input type="text" id="modalEmployee" readonly>
+        </div>
+        <div class="form-group">
+            <label>Training Item</label>
+            <input type="text" value="Fair Housing Certification">
+        </div>
+        <div class="form-group">
+            <label>Date Completed</label>
+            <input type="date">
+        </div>
+        <div class="form-group">
+            <label>Employee Acknowledgment</label>
+            <div><input type="checkbox"> I confirm I have completed this training.</div>
+        </div>
+        <div class="form-group">
+            <label>Manager Verification</label>
+            <div><input type="checkbox"> I verify this employee has satisfactorily completed this training.</div>
+        </div>
+        <div class="form-group">
+            <label>Coaching Feedback / Notes</label>
+            <textarea rows="3" placeholder="Provide feedback or coaching notes..."></textarea>
+        </div>
+        <div class="form-group">
+            <label>Manager Digital Signature</label>
+            <input type="text" placeholder="Type full name to sign">
+        </div>
+        <div class="flex" style="gap:12px;margin-top:16px">
+            <button class="btn btn-green" onclick="closeModal()">Approve & Sign Off</button>
+            <button class="btn btn-amber" onclick="closeModal()">Request Redo</button>
+            <button class="btn btn-outline" onclick="closeModal()">Cancel</button>
+        </div>
+    </div>
+</div>
+
+<script>
+// ===== TRAINING DATA (from documents) =====
+const trainingData = [
+    // Compliance & Safety
+    {name:"Fair Housing",category:"compliance",delivery:"Online",duration:"90 min",dueDay:3,phase:1,status:"completed",dateCompleted:"Jan 10, 2026"},
+    {name:"Cybersecurity Awareness",category:"compliance",delivery:"Online",duration:"20 min",dueDay:7,phase:1,status:"completed",dateCompleted:"Jan 14, 2026"},
+    {name:"Preventing Sexual Harassment",category:"compliance",delivery:"Online",duration:"60 min",dueDay:10,phase:1,status:"completed",dateCompleted:"Jan 17, 2026"},
+    {name:"OSHA Recordkeeping for Supervisors",category:"compliance",delivery:"Online",duration:"20 min",dueDay:10,phase:1,status:"completed",dateCompleted:"Jan 17, 2026"},
+    {name:"Hazard Communications",category:"compliance",delivery:"Online",duration:"25 min",dueDay:14,phase:1,status:"completed",dateCompleted:"Jan 21, 2026"},
+    {name:"GHS Safety Data Sheets",category:"compliance",delivery:"Online",duration:"20 min",dueDay:14,phase:1,status:"completed",dateCompleted:"Jan 22, 2026"},
+    {name:"PPE - Personal Protective Equipment",category:"compliance",delivery:"Online",duration:"15 min",dueDay:21,phase:1,status:"completed",dateCompleted:"Jan 27, 2026"},
+    {name:"Heat Stress Safety",category:"compliance",delivery:"Online",duration:"15 min",dueDay:21,phase:1,status:"completed",dateCompleted:"Jan 28, 2026"},
+    {name:"Back Safety Procedures",category:"compliance",delivery:"Online",duration:"15 min",dueDay:21,phase:1,status:"completed",dateCompleted:"Jan 29, 2026"},
+    {name:"Fire Prevention & Safety",category:"compliance",delivery:"Online",duration:"20 min",dueDay:25,phase:1,status:"completed",dateCompleted:"Jan 31, 2026"},
+    {name:"Slips, Trips and Falls",category:"compliance",delivery:"Online",duration:"20 min",dueDay:25,phase:1,status:"completed",dateCompleted:"Feb 1, 2026"},
+    {name:"Ladder Safety",category:"compliance",delivery:"Online",duration:"15 min",dueDay:28,phase:1,status:"completed",dateCompleted:"Feb 3, 2026"},
+    {name:"Electrical Safety Awareness",category:"compliance",delivery:"Online",duration:"20 min",dueDay:28,phase:1,status:"completed",dateCompleted:"Feb 4, 2026"},
+    {name:"Diversity in the Workplace",category:"compliance",delivery:"Online",duration:"45 min",dueDay:30,phase:1,status:"completed",dateCompleted:"Feb 5, 2026"},
+    {name:"Dealing with Drug & Alcohol Abuse",category:"compliance",delivery:"Online",duration:"30 min",dueDay:35,phase:2,status:"completed",dateCompleted:"Feb 10, 2026"},
+    {name:"Understanding Human Trafficking Awareness",category:"compliance",delivery:"Online",duration:"30 min",dueDay:39,phase:2,status:"overdue",dateCompleted:null},
+    {name:"Lockout/Tagout Safety",category:"compliance",delivery:"Online",duration:"20 min",dueDay:44,phase:2,status:"pending",dateCompleted:null},
+    {name:"Miya's Law Compliance",category:"compliance",delivery:"Online",duration:"25 min",dueDay:50,phase:2,status:"pending",dateCompleted:null},
+    {name:"Bloodborne Pathogens",category:"compliance",delivery:"Online",duration:"25 min",dueDay:55,phase:2,status:"pending",dateCompleted:null},
+    {name:"Emergency Action Plans",category:"compliance",delivery:"Online",duration:"20 min",dueDay:60,phase:2,status:"pending",dateCompleted:null},
+    {name:"Asbestos Awareness",category:"compliance",delivery:"Online",duration:"20 min",dueDay:65,phase:3,status:"pending",dateCompleted:null},
+    {name:"Lead Paint Safety",category:"compliance",delivery:"Online",duration:"20 min",dueDay:65,phase:3,status:"pending",dateCompleted:null},
+    {name:"Mold Awareness & Prevention",category:"compliance",delivery:"Online",duration:"15 min",dueDay:65,phase:3,status:"pending",dateCompleted:null},
+    // Systems Training
+    {name:"Entrata: Introduction & Navigation",category:"systems",delivery:"In Person/Virtual",duration:"60 min",dueDay:5,phase:1,status:"completed",dateCompleted:"Jan 12, 2026"},
+    {name:"Entrata: Guest Cards",category:"systems",delivery:"In Person/Virtual",duration:"60 min",dueDay:10,phase:1,status:"completed",dateCompleted:"Jan 16, 2026"},
+    {name:"Entrata: Managing Leads",category:"systems",delivery:"Online",duration:"45 min",dueDay:15,phase:1,status:"completed",dateCompleted:"Jan 20, 2026"},
+    {name:"Entrata: Leasing Module",category:"systems",delivery:"Online",duration:"60 min",dueDay:42,phase:2,status:"pending",dateCompleted:null},
+    {name:"Entrata: Applications & Screening",category:"systems",delivery:"In Person/Virtual",duration:"60 min",dueDay:45,phase:2,status:"pending",dateCompleted:null},
+    {name:"Entrata: Resident Portal",category:"systems",delivery:"Online",duration:"45 min",dueDay:50,phase:2,status:"pending",dateCompleted:null},
+    {name:"Entrata: Work Orders",category:"systems",delivery:"In Person/Virtual",duration:"60 min",dueDay:55,phase:2,status:"pending",dateCompleted:null},
+    {name:"Entrata: Reports & Analytics",category:"systems",delivery:"Online",duration:"60 min",dueDay:60,phase:2,status:"pending",dateCompleted:null},
+    {name:"Entrata: Resident Management 1",category:"systems",delivery:"Online",duration:"45 min",dueDay:60,phase:2,status:"pending",dateCompleted:null},
+    {name:"Entrata: Resident Management 2",category:"systems",delivery:"Online",duration:"45 min",dueDay:60,phase:2,status:"pending",dateCompleted:null},
+    {name:"Entrata: AR Payments",category:"systems",delivery:"Online",duration:"45 min",dueDay:60,phase:2,status:"pending",dateCompleted:null},
+    {name:"Entrata: Accounts Payable Part 1",category:"systems",delivery:"Online",duration:"45 min",dueDay:60,phase:2,status:"pending",dateCompleted:null},
+    {name:"Entrata: Accounts Payable Part 2",category:"systems",delivery:"Online",duration:"45 min",dueDay:60,phase:2,status:"pending",dateCompleted:null},
+    {name:"Knock CRM: Introduction",category:"systems",delivery:"In Person/Virtual",duration:"60 min",dueDay:20,phase:1,status:"completed",dateCompleted:"Jan 24, 2026"},
+    {name:"Knock CRM: Advanced Features",category:"systems",delivery:"Virtual",duration:"60 min",dueDay:50,phase:2,status:"pending",dateCompleted:null},
+    {name:"Paycor: Employee Self-Service",category:"systems",delivery:"Online",duration:"30 min",dueDay:7,phase:1,status:"completed",dateCompleted:"Jan 14, 2026"},
+    {name:"SOCi: Reputation Management",category:"systems",delivery:"Virtual",duration:"45 min",dueDay:55,phase:2,status:"pending",dateCompleted:null},
+    {name:"Apartment IQ: Marketing Analytics",category:"systems",delivery:"Virtual",duration:"60 min",dueDay:55,phase:2,status:"pending",dateCompleted:null},
+    {name:"J Turner: Reputation Monitoring",category:"systems",delivery:"Virtual",duration:"45 min",dueDay:55,phase:2,status:"pending",dateCompleted:null},
+    {name:"Conservice: Utility Management",category:"systems",delivery:"In Person/Virtual",duration:"60 min",dueDay:60,phase:2,status:"pending",dateCompleted:null},
+    {name:"RealPage AIRM: Insurance",category:"systems",delivery:"Virtual",duration:"45 min",dueDay:60,phase:2,status:"pending",dateCompleted:null},
+    {name:"Plentive: Commissions & Bonuses",category:"systems",delivery:"Virtual",duration:"30 min",dueDay:60,phase:2,status:"pending",dateCompleted:null},
+    {name:"Egnyte: Document Management",category:"systems",delivery:"Online",duration:"30 min",dueDay:10,phase:1,status:"completed",dateCompleted:null},
+    // Customer Experience / Leasing / Other
+    {name:"The RISE Experience (Onboarding)",category:"customer",delivery:"Online",duration:"60 min",dueDay:3,phase:1,status:"completed",dateCompleted:"Jan 10, 2026"},
+    {name:"Empowered Connections",category:"customer",delivery:"Online",duration:"45 min",dueDay:45,phase:2,status:"pending",dateCompleted:null},
+    {name:"Crucial Conversations",category:"customer",delivery:"Online",duration:"60 min",dueDay:60,phase:2,status:"pending",dateCompleted:null},
+    {name:"Emotional Intelligence",category:"customer",delivery:"Online",duration:"45 min",dueDay:90,phase:3,status:"pending",dateCompleted:null},
+    // Reporting/General
+    {name:"Delinquency Management",category:"reporting",delivery:"In Person/Virtual",duration:"60 min",dueDay:45,phase:2,status:"pending",dateCompleted:null},
+    {name:"Rent Roll Report Essentials",category:"reporting",delivery:"In Person/Virtual",duration:"60 min",dueDay:50,phase:2,status:"pending",dateCompleted:null},
+    {name:"Rental & Occupancy Criteria",category:"reporting",delivery:"In Person/Virtual",duration:"60 min",dueDay:30,phase:1,status:"completed",dateCompleted:"Feb 5, 2026"},
+    {name:"Utility Billing Overview",category:"reporting",delivery:"In Person/Virtual",duration:"45 min",dueDay:55,phase:2,status:"pending",dateCompleted:null},
+    {name:"Budget Variance Reporting",category:"reporting",delivery:"In Person/Virtual",duration:"60 min",dueDay:60,phase:2,status:"pending",dateCompleted:null},
+    {name:"Help Desk / Ticketing System (nFlow)",category:"reporting",delivery:"Online",duration:"20 min",dueDay:7,phase:1,status:"completed",dateCompleted:"Jan 14, 2026"},
+    {name:"Purchase Order Process",category:"reporting",delivery:"In Person/Virtual",duration:"45 min",dueDay:55,phase:2,status:"pending",dateCompleted:null},
+    {name:"Preliminary Financial Review",category:"reporting",delivery:"In Person/Virtual",duration:"60 min",dueDay:60,phase:2,status:"pending",dateCompleted:null},
+    {name:"Accounts Payable Process",category:"reporting",delivery:"In Person/Virtual",duration:"45 min",dueDay:60,phase:2,status:"pending",dateCompleted:null}
+];
+
+// ===== MILESTONES DATA =====
+const milestones = [
+    {name:"Day 1 Orientation Complete",icon:"&#127919;",day:1,status:"completed",signedBy:"M. Rodriguez",signDate:"Jan 8, 2026"},
+    {name:"Fair Housing Certified",icon:"&#128218;",day:3,status:"completed",signedBy:"M. Rodriguez",signDate:"Jan 10, 2026"},
+    {name:"Systems Access Confirmed",icon:"&#128187;",day:5,status:"completed",signedBy:"IT Dept",signDate:"Jan 12, 2026"},
+    {name:"Shadow Week Complete",icon:"&#128101;",day:21,status:"completed",signedBy:"M. Rodriguez",signDate:"Jan 28, 2026"},
+    {name:"30-Day Foundations Certified",icon:"&#127942;",day:30,status:"completed",signedBy:"M. Rodriguez",signDate:"Feb 6, 2026"},
+    {name:"First Solo Tour",icon:"&#128640;",day:35,status:"in-progress",signedBy:null,signDate:null},
+    {name:"First Lease Signed",icon:"&#128221;",day:45,status:"pending",signedBy:null,signDate:null},
+    {name:"60-Day Skill Certified",icon:"&#127775;",day:60,status:"pending",signedBy:null,signDate:null},
+    {name:"Compliance Certification Complete",icon:"&#9989;",day:65,status:"pending",signedBy:null,signDate:null},
+    {name:"90-Day Independence Certified",icon:"&#128170;",day:90,status:"pending",signedBy:null,signDate:null},
+    {name:"120-Day Autonomy Confirmed",icon:"&#128293;",day:120,status:"pending",signedBy:null,signDate:null},
+    {name:"180-Day Program Graduate",icon:"&#127891;",day:180,status:"pending",signedBy:null,signDate:null}
+];
+
+// ===== PHASES DATA =====
+const phases = [
+    {num:1,name:"Foundations",theme:"Learn the Business, the Culture, and Your Role",days:"Day 1-30",cls:"phase-1",goals:["Understand the multifamily business model","Master company systems and tools","Complete all compliance training","Shadow experienced team members","Begin hands-on work under supervision"]},
+    {num:2,name:"Skill Building",theme:"Develop Core Competencies, Gain Confidence",days:"Day 31-60",cls:"phase-2",goals:["Operate semi-independently in routine situations","Master customer experience fundamentals","Handle increasing complexity","Build resident relationship skills"]},
+    {num:3,name:"Mastery",theme:"Own Your Role, Drive Results",days:"Day 61-90",cls:"phase-3",goals:["Operate independently in most situations","Meet or exceed performance benchmarks","Handle complex situations with minimal guidance","Begin contributing to team goals"]},
+    {num:4,name:"Autonomy",theme:"Full Independence, Consistent Excellence",days:"Day 91-120",cls:"phase-4",goals:["Operate fully independently","Consistently meet or exceed all KPIs","Train and mentor newer team members","Take ownership of outcomes"]},
+    {num:5,name:"Excellence",theme:"Exceed Expectations, Build Expertise",days:"Day 121-150",cls:"phase-5",goals:["Consistently exceed performance standards","Develop specialized expertise","Contribute to team and company success","Prepare for leadership opportunities"]},
+    {num:6,name:"Leadership Readiness",theme:"Certification, Career Planning, Long-Term Success",days:"Day 151-180",cls:"phase-6",goals:["Complete onboarding certification","Demonstrate sustained excellence","Establish clear career trajectory","Position for promotion or specialization"]}
+];
+
+// ===== TAB NAVIGATION =====
+const TAB_IDS = ['employee','calendar','progress','manager','reports'];
+
+function showTab(id){
+    document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));
+    document.querySelectorAll('#tabBar button').forEach(b=>b.classList.remove('active'));
+    document.getElementById('tab-'+id).classList.add('active');
+    document.querySelectorAll('#tabBar button').forEach((b,i)=>{if(TAB_IDS[i]===id)b.classList.add('active')});
+    if(id==='calendar')renderCalendar();
+}
+
+function showSubTab(prefix,name){
+    const parent=document.getElementById('tab-'+prefix);
+    parent.querySelectorAll('.sub-content').forEach(s=>s.classList.remove('active'));
+    parent.querySelectorAll('.sub-tabs button').forEach(b=>b.classList.remove('active'));
+    document.getElementById(prefix+'-'+name).classList.add('active');
+    event.target.classList.add('active');
+}
+
+// ===== RENDER TRAINING TABLE =====
+function renderTraining(){
+    const tbody=document.getElementById('trainingBody');
+    const catFilter=document.getElementById('categoryFilter').value;
+    const statusFilter=document.getElementById('statusFilter').value;
+    const phaseFilter=document.getElementById('phaseFilter').value;
+    let filtered=trainingData.filter(t=>{
+        if(catFilter!=='all'&&t.category!==catFilter)return false;
+        if(statusFilter!=='all'&&t.status!==statusFilter)return false;
+        if(phaseFilter!=='all'&&t.phase!==parseInt(phaseFilter))return false;
+        return true;
+    });
+    const catColors={compliance:'#f8d7da',systems:'#d1ecf1',customer:'#d4edda',leasing:'#d4edda',fairhousing:'#e8d5f5',emergency:'#fff3cd',sales:'#ffe0b2',reporting:'#e9ecef'};
+    const catTextColors={compliance:'#721c24',systems:'#0c5460',customer:'#155724',leasing:'#155724',fairhousing:'#4a1a6b',emergency:'#856404',sales:'#e65100',reporting:'#495057'};
+    const catNames={compliance:'Compliance & Safety',systems:'Systems',customer:'Customer Experience',leasing:'Leasing',fairhousing:'Fair Housing',emergency:'Emergency',sales:'Sales',reporting:'Reporting/General'};
+    const statusBadges={completed:'<span class="badge badge-green">Completed</span>',pending:'<span class="badge badge-gray">Pending</span>',overdue:'<span class="badge badge-red">Overdue</span>'};
+    tbody.innerHTML=filtered.map((t,i)=>`
+        <tr class="${t.status==='completed'?'completed-item':''}">
+            <td><input type="checkbox" ${t.status==='completed'?'checked':''} onchange="toggleTraining(${trainingData.indexOf(t)},this.checked)"></td>
+            <td>${t.name}</td>
+            <td><span class="item-category" style="background:${catColors[t.category]||'#e9ecef'};color:${catTextColors[t.category]||'#495057'}">${catNames[t.category]||t.category}</span></td>
+            <td>${t.delivery}</td>
+            <td>${t.duration}</td>
+            <td>Day ${t.dueDay}</td>
+            <td>${statusBadges[t.status]||''}</td>
+            <td><button class="btn btn-outline btn-sm" onclick="openSignoffForTraining('${t.name}')">Sign Off</button></td>
+        </tr>
+    `).join('');
+}
+function filterTraining(){renderTraining()}
+
+function toggleTraining(idx,checked){
+    if(checked){
+        trainingData[idx].status='completed';
+        trainingData[idx].dateCompleted=new Date().toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
+    } else {
+        trainingData[idx].status='pending';
+        trainingData[idx].dateCompleted=null;
+    }
+    renderTraining();
+    updateStats();
+}
+
+function updateStats(){
+    const total=trainingData.length;
+    const completed=trainingData.filter(t=>t.status==='completed').length;
+    const pct=Math.round(completed/total*100);
+    document.getElementById('tasksCompleted').textContent=completed;
+    document.getElementById('tasksSub').textContent=`of ${total} total`;
+    document.getElementById('overallPct').textContent=pct+'%';
+    document.getElementById('overallBar').style.width=pct+'%';
+    // Update readiness gauge
+    const score=Math.round(pct*1.3);
+    const clampedScore=Math.min(score,100);
+    document.getElementById('readinessScore').textContent=clampedScore;
+    const dashoffset=440-(440*clampedScore/100);
+    document.querySelector('.readiness-gauge circle:nth-child(2)').setAttribute('stroke-dashoffset',dashoffset);
+}
+
+// ===== RENDER PHASES =====
+function renderPhases(){
+    const container=document.getElementById('phasesContainer');
+    const phaseColors={1:'var(--blue)',2:'var(--green)',3:'var(--amber)',4:'var(--purple)',5:'var(--orange)',6:'var(--red)'};
+    container.innerHTML=phases.map(p=>{
+        const phaseTasks=trainingData.filter(t=>t.phase===p.num);
+        const done=phaseTasks.filter(t=>t.status==='completed').length;
+        const total=phaseTasks.length;
+        const pct=total?Math.round(done/total*100):0;
+        const color=phaseColors[p.num]||'var(--blue)';
+        return `
+        <div class="onboarding-phase ${p.cls}">
+            <div class="phase-header" onclick="togglePhase(this)">
+                <h3><span class="arrow">&#9654;</span> Month ${p.num}: ${p.name} <span style="font-weight:400;font-size:.82rem;color:var(--muted);margin-left:8px">${p.days}</span></h3>
+                <div class="flex" style="gap:12px">
+                    <span style="font-size:.82rem;font-weight:600">${done}/${total} tasks</span>
+                </div>
+            </div>
+            <div class="phase-progress">
+                <div class="progress-bar lg"><div class="progress-fill" style="width:${pct}%;background:${color}"></div></div>
+                <span class="phase-pct" style="color:${pct>=70?'var(--green)':pct>=40?'var(--amber)':'var(--muted)'}">${pct}%</span>
+            </div>
+            <div class="phase-body">
+                <p style="font-size:.85rem;color:var(--muted);margin-bottom:12px"><strong>Theme:</strong> ${p.theme}</p>
+                <div style="margin-bottom:12px">
+                    <strong style="font-size:.82rem">Goals:</strong>
+                    <ul style="font-size:.82rem;color:var(--muted);padding-left:20px;margin-top:4px">
+                        ${p.goals.map(g=>`<li>${g}</li>`).join('')}
+                    </ul>
+                </div>
+                ${phaseTasks.map(t=>`
+                    <div class="training-item ${t.status==='completed'?'completed-item':''}">
+                        <input type="checkbox" ${t.status==='completed'?'checked':''} onchange="toggleTraining(${trainingData.indexOf(t)},this.checked)">
+                        <span class="item-name">${t.name}</span>
+                        <span style="font-size:.75rem;color:var(--muted)">${t.delivery}</span>
+                        <span style="font-size:.75rem;color:var(--muted)">${t.duration}</span>
+                        ${t.status==='overdue'?'<span class="badge badge-red">Overdue</span>':t.status==='completed'?'<span class="badge badge-green">Done</span>':'<span class="badge badge-gray">Day '+t.dueDay+'</span>'}
+                    </div>
+                `).join('')}
+            </div>
+        </div>`;
+    }).join('');
+}
+
+function togglePhase(header){
+    const body=header.parentElement.querySelector('.phase-body');
+    const arrow=header.querySelector('.arrow');
+    body.classList.toggle('open');
+    arrow.classList.toggle('open');
+}
+
+// ===== RENDER MILESTONES =====
+function renderMilestones(){
+    const grid=document.getElementById('milestonesGrid');
+    grid.innerHTML=milestones.map(m=>`
+        <div class="milestone-card ${m.status}" onclick="${m.status!=='completed'?"openSignoff('"+m.name+"')":""}">
+            ${m.status==='completed'?'<div class="milestone-badge" style="background:var(--green)">&#10003;</div>':m.status==='in-progress'?'<div class="milestone-badge" style="background:var(--blue)">...</div>':''}
+            <div class="milestone-icon">${m.icon}</div>
+            <div class="milestone-title">${m.name}</div>
+            <div class="milestone-date">Day ${m.day}</div>
+            ${m.signedBy?`<div style="font-size:.7rem;color:var(--green);margin-top:4px">Signed: ${m.signedBy}</div>`:''}
+        </div>
+    `).join('');
+}
+
+// ===== CALENDAR =====
+let calMonth=1, calYear=2026; // Feb = 1
+const monthNames=["January","February","March","April","May","June","July","August","September","October","November","December"];
+
+const calEvents=[
+    {day:3,month:1,text:"Manager Check-in",cls:"checkin"},
+    {day:4,month:1,text:"Entrata: Leasing Module",cls:"systems"},
+    {day:5,month:1,text:"De-escalation Workshop",cls:"compliance"},
+    {day:6,month:1,text:"Knock CRM Training",cls:"systems"},
+    {day:7,month:1,text:"Weekly Reflection Due",cls:"checkin"},
+    {day:10,month:1,text:"Manager Check-in",cls:"checkin"},
+    {day:10,month:1,text:"Entrata: Applications",cls:"systems"},
+    {day:12,month:1,text:"Property Walk",cls:"leasing"},
+    {day:13,month:1,text:"Human Trafficking (OVERDUE)",cls:"compliance"},
+    {day:14,month:1,text:"Weekly Reflection Due",cls:"checkin"},
+    {day:17,month:1,text:"Manager Check-in",cls:"checkin"},
+    {day:18,month:1,text:"Entrata: Leasing Module",cls:"systems"},
+    {day:18,month:1,text:"Shadow Team Member",cls:"leasing"},
+    {day:20,month:1,text:"Lockout/Tagout Due",cls:"safety"},
+    {day:20,month:1,text:"Mentor Session",cls:"checkin"},
+    {day:21,month:1,text:"Weekly Reflection Due",cls:"checkin"},
+    {day:24,month:1,text:"Manager Check-in",cls:"checkin"},
+    {day:25,month:1,text:"Miya's Law Training",cls:"compliance"},
+    {day:26,month:1,text:"60-Day Evaluation",cls:"milestone"},
+    {day:28,month:1,text:"Weekly Reflection Due",cls:"checkin"},
+    // March events
+    {day:2,month:2,text:"Financial Literacy Module",cls:"leasing"},
+    {day:5,month:2,text:"Manager Check-in",cls:"checkin"},
+    {day:10,month:2,text:"Resident Retention Focus",cls:"leasing"},
+    {day:15,month:2,text:"Compliance Audit",cls:"compliance"},
+    {day:28,month:2,text:"90-Day Evaluation",cls:"milestone"},
+];
+
+function renderCalendar(){
+    const grid=document.getElementById('calendarGrid');
+    document.getElementById('calMonthTitle').textContent=monthNames[calMonth]+' '+calYear;
+    const firstDay=new Date(calYear,calMonth,1).getDay();
+    const daysInMonth=new Date(calYear,calMonth+1,0).getDate();
+    const today=new Date();
+    let html='';
+    ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].forEach(d=>html+=`<div class="cal-header">${d}</div>`);
+    for(let i=0;i<firstDay;i++)html+=`<div class="cal-day empty"></div>`;
+    for(let d=1;d<=daysInMonth;d++){
+        const isToday=d===today.getDate()&&calMonth===today.getMonth()&&calYear===today.getFullYear();
+        const dayEvents=calEvents.filter(e=>e.day===d&&e.month===calMonth);
+        html+=`<div class="cal-day ${isToday?'today':''}">
+            <div class="day-num">${d}</div>
+            ${dayEvents.map(e=>`<div class="cal-event ${e.cls}" title="${e.text}">${e.text}</div>`).join('')}
+        </div>`;
+    }
+    grid.innerHTML=html;
+}
+
+function changeMonth(dir){calMonth+=dir;if(calMonth>11){calMonth=0;calYear++}if(calMonth<0){calMonth=11;calYear--}renderCalendar()}
+function changeWeek(dir){}
+function changeDay(dir){}
+
+// ===== WEEKLY CHART =====
+function renderWeeklyChart(){
+    const svg=document.getElementById('weeklyChart');
+    const data=[{w:'W1',v:15},{w:'W2',v:28},{w:'W3',v:42},{w:'W4',v:58},{w:'W5',v:72},{w:'W6',v:38}];
+    const maxV=100;
+    const barW=80, gap=50, startX=60, h=180;
+    let svgContent='';
+    // Gridlines
+    for(let i=0;i<=4;i++){
+        const y=h-(i*45);
+        svgContent+=`<line x1="40" y1="${y}" x2="780" y2="${y}" stroke="#e0e4e8" stroke-width="1"/>`;
+        svgContent+=`<text x="35" y="${y+4}" font-size="11" fill="#6c757d" text-anchor="end">${i*25}%</text>`;
+    }
+    data.forEach((d,i)=>{
+        const x=startX+i*(barW+gap);
+        const barH=(d.v/maxV)*h;
+        const y=h-barH;
+        const color=i<5?'#2E86AB':'#1B2A4A';
+        svgContent+=`<rect x="${x}" y="${y}" width="${barW}" height="${barH}" rx="4" fill="${color}" opacity=".8"/>`;
+        svgContent+=`<text x="${x+barW/2}" y="${y-6}" font-size="12" fill="#333" text-anchor="middle" font-weight="600">${d.v}%</text>`;
+        svgContent+=`<text x="${x+barW/2}" y="${h+16}" font-size="11" fill="#6c757d" text-anchor="middle">${d.w}</text>`;
+    });
+    svg.innerHTML=svgContent;
+}
+
+// ===== MODALS =====
+function openSignoff(name){
+    document.getElementById('signoffModal').classList.add('active');
+    document.getElementById('modalEmployee').value=name;
+    document.getElementById('modalTitle').textContent='Sign-Off: '+name;
+}
+function openSignoffForTraining(name){
+    document.getElementById('signoffModal').classList.add('active');
+    document.getElementById('modalEmployee').value='Jessica Harper';
+    document.getElementById('modalTitle').textContent='Sign-Off: '+name;
+}
+function closeModal(){document.getElementById('signoffModal').classList.remove('active')}
+
+function approveRow(btn){btn.closest('tr').querySelector('td:last-child').innerHTML='<span class="badge badge-green">Approved &check;</span>'}
+function returnRow(btn){btn.closest('tr').querySelector('td:last-child').innerHTML='<span class="badge badge-amber">Returned &crarr;</span>'}
+
+// ===== ROLE CHANGE =====
+function changeRole(role){
+    // In production, this would load role-specific training data
+    console.log('Role changed to:',role);
+}
+
+// ===== EXPORT =====
+function exportTrainingCSV(){
+    let csv='Name,Category,Delivery,Duration,Due Day,Status,Date Completed\n';
+    trainingData.forEach(t=>{csv+=`"${t.name}","${t.category}","${t.delivery}","${t.duration}",${t.dueDay},"${t.status}","${t.dateCompleted||''}"\n`});
+    const blob=new Blob([csv],{type:'text/csv'});
+    const a=document.createElement('a');
+    a.href=URL.createObjectURL(blob);
+    a.download='training-completion-report.csv';
+    a.click();
+}
+function exportReport(){
+    alert('Report exported. In production, this generates a PDF with full audit documentation.');
+}
+
+// ===== INIT =====
+window.addEventListener('DOMContentLoaded',()=>{
+    renderTraining();
+    renderPhases();
+    renderMilestones();
+    renderCalendar();
+    renderWeeklyChart();
+    updateStats();
+});
+</script>
+</body>
+</html>
