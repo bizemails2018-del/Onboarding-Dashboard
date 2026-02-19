@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -155,7 +155,53 @@
         .week-view-item{background:#fff;border-radius:8px;padding:14px;border-left:4px solid var(--blue);margin-bottom:8px;box-shadow:var(--shadow)}
         .week-view-item h4{font-size:.88rem;color:var(--navy);margin-bottom:4px}
         .week-view-item .wv-meta{font-size:.78rem;color:var(--muted)}
-        @media(max-width:768px){header{padding:10px 16px}header h1{font-size:1.1rem}.tabs button{padding:10px 14px;font-size:.82rem}.tab-content{padding:14px}.stat{font-size:1.4rem}.calendar-grid{grid-template-columns:1fr}.cal-day{min-height:auto}}
+        @media(max-width:768px){
+            header{padding:10px 16px;flex-direction:column;align-items:flex-start}
+            header h1{font-size:1.05rem}
+            header .header-right{width:100%;flex-wrap:wrap;gap:8px}
+            header .header-right select{flex:1;min-width:140px}
+            .tabs{padding:0 8px}
+            .tabs button{padding:8px 12px;font-size:.78rem}
+            .sub-tabs button{padding:6px 10px;font-size:.75rem}
+            .tab-content{padding:12px}
+            .grid.g2,.grid.g3,.grid.g4,.grid.g5{grid-template-columns:1fr}
+            .stat{font-size:1.4rem}
+            .calendar-grid{grid-template-columns:1fr}
+            .cal-day{min-height:auto;padding:8px}
+            .cal-header{display:none}
+            .cal-day .day-num{font-size:.9rem}
+            .cal-day.empty{display:none}
+            table{display:block;overflow-x:auto;white-space:nowrap}
+            .readiness-gauge{width:120px;height:120px}
+            .readiness-gauge svg{width:120px;height:120px}
+            .readiness-gauge .gauge-text .score{font-size:1.5rem}
+            .card{padding:14px}
+            .phase-header{flex-direction:column;align-items:flex-start;gap:6px}
+            .filter-bar{flex-direction:column}
+            .filter-bar select,.filter-bar input{width:100%}
+            .signoff-modal .modal-content{width:95%;padding:16px}
+            .gamification-badges{gap:8px;justify-content:center}
+            .badge-item{width:68px}
+            .badge-item .badge-icon{width:50px;height:50px;font-size:1.2rem}
+            .badge-item .badge-name{font-size:.62rem}
+            .milestone-card{padding:12px}
+            .milestone-card .milestone-icon{font-size:1.5rem}
+            .week-view-item{padding:10px}
+            .alert-banner{font-size:.78rem;flex-direction:column;align-items:flex-start}
+        }
+        @media(max-width:480px){
+            header h1{font-size:.95rem}
+            .tabs button{padding:6px 8px;font-size:.72rem}
+            .stat{font-size:1.2rem}
+            .stat-label{font-size:.7rem}
+            .section-title{font-size:.95rem}
+            .card h3{font-size:.85rem}
+            .badge-item{width:58px}
+            .badge-item .badge-icon{width:42px;height:42px;font-size:1rem}
+            .badge-item .badge-name{font-size:.58rem}
+            .training-item{flex-direction:column;align-items:flex-start;gap:6px}
+            .training-item .item-name{font-size:.82rem}
+        }
     </style>
 </head>
 <body>
@@ -164,12 +210,13 @@
     <h1>RISE Training & Onboarding Dashboard</h1>
     <div class="header-right">
         <select id="roleSelect" onchange="changeRole(this.value)">
-            <option value="community-manager">Community Manager</option>
-            <option value="leasing-consultant">Leasing Consultant</option>
-            <option value="assistant-manager">Assistant Community Manager</option>
+            <option value="general-manager">General Manager</option>
+            <option value="asst-general-manager">Asst General Manager</option>
+            <option value="leasing-manager">Leasing Manager</option>
+            <option value="leasing-professional">Leasing Professional</option>
+            <option value="service-manager">Service Manager</option>
             <option value="maintenance-tech">Maintenance Technician</option>
-            <option value="maintenance-super">Maintenance Supervisor</option>
-            <option value="groundskeeper">Groundskeeper / Porter</option>
+            <option value="groundskeeper">Groundskeeper / Housekeeper</option>
             <option value="corporate">Corporate Staff</option>
         </select>
         <span>Jessica Harper | Day 42 of 180</span>
@@ -181,6 +228,9 @@
     <button onclick="showTab('calendar')">Calendar</button>
     <button onclick="showTab('progress')">Progress & Milestones</button>
     <button onclick="showTab('manager')">Manager View</button>
+    <button onclick="showTab('regional')">Regional View</button>
+    <button onclick="showTab('vpcoo')">VP/COO View</button>
+    <button onclick="showTab('resources')">Resources</button>
     <button onclick="showTab('reports')">Reports</button>
 </div>
 
@@ -284,6 +334,19 @@
             <div class="badge-item"><div class="badge-icon" style="background:#d4edda">&#127775;</div><div class="badge-name">60-Day Star</div></div>
             <div class="badge-item"><div class="badge-icon" style="background:#e8d5f5">&#128170;</div><div class="badge-name">Independence</div></div>
             <div class="badge-item"><div class="badge-icon" style="background:#fff3cd">&#127891;</div><div class="badge-name">Graduate</div></div>
+        </div>
+
+        <div class="section-title">Manager Awards <span style="font-size:.75rem;font-weight:400;color:var(--muted);margin-left:8px">Awarded by Manager & above</span></div>
+        <div class="gamification-badges mb">
+            <div class="badge-item"><div class="badge-icon" style="background:#fce4ec">&#10084;&#65039;</div><div class="badge-name">Love.Serve.Care</div></div>
+            <div class="badge-item"><div class="badge-icon" style="background:#e8eaf6">&#9878;&#65039;</div><div class="badge-name">Reasonable</div></div>
+            <div class="badge-item"><div class="badge-icon" style="background:#e0f2f1">&#128737;</div><div class="badge-name">Reliable</div></div>
+            <div class="badge-item"><div class="badge-icon" style="background:#fff8e1">&#128161;</div><div class="badge-name">Inspired</div></div>
+            <div class="badge-item"><div class="badge-icon" style="background:#fce4ec">&#128165;</div><div class="badge-name">Impactful</div></div>
+            <div class="badge-item"><div class="badge-icon" style="background:#e0f7fa">&#129309;</div><div class="badge-name">Serve</div></div>
+            <div class="badge-item"><div class="badge-icon" style="background:#f3e5f5">&#129513;</div><div class="badge-name">Simplify</div></div>
+            <div class="badge-item"><div class="badge-icon" style="background:#fff3e0">&#127941;</div><div class="badge-name">Experienced</div></div>
+            <div class="badge-item"><div class="badge-icon" style="background:#e8f5e9">&#128640;</div><div class="badge-name">Empowering</div></div>
         </div>
 
         <!-- Current Phase Detail -->
@@ -802,7 +865,7 @@
             <tbody>
                 <tr>
                     <td><strong>Jessica Harper</strong></td>
-                    <td>Community Manager</td>
+                    <td>General Manager</td>
                     <td>Jan 8, 2026</td>
                     <td>42</td>
                     <td>Month 2</td>
@@ -817,7 +880,7 @@
                 </tr>
                 <tr>
                     <td><strong>Marcus Rivera</strong></td>
-                    <td>Leasing Consultant</td>
+                    <td>Leasing Professional</td>
                     <td>Jan 15, 2026</td>
                     <td>35</td>
                     <td>Month 2</td>
@@ -832,7 +895,7 @@
                 </tr>
                 <tr>
                     <td><strong>Aisha Patel</strong></td>
-                    <td>Leasing Consultant</td>
+                    <td>Leasing Professional</td>
                     <td>Jan 22, 2026</td>
                     <td>28</td>
                     <td>Month 1</td>
@@ -862,7 +925,7 @@
                 </tr>
                 <tr>
                     <td><strong>Jordan Lee</strong></td>
-                    <td>Groundskeeper</td>
+                    <td>Groundskeeper / Housekeeper</td>
                     <td>Feb 10, 2026</td>
                     <td>9</td>
                     <td>Month 1</td>
@@ -987,6 +1050,146 @@
     </div>
 </div>
 
+<!-- ==================== REGIONAL VIEW TAB ==================== -->
+<div id="tab-regional" class="tab-content">
+    <div class="section-title">Regional Onboarding Overview — Southeast Region</div>
+    <div class="grid g4 mb">
+        <div class="card" style="border-top:4px solid var(--green)"><div class="stat-label">On Track</div><div class="stat text-green">7</div><div class="stat-sub">employees</div></div>
+        <div class="card" style="border-top:4px solid var(--amber)"><div class="stat-label">At Risk</div><div class="stat text-amber">2</div><div class="stat-sub">employees</div></div>
+        <div class="card" style="border-top:4px solid var(--red)"><div class="stat-label">Behind / Overdue</div><div class="stat text-red">1</div><div class="stat-sub">employee</div></div>
+        <div class="card" style="border-top:4px solid var(--blue)"><div class="stat-label">Total New Hires (Region)</div><div class="stat">10</div><div class="stat-sub">across 4 properties</div></div>
+    </div>
+    <div style="overflow-x:auto">
+    <table>
+        <thead>
+            <tr><th>Employee</th><th>Role</th><th>Location</th><th>Start Date</th><th>Day</th><th>Phase</th><th>Completion</th><th>Compliance</th><th>Overdue</th><th>Status</th></tr>
+        </thead>
+        <tbody>
+            <tr><td><strong>Jessica Harper</strong></td><td>General Manager</td><td>Riverside Terrace</td><td>Jan 8</td><td>42</td><td>Month 2</td><td><div style="display:flex;align-items:center;gap:8px"><span style="font-weight:700">38%</span><div class="progress-bar" style="flex:1"><div class="progress-fill" style="width:38%;background:var(--amber)"></div></div></div></td><td><span class="badge badge-amber">65%</span></td><td><span class="badge badge-red">1</span></td><td><span class="badge badge-amber">At Risk</span></td></tr>
+            <tr><td><strong>Marcus Rivera</strong></td><td>Leasing Professional</td><td>Riverside Terrace</td><td>Jan 15</td><td>35</td><td>Month 2</td><td><div style="display:flex;align-items:center;gap:8px"><span style="font-weight:700">72%</span><div class="progress-bar" style="flex:1"><div class="progress-fill" style="width:72%;background:var(--green)"></div></div></div></td><td><span class="badge badge-green">100%</span></td><td>0</td><td><span class="badge badge-green">On Track</span></td></tr>
+            <tr><td><strong>Aisha Patel</strong></td><td>Leasing Professional</td><td>Oak Park Commons</td><td>Jan 22</td><td>28</td><td>Month 1</td><td><div style="display:flex;align-items:center;gap:8px"><span style="font-weight:700">85%</span><div class="progress-bar" style="flex:1"><div class="progress-fill" style="width:85%;background:var(--green)"></div></div></div></td><td><span class="badge badge-green">100%</span></td><td>0</td><td><span class="badge badge-green">On Track</span></td></tr>
+            <tr><td><strong>Tyler Brooks</strong></td><td>Maintenance Technician</td><td>Oak Park Commons</td><td>Feb 3</td><td>16</td><td>Month 1</td><td><div style="display:flex;align-items:center;gap:8px"><span style="font-weight:700">75%</span><div class="progress-bar" style="flex:1"><div class="progress-fill" style="width:75%;background:var(--green)"></div></div></div></td><td><span class="badge badge-green">90%</span></td><td>0</td><td><span class="badge badge-green">On Track</span></td></tr>
+            <tr><td><strong>Jordan Lee</strong></td><td>Groundskeeper / Housekeeper</td><td>Summit Ridge</td><td>Feb 10</td><td>9</td><td>Month 1</td><td><div style="display:flex;align-items:center;gap:8px"><span style="font-weight:700">25%</span><div class="progress-bar" style="flex:1"><div class="progress-fill" style="width:25%;background:var(--red)"></div></div></div></td><td><span class="badge badge-red">30%</span></td><td><span class="badge badge-red">3</span></td><td><span class="badge badge-red">Behind</span></td></tr>
+            <tr><td><strong>Sarah Mitchell</strong></td><td>Leasing Manager</td><td>Summit Ridge</td><td>Jan 6</td><td>44</td><td>Month 2</td><td><div style="display:flex;align-items:center;gap:8px"><span style="font-weight:700">68%</span><div class="progress-bar" style="flex:1"><div class="progress-fill" style="width:68%;background:var(--amber)"></div></div></div></td><td><span class="badge badge-green">85%</span></td><td>0</td><td><span class="badge badge-amber">At Risk</span></td></tr>
+            <tr><td><strong>David Kim</strong></td><td>Service Manager</td><td>Riverside Terrace</td><td>Jan 20</td><td>30</td><td>Month 1</td><td><div style="display:flex;align-items:center;gap:8px"><span style="font-weight:700">80%</span><div class="progress-bar" style="flex:1"><div class="progress-fill" style="width:80%;background:var(--green)"></div></div></div></td><td><span class="badge badge-green">95%</span></td><td>0</td><td><span class="badge badge-green">On Track</span></td></tr>
+            <tr><td><strong>Lisa Tran</strong></td><td>Leasing Professional</td><td>Magnolia Place</td><td>Feb 1</td><td>18</td><td>Month 1</td><td><div style="display:flex;align-items:center;gap:8px"><span style="font-weight:700">78%</span><div class="progress-bar" style="flex:1"><div class="progress-fill" style="width:78%;background:var(--green)"></div></div></div></td><td><span class="badge badge-green">100%</span></td><td>0</td><td><span class="badge badge-green">On Track</span></td></tr>
+            <tr><td><strong>Carlos Mendez</strong></td><td>Maintenance Technician</td><td>Magnolia Place</td><td>Feb 5</td><td>14</td><td>Month 1</td><td><div style="display:flex;align-items:center;gap:8px"><span style="font-weight:700">70%</span><div class="progress-bar" style="flex:1"><div class="progress-fill" style="width:70%;background:var(--green)"></div></div></div></td><td><span class="badge badge-green">88%</span></td><td>0</td><td><span class="badge badge-green">On Track</span></td></tr>
+            <tr><td><strong>Rachel Adams</strong></td><td>Asst General Manager</td><td>Summit Ridge</td><td>Jan 13</td><td>37</td><td>Month 2</td><td><div style="display:flex;align-items:center;gap:8px"><span style="font-weight:700">74%</span><div class="progress-bar" style="flex:1"><div class="progress-fill" style="width:74%;background:var(--green)"></div></div></div></td><td><span class="badge badge-green">92%</span></td><td>0</td><td><span class="badge badge-green">On Track</span></td></tr>
+        </tbody>
+    </table>
+    </div>
+</div>
+
+<!-- ==================== VP/COO VIEW TAB ==================== -->
+<div id="tab-vpcoo" class="tab-content">
+    <div class="sub-tabs">
+        <button class="active" onclick="showSubTab('vpcoo','propmanagement')">Property Management</button>
+        <button onclick="showSubTab('vpcoo','corporate')">Corporate</button>
+    </div>
+
+    <div id="vpcoo-propmanagement" class="sub-content active">
+        <div class="section-title">Company-Wide Onboarding — Property Management</div>
+        <div class="grid g4 mb">
+            <div class="card" style="border-top:4px solid var(--green)"><div class="stat-label">On Track</div><div class="stat text-green">14</div><div class="stat-sub">employees</div></div>
+            <div class="card" style="border-top:4px solid var(--amber)"><div class="stat-label">At Risk</div><div class="stat text-amber">3</div><div class="stat-sub">employees</div></div>
+            <div class="card" style="border-top:4px solid var(--red)"><div class="stat-label">Behind</div><div class="stat text-red">2</div><div class="stat-sub">employees</div></div>
+            <div class="card" style="border-top:4px solid var(--blue)"><div class="stat-label">Total Onboarding</div><div class="stat">19</div><div class="stat-sub">across 3 regions</div></div>
+        </div>
+        <div style="overflow-x:auto">
+        <table>
+            <thead>
+                <tr><th>Employee</th><th>Role</th><th>Location</th><th>Region</th><th>Day</th><th>Completion</th><th>Compliance</th><th>Status</th></tr>
+            </thead>
+            <tbody>
+                <tr><td><strong>Jessica Harper</strong></td><td>General Manager</td><td>Riverside Terrace</td><td>Southeast</td><td>42</td><td><div style="display:flex;align-items:center;gap:8px"><span style="font-weight:700">38%</span><div class="progress-bar" style="flex:1"><div class="progress-fill" style="width:38%;background:var(--amber)"></div></div></div></td><td><span class="badge badge-amber">65%</span></td><td><span class="badge badge-amber">At Risk</span></td></tr>
+                <tr><td><strong>Marcus Rivera</strong></td><td>Leasing Professional</td><td>Riverside Terrace</td><td>Southeast</td><td>35</td><td><div style="display:flex;align-items:center;gap:8px"><span style="font-weight:700">72%</span><div class="progress-bar" style="flex:1"><div class="progress-fill" style="width:72%;background:var(--green)"></div></div></div></td><td><span class="badge badge-green">100%</span></td><td><span class="badge badge-green">On Track</span></td></tr>
+                <tr><td><strong>Aisha Patel</strong></td><td>Leasing Professional</td><td>Oak Park Commons</td><td>Southeast</td><td>28</td><td><div style="display:flex;align-items:center;gap:8px"><span style="font-weight:700">85%</span><div class="progress-bar" style="flex:1"><div class="progress-fill" style="width:85%;background:var(--green)"></div></div></div></td><td><span class="badge badge-green">100%</span></td><td><span class="badge badge-green">On Track</span></td></tr>
+                <tr><td><strong>Tyler Brooks</strong></td><td>Maintenance Technician</td><td>Oak Park Commons</td><td>Southeast</td><td>16</td><td><div style="display:flex;align-items:center;gap:8px"><span style="font-weight:700">75%</span><div class="progress-bar" style="flex:1"><div class="progress-fill" style="width:75%;background:var(--green)"></div></div></div></td><td><span class="badge badge-green">90%</span></td><td><span class="badge badge-green">On Track</span></td></tr>
+                <tr><td><strong>Jordan Lee</strong></td><td>Groundskeeper / Housekeeper</td><td>Summit Ridge</td><td>Southeast</td><td>9</td><td><div style="display:flex;align-items:center;gap:8px"><span style="font-weight:700">25%</span><div class="progress-bar" style="flex:1"><div class="progress-fill" style="width:25%;background:var(--red)"></div></div></div></td><td><span class="badge badge-red">30%</span></td><td><span class="badge badge-red">Behind</span></td></tr>
+                <tr><td><strong>Sarah Mitchell</strong></td><td>Leasing Manager</td><td>Summit Ridge</td><td>Southeast</td><td>44</td><td><div style="display:flex;align-items:center;gap:8px"><span style="font-weight:700">68%</span><div class="progress-bar" style="flex:1"><div class="progress-fill" style="width:68%;background:var(--amber)"></div></div></div></td><td><span class="badge badge-green">85%</span></td><td><span class="badge badge-amber">At Risk</span></td></tr>
+                <tr><td><strong>David Kim</strong></td><td>Service Manager</td><td>Riverside Terrace</td><td>Southeast</td><td>30</td><td><div style="display:flex;align-items:center;gap:8px"><span style="font-weight:700">80%</span><div class="progress-bar" style="flex:1"><div class="progress-fill" style="width:80%;background:var(--green)"></div></div></div></td><td><span class="badge badge-green">95%</span></td><td><span class="badge badge-green">On Track</span></td></tr>
+                <tr><td><strong>Nina Foster</strong></td><td>General Manager</td><td>Lakeview Apartments</td><td>Central</td><td>52</td><td><div style="display:flex;align-items:center;gap:8px"><span style="font-weight:700">62%</span><div class="progress-bar" style="flex:1"><div class="progress-fill" style="width:62%;background:var(--amber)"></div></div></div></td><td><span class="badge badge-green">88%</span></td><td><span class="badge badge-amber">At Risk</span></td></tr>
+                <tr><td><strong>James Wright</strong></td><td>Maintenance Technician</td><td>Lakeview Apartments</td><td>Central</td><td>22</td><td><div style="display:flex;align-items:center;gap:8px"><span style="font-weight:700">81%</span><div class="progress-bar" style="flex:1"><div class="progress-fill" style="width:81%;background:var(--green)"></div></div></div></td><td><span class="badge badge-green">100%</span></td><td><span class="badge badge-green">On Track</span></td></tr>
+                <tr><td><strong>Amanda Torres</strong></td><td>Leasing Professional</td><td>Pine Valley</td><td>West</td><td>10</td><td><div style="display:flex;align-items:center;gap:8px"><span style="font-weight:700">40%</span><div class="progress-bar" style="flex:1"><div class="progress-fill" style="width:40%;background:var(--red)"></div></div></div></td><td><span class="badge badge-amber">60%</span></td><td><span class="badge badge-red">Behind</span></td></tr>
+            </tbody>
+        </table>
+        </div>
+    </div>
+
+    <div id="vpcoo-corporate" class="sub-content">
+        <div class="section-title">Company-Wide Onboarding — Corporate</div>
+        <div class="grid g4 mb">
+            <div class="card" style="border-top:4px solid var(--green)"><div class="stat-label">On Track</div><div class="stat text-green">3</div><div class="stat-sub">employees</div></div>
+            <div class="card" style="border-top:4px solid var(--amber)"><div class="stat-label">At Risk</div><div class="stat text-amber">1</div><div class="stat-sub">employee</div></div>
+            <div class="card" style="border-top:4px solid var(--red)"><div class="stat-label">Behind</div><div class="stat text-red">0</div><div class="stat-sub">employees</div></div>
+            <div class="card" style="border-top:4px solid var(--blue)"><div class="stat-label">Total Onboarding</div><div class="stat">4</div><div class="stat-sub">corporate staff</div></div>
+        </div>
+        <div style="overflow-x:auto">
+        <table>
+            <thead>
+                <tr><th>Employee</th><th>Role</th><th>Location</th><th>Department</th><th>Day</th><th>Completion</th><th>Compliance</th><th>Status</th></tr>
+            </thead>
+            <tbody>
+                <tr><td><strong>Rebecca Chen</strong></td><td>Corporate Staff</td><td>Corporate HQ</td><td>Accounting</td><td>28</td><td><div style="display:flex;align-items:center;gap:8px"><span style="font-weight:700">82%</span><div class="progress-bar" style="flex:1"><div class="progress-fill" style="width:82%;background:var(--green)"></div></div></div></td><td><span class="badge badge-green">100%</span></td><td><span class="badge badge-green">On Track</span></td></tr>
+                <tr><td><strong>Michael Nguyen</strong></td><td>Corporate Staff</td><td>Corporate HQ</td><td>Marketing</td><td>14</td><td><div style="display:flex;align-items:center;gap:8px"><span style="font-weight:700">75%</span><div class="progress-bar" style="flex:1"><div class="progress-fill" style="width:75%;background:var(--green)"></div></div></div></td><td><span class="badge badge-green">90%</span></td><td><span class="badge badge-green">On Track</span></td></tr>
+                <tr><td><strong>Emily Watson</strong></td><td>Corporate Staff</td><td>Corporate HQ</td><td>Human Resources</td><td>35</td><td><div style="display:flex;align-items:center;gap:8px"><span style="font-weight:700">55%</span><div class="progress-bar" style="flex:1"><div class="progress-fill" style="width:55%;background:var(--amber)"></div></div></div></td><td><span class="badge badge-amber">75%</span></td><td><span class="badge badge-amber">At Risk</span></td></tr>
+                <tr><td><strong>Derek Sullivan</strong></td><td>Corporate Staff</td><td>Corporate HQ</td><td>IT</td><td>21</td><td><div style="display:flex;align-items:center;gap:8px"><span style="font-weight:700">88%</span><div class="progress-bar" style="flex:1"><div class="progress-fill" style="width:88%;background:var(--green)"></div></div></div></td><td><span class="badge badge-green">100%</span></td><td><span class="badge badge-green">On Track</span></td></tr>
+            </tbody>
+        </table>
+        </div>
+    </div>
+</div>
+
+<!-- ==================== RESOURCES TAB ==================== -->
+<div id="tab-resources" class="tab-content">
+    <div class="section-title">Onboarding Resources</div>
+    <p style="font-size:.85rem;color:var(--muted);margin-bottom:20px">Quick access to the tools, guides, and reference materials you'll need throughout your 180-day onboarding journey.</p>
+    <div class="grid g3 mb">
+        <a href="https://nflow.risere.com/DepartmentForms/8" target="_blank" style="text-decoration:none;color:inherit">
+            <div class="card" style="border-top:4px solid var(--blue);cursor:pointer">
+                <div style="font-size:2rem;margin-bottom:8px">&#128209;</div>
+                <h3>Entrata Quick Reference Guides</h3>
+                <p style="font-size:.82rem;color:var(--muted)">Step-by-step guides for all Entrata modules including Guest Cards, Leasing, Work Orders, and Reports.</p>
+                <div style="margin-top:12px;font-size:.78rem;color:var(--blue);font-weight:600">Open in nFlow &rarr;</div>
+            </div>
+        </a>
+        <a href="https://nflow.risere.com/PolicyManual/Page/304" target="_blank" style="text-decoration:none;color:inherit">
+            <div class="card" style="border-top:4px solid var(--green);cursor:pointer">
+                <div style="font-size:2rem;margin-bottom:8px">&#128214;</div>
+                <h3>Employee Handbook</h3>
+                <p style="font-size:.82rem;color:var(--muted)">Company policies, benefits, code of conduct, and employee expectations.</p>
+                <div style="margin-top:12px;font-size:.78rem;color:var(--blue);font-weight:600">Open in nFlow &rarr;</div>
+            </div>
+        </a>
+        <a href="https://nflow.risere.com/PolicyManual" target="_blank" style="text-decoration:none;color:inherit">
+            <div class="card" style="border-top:4px solid var(--purple);cursor:pointer">
+                <div style="font-size:2rem;margin-bottom:8px">&#128220;</div>
+                <h3>Policies & Procedures</h3>
+                <p style="font-size:.82rem;color:var(--muted)">Complete library of RISE operational policies, SOPs, and compliance procedures.</p>
+                <div style="margin-top:12px;font-size:.78rem;color:var(--blue);font-weight:600">Open in nFlow &rarr;</div>
+            </div>
+        </a>
+        <div class="card" style="border-top:4px solid var(--amber);opacity:.7">
+            <div style="font-size:2rem;margin-bottom:8px">&#127891;</div>
+            <h3>RISE University (LMS)</h3>
+            <p style="font-size:.82rem;color:var(--muted)">Online learning management system for compliance courses, certifications, and continuing education.</p>
+            <div style="margin-top:12px;font-size:.78rem;color:var(--muted);font-weight:600">Coming Soon</div>
+        </div>
+        <div class="card" style="border-top:4px solid var(--red);opacity:.7">
+            <div style="font-size:2rem;margin-bottom:8px">&#128721;</div>
+            <h3>Safety & Emergency Manuals</h3>
+            <p style="font-size:.82rem;color:var(--muted)">Emergency action plans, safety protocols, OSHA guidelines, and crisis response procedures.</p>
+            <div style="margin-top:12px;font-size:.78rem;color:var(--muted);font-weight:600">Coming Soon</div>
+        </div>
+        <div class="card" style="border-top:4px solid var(--teal);opacity:.7">
+            <div style="font-size:2rem;margin-bottom:8px">&#128195;</div>
+            <h3>RISE Leadership Playbook</h3>
+            <p style="font-size:.82rem;color:var(--muted)">Leadership guidelines, management expectations, communication standards, and team operations.</p>
+            <div style="margin-top:12px;font-size:.78rem;color:var(--muted);font-weight:600">Coming Soon</div>
+        </div>
+    </div>
+</div>
+
 <!-- ==================== REPORTS TAB ==================== -->
 <div id="tab-reports" class="tab-content">
     <div class="sub-tabs">
@@ -999,7 +1202,7 @@
         <div class="section-title">Training Completion Report</div>
         <div class="filter-bar mb">
             <select><option>All Employees</option><option>Jessica Harper</option><option>Marcus Rivera</option><option>Aisha Patel</option><option>Tyler Brooks</option><option>Jordan Lee</option></select>
-            <select><option>All Roles</option><option>Community Manager</option><option>Leasing Consultant</option><option>Maintenance Tech</option><option>Groundskeeper</option></select>
+            <select><option>All Roles</option><option>General Manager</option><option>Asst General Manager</option><option>Leasing Manager</option><option>Leasing Professional</option><option>Service Manager</option><option>Maintenance Technician</option><option>Groundskeeper / Housekeeper</option><option>Corporate Staff</option></select>
             <select><option>All Categories</option><option>Compliance & Safety</option><option>Systems Training</option><option>Customer Experience</option><option>Reporting</option></select>
             <input type="date" placeholder="From">
             <input type="date" placeholder="To">
@@ -1040,7 +1243,7 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>Jessica Harper</td><td>Community Manager</td><td>65%</td><td>22%</td><td>25%</td><td>22%</td><td><strong>38%</strong></td><td><span class="badge badge-amber">At Risk</span></td>
+                    <td>Jessica Harper</td><td>General Manager</td><td>65%</td><td>22%</td><td>25%</td><td>22%</td><td><strong>38%</strong></td><td><span class="badge badge-amber">At Risk</span></td>
                 </tr>
                 <tr>
                     <td>Marcus Rivera</td><td>Leasing Consultant</td><td>100%</td><td>55%</td><td>50%</td><td>33%</td><td><strong>72%</strong></td><td><span class="badge badge-green">On Track</span></td>
@@ -1052,7 +1255,7 @@
                     <td>Tyler Brooks</td><td>Maintenance Tech</td><td>90%</td><td>60%</td><td>50%</td><td>55%</td><td><strong>75%</strong></td><td><span class="badge badge-green">On Track</span></td>
                 </tr>
                 <tr>
-                    <td>Jordan Lee</td><td>Groundskeeper</td><td>30%</td><td>10%</td><td>0%</td><td>11%</td><td><strong>25%</strong></td><td><span class="badge badge-red">Behind</span></td>
+                    <td>Jordan Lee</td><td>Groundskeeper / Housekeeper</td><td>30%</td><td>10%</td><td>0%</td><td>11%</td><td><strong>25%</strong></td><td><span class="badge badge-red">Behind</span></td>
                 </tr>
             </tbody>
         </table>
@@ -1273,7 +1476,7 @@ const phases = [
 ];
 
 // ===== TAB NAVIGATION =====
-const TAB_IDS = ['employee','calendar','progress','manager','reports'];
+const TAB_IDS = ['employee','calendar','progress','manager','regional','vpcoo','resources','reports'];
 
 function showTab(id){
     document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));
@@ -1350,6 +1553,16 @@ function updateStats(){
     document.querySelector('.readiness-gauge circle:nth-child(2)').setAttribute('stroke-dashoffset',dashoffset);
 }
 
+// ===== LOCATION-SPECIFIC TASKS BY PHASE =====
+const locationTasks = {
+    1:["Complete full property tour with General Manager","Meet maintenance/service team and review equipment","Review property-specific emergency action plan","Learn property access codes, gate systems, and key protocols","Review property-specific lease addenda and community rules","Tour model units and learn unit types/pricing"],
+    2:["Shadow site-specific leasing procedures and tour routes","Learn local vendor contacts and service agreements","Review property delinquency and collections procedures","Understand property-specific utility billing setup","Learn community event calendar and resident engagement plan"],
+    3:["Lead a full property walk/inspection independently","Handle site-specific resident issues without supervision","Conduct independent market survey of local competitors","Manage property-specific move-in/move-out process end-to-end"],
+    4:["Complete property performance review with Regional Manager","Conduct local market comp analysis and pricing recommendation","Manage vendor relationships independently","Lead Take 10 Huddle for on-site team"],
+    5:["Present property performance trends to leadership","Identify and implement one property-specific improvement initiative","Mentor a new team member on site-specific procedures"],
+    6:["Complete final property operations assessment","Develop 90-day forward plan for your property","Present graduation project to regional leadership"]
+};
+
 // ===== RENDER PHASES =====
 function renderPhases(){
     const container=document.getElementById('phasesContainer');
@@ -1389,6 +1602,18 @@ function renderPhases(){
                         ${t.status==='overdue'?'<span class="badge badge-red">Overdue</span>':t.status==='completed'?'<span class="badge badge-green">Done</span>':'<span class="badge badge-gray">Day '+t.dueDay+'</span>'}
                     </div>
                 `).join('')}
+                <div style="margin-top:16px;padding-top:12px;border-top:2px dashed var(--teal)">
+                    <div style="font-size:.88rem;font-weight:700;color:var(--teal);margin-bottom:8px;cursor:pointer" onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.querySelector('span').textContent=this.nextElementSibling.style.display==='none'?'&#9654;':'&#9660;"><span>&#9654;</span> Location-Specific Tasks</div>
+                    <div style="display:none">
+                        ${(locationTasks[p.num]||[]).map(lt=>`
+                            <div class="training-item">
+                                <input type="checkbox">
+                                <span class="item-name">${lt}</span>
+                                <span class="badge badge-teal">Location-Specific</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
             </div>
         </div>`;
     }).join('');
@@ -1545,3 +1770,4 @@ window.addEventListener('DOMContentLoaded',()=>{
 </script>
 </body>
 </html>
+
