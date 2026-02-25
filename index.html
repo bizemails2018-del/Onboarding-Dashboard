@@ -6,7 +6,7 @@
     <title>RISE Training & Onboarding Dashboard</title>
     <style>
         *{box-sizing:border-box;margin:0;padding:0}
-        :root{--navy:#1B2A4A;--blue:#2E86AB;--green:#28a745;--amber:#ffc107;--red:#dc3545;--bg:#f4f6f9;--card:#fff;--text:#333;--muted:#6c757d;--border:#e0e4e8;--shadow:0 2px 8px rgba(0,0,0,.08);--radius:10px;--teal:#20c997;--purple:#6f42c1;--orange:#fd7e14;--pink:#e83e8c}
+        :root{--navy:#002D40;--blue:#63B6D2;--green:#28a745;--amber:#F5B64C;--red:#dc3545;--bg:#f4f6f9;--card:#fff;--text:#333;--muted:#6c757d;--border:#DBDBDB;--shadow:0 2px 8px rgba(0,0,0,.08);--radius:10px;--teal:#20c997;--purple:#6f42c1;--orange:#fd7e14;--pink:#e83e8c}
         body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.5;min-height:100vh}
         header{background:var(--navy);color:#fff;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
         header h1{font-size:1.3rem;font-weight:700;letter-spacing:.5px}
@@ -59,7 +59,7 @@
         .btn-green{background:var(--green);color:#fff}
         .btn-red{background:var(--red);color:#fff}
         .btn-amber{background:var(--amber);color:#333}
-        .btn-blue{background:var(--blue);color:#fff}
+        .btn-blue{background:var(--blue);color:var(--navy)}
         .btn-navy{background:var(--navy);color:#fff}
         .btn-outline{background:none;border:2px solid var(--border);color:var(--text)}
         .btn-sm{padding:5px 12px;font-size:.78rem}
@@ -67,7 +67,7 @@
         .form-group label{display:block;font-size:.82rem;font-weight:600;color:var(--navy);margin-bottom:4px}
         .form-group input,.form-group select,.form-group textarea{width:100%;padding:8px 12px;border:1px solid var(--border);border-radius:6px;font-size:.85rem;font-family:inherit}
         .chip{display:inline-block;padding:3px 10px;border-radius:14px;font-size:.75rem;background:var(--bg);border:1px solid var(--border);margin:2px}
-        .chip.active{background:var(--blue);color:#fff;border-color:var(--blue)}
+        .chip.active{background:var(--blue);color:var(--navy);border-color:var(--blue)}
         .flex{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
         .ml-auto{margin-left:auto}
         .mt{margin-top:16px}
@@ -76,7 +76,7 @@
         .text-red{color:var(--red)}
         .text-amber{color:var(--amber)}
         .text-muted{color:var(--muted)}
-        .tooltip-icon{display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;border-radius:50%;background:var(--blue);color:#fff;font-size:.65rem;font-weight:700;cursor:help;position:relative}
+        .tooltip-icon{display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;border-radius:50%;background:var(--blue);color:var(--navy);font-size:.65rem;font-weight:700;cursor:help;position:relative}
         .tooltip-icon:hover::after{content:attr(data-tip);position:absolute;bottom:120%;left:50%;transform:translateX(-50%);background:var(--navy);color:#fff;padding:6px 10px;border-radius:6px;font-size:.75rem;white-space:nowrap;z-index:10;font-weight:400}
         .approval-flow{display:flex;align-items:center;gap:4px;flex-wrap:wrap;margin:12px 0;font-size:.82rem}
         .flow-step{padding:6px 14px;border-radius:20px;font-weight:600;white-space:nowrap}
@@ -207,7 +207,13 @@
 <body>
 
 <header>
-    <h1>RISE Training & Onboarding Dashboard</h1>
+    <div style="display:flex;align-items:center;gap:14px">
+        <svg width="90" height="38" viewBox="0 0 90 38" xmlns="http://www.w3.org/2000/svg">
+            <rect x="0" y="0" width="90" height="38" rx="6" fill="rgba(255,255,255,.12)"/>
+            <text x="45" y="28" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif" font-size="26" font-weight="800" fill="#ffffff" letter-spacing="5" text-anchor="middle">RISE</text>
+        </svg>
+        <h1>Training & Onboarding Dashboard</h1>
+    </div>
     <div class="header-right">
         <select id="roleSelect" onchange="changeRole(this.value)">
             <option value="general-manager">General Manager</option>
@@ -272,7 +278,7 @@
                 <div>
                     <h3 style="color:var(--navy);margin-bottom:8px">Readiness-to-Operate Score</h3>
                     <p style="font-size:.82rem;color:var(--muted);margin-bottom:8px">Based on completed competencies, compliance training, and manager evaluations.</p>
-                    <div style="font-size:.82rem"><strong>Current Phase:</strong> Month 2 ‚Äî Skill Building</div>
+                    <div style="font-size:.82rem"><strong>Current Phase:</strong> Month 2 — Skill Building</div>
                     <div style="font-size:.82rem;margin-top:4px"><strong>Target:</strong> Semi-independent operation by Day 60</div>
                 </div>
             </div>
@@ -334,6 +340,16 @@
             <div class="badge-item"><div class="badge-icon" style="background:#d4edda">&#127775;</div><div class="badge-name">60-Day Star</div></div>
             <div class="badge-item"><div class="badge-icon" style="background:#e8d5f5">&#128170;</div><div class="badge-name">Independence</div></div>
             <div class="badge-item"><div class="badge-icon" style="background:#fff3cd">&#127891;</div><div class="badge-name">Graduate</div></div>
+            <div class="badge-item"><div class="badge-icon" style="background:#d4edda">&#128149;</div><div class="badge-name">Resident Champion</div></div>
+            <div class="badge-item"><div class="badge-icon" style="background:#d1ecf1">&#128260;</div><div class="badge-name">Renewal Pro</div></div>
+            <div class="badge-item"><div class="badge-icon" style="background:#fff3cd">&#128295;</div><div class="badge-name">Maintenance Guru</div></div>
+            <div class="badge-item"><div class="badge-icon" style="background:#e8d5f5">&#128181;</div><div class="badge-name">Budget Boss</div></div>
+            <div class="badge-item"><div class="badge-icon" style="background:#d4edda">&#129309;</div><div class="badge-name">Team Player</div></div>
+            <div class="badge-item"><div class="badge-icon" style="background:#d1ecf1">&#128187;</div><div class="badge-name">Tech Whiz</div></div>
+            <div class="badge-item"><div class="badge-icon" style="background:#f8d7da">&#128721;</div><div class="badge-name">Safety Star</div></div>
+            <div class="badge-item"><div class="badge-icon" style="background:#ffe0b2">&#127963;</div><div class="badge-name">Community Builder</div></div>
+            <div class="badge-item"><div class="badge-icon" style="background:#e9ecef">&#128230;</div><div class="badge-name">Vendor Expert</div></div>
+            <div class="badge-item"><div class="badge-icon" style="background:#d1f2eb">&#128203;</div><div class="badge-name">Process Pro</div></div>
         </div>
 
         <div class="section-title">Manager Awards <span style="font-size:.75rem;font-weight:400;color:var(--muted);margin-left:8px">Awarded by Manager & above</span></div>
@@ -368,6 +384,9 @@
                 <option value="emergency">Emergency Protocols</option>
                 <option value="sales">Sales Skills</option>
                 <option value="reporting">Reporting/General</option>
+                <option value="leadership">Leadership Development</option>
+                <option value="communication">Communication Skills</option>
+                <option value="technology">Technology & Innovation</option>
             </select>
             <select id="statusFilter" onchange="filterTraining()">
                 <option value="all">All Statuses</option>
@@ -428,7 +447,7 @@
         </div>
         <div class="card" style="opacity:.7">
             <h3>Week 5 Reflection <span class="badge badge-green">Submitted</span></h3>
-            <p style="font-size:.85rem;color:var(--muted)">Submitted on Feb 10, 2026 ‚Äî Reviewed by Manager on Feb 11, 2026</p>
+            <p style="font-size:.85rem;color:var(--muted)">Submitted on Feb 10, 2026 — Reviewed by Manager on Feb 11, 2026</p>
             <p style="font-size:.85rem;margin-top:8px"><strong>Manager Feedback:</strong> Great progress on Entrata proficiency. Focus on improving follow-up timing with prospects this week.</p>
         </div>
     </div>
@@ -462,42 +481,42 @@
     <div id="calendar-weekly" class="sub-content">
         <div class="flex mb" style="justify-content:space-between">
             <button class="btn btn-outline btn-sm" onclick="changeWeek(-1)">&larr; Previous Week</button>
-            <h2 style="color:var(--navy)" id="weekTitle">Week 6 ‚Äî Feb 16-22, 2026</h2>
+            <h2 style="color:var(--navy)" id="weekTitle">Week 6 — Feb 16-22, 2026</h2>
             <button class="btn btn-outline btn-sm" onclick="changeWeek(1)">Next Week &rarr;</button>
         </div>
         <div class="section-title">Week 6: Conflict Resolution & Difficult Conversations</div>
         <p style="font-size:.85rem;color:var(--muted);margin-bottom:16px">Focus: De-escalation techniques, handling complaints, lease violations conversations</p>
         <div id="weeklyItems">
             <div class="week-view-item" style="border-left-color:var(--red)">
-                <h4>Monday ‚Äî De-escalation Techniques Workshop</h4>
+                <h4>Monday — De-escalation Techniques Workshop</h4>
                 <div class="wv-meta">9:00 AM - 11:00 AM | In Person | Compliance & Safety</div>
             </div>
             <div class="week-view-item" style="border-left-color:var(--blue)">
-                <h4>Monday ‚Äî Entrata: Managing Leads (Online)</h4>
+                <h4>Monday — Entrata: Managing Leads (Online)</h4>
                 <div class="wv-meta">Self-paced | 45 min | Systems Training</div>
             </div>
             <div class="week-view-item" style="border-left-color:var(--green)">
-                <h4>Tuesday ‚Äî Handling Complaints & Service Failures</h4>
+                <h4>Tuesday — Handling Complaints & Service Failures</h4>
                 <div class="wv-meta">10:00 AM - 12:00 PM | Workshop | Customer Experience</div>
             </div>
             <div class="week-view-item" style="border-left-color:var(--purple)">
-                <h4>Wednesday ‚Äî Manager Check-in (1-on-1)</h4>
+                <h4>Wednesday — Manager Check-in (1-on-1)</h4>
                 <div class="wv-meta">2:00 PM - 2:30 PM | Office | Manager Evaluation</div>
             </div>
             <div class="week-view-item" style="border-left-color:var(--amber)">
-                <h4>Thursday ‚Äî Lease Violations & Collections Conversations</h4>
+                <h4>Thursday — Lease Violations & Collections Conversations</h4>
                 <div class="wv-meta">9:00 AM - 11:00 AM | Workshop | Leasing Fundamentals</div>
             </div>
             <div class="week-view-item" style="border-left-color:var(--blue)">
-                <h4>Thursday ‚Äî Knock CRM Training</h4>
+                <h4>Thursday — Knock CRM Training</h4>
                 <div class="wv-meta">1:00 PM - 2:30 PM | Virtual | Systems Training</div>
             </div>
             <div class="week-view-item" style="border-left-color:var(--green)">
-                <h4>Friday ‚Äî Documentation Requirements Review</h4>
+                <h4>Friday — Documentation Requirements Review</h4>
                 <div class="wv-meta">Self-paced | 30 min | Compliance</div>
             </div>
             <div class="week-view-item" style="border-left-color:var(--purple)">
-                <h4>Friday ‚Äî Weekly Reflection Due</h4>
+                <h4>Friday — Weekly Reflection Due</h4>
                 <div class="wv-meta">Submit by 5:00 PM | Self | Reflection</div>
             </div>
         </div>
@@ -506,22 +525,22 @@
     <div id="calendar-daily" class="sub-content">
         <div class="flex mb" style="justify-content:space-between">
             <button class="btn btn-outline btn-sm" onclick="changeDay(-1)">&larr; Previous Day</button>
-            <h2 style="color:var(--navy)" id="dayTitle">Wednesday, February 18, 2026 ‚Äî Day 42</h2>
+            <h2 style="color:var(--navy)" id="dayTitle">Wednesday, February 18, 2026 — Day 42</h2>
             <button class="btn btn-outline btn-sm" onclick="changeDay(1)">Next Day &rarr;</button>
         </div>
         <div class="grid g2">
             <div>
                 <div class="section-title">Today's Schedule</div>
                 <div class="week-view-item" style="border-left-color:var(--purple)">
-                    <h4>2:00 PM ‚Äî Manager Check-in (1-on-1)</h4>
+                    <h4>2:00 PM — Manager Check-in (1-on-1)</h4>
                     <div class="wv-meta">With: Regional Manager | Duration: 30 min</div>
                 </div>
                 <div class="week-view-item" style="border-left-color:var(--blue)">
-                    <h4>Self-Paced ‚Äî Entrata: Leasing Module</h4>
+                    <h4>Self-Paced — Entrata: Leasing Module</h4>
                     <div class="wv-meta">Online | 60 min | Due today</div>
                 </div>
                 <div class="week-view-item" style="border-left-color:var(--green)">
-                    <h4>Ongoing ‚Äî Shadow experienced team member</h4>
+                    <h4>Ongoing — Shadow experienced team member</h4>
                     <div class="wv-meta">Observe 2 resident interactions</div>
                 </div>
             </div>
@@ -555,27 +574,39 @@
         <div class="grid g2 mb">
             <div class="card">
                 <h3>Compliance & Safety</h3>
-                <div class="flex" style="justify-content:space-between"><span style="font-size:.85rem">15 of 23 completed</span><span style="font-weight:700;color:var(--green)">65%</span></div>
-                <div class="progress-bar lg"><div class="progress-fill" style="width:65%;background:var(--green)"></div></div>
-                <div style="margin-top:8px;font-size:.78rem;color:var(--muted)">Includes: Fair Housing, OSHA, Sexual Harassment, Human Trafficking</div>
+                <div class="flex" style="justify-content:space-between"><span style="font-size:.85rem">15 of 33 completed</span><span style="font-weight:700;color:var(--amber)">45%</span></div>
+                <div class="progress-bar lg"><div class="progress-fill" style="width:45%;background:var(--amber)"></div></div>
+                <div style="margin-top:8px;font-size:.78rem;color:var(--muted)">Includes: Fair Housing, OSHA, Hazard Comm, PPE, ADA, Pool Safety</div>
             </div>
             <div class="card">
                 <h3>Systems Training</h3>
-                <div class="flex" style="justify-content:space-between"><span style="font-size:.85rem">5 of 23 completed</span><span style="font-weight:700;color:var(--amber)">22%</span></div>
-                <div class="progress-bar lg"><div class="progress-fill" style="width:22%;background:var(--amber)"></div></div>
-                <div style="margin-top:8px;font-size:.78rem;color:var(--muted)">Includes: Entrata, Knock, Paycor, SOCi, Apartment IQ</div>
+                <div class="flex" style="justify-content:space-between"><span style="font-size:.85rem">5 of 35 completed</span><span style="font-weight:700;color:var(--red)">14%</span></div>
+                <div class="progress-bar lg"><div class="progress-fill" style="width:14%;background:var(--red)"></div></div>
+                <div style="margin-top:8px;font-size:.78rem;color:var(--muted)">Includes: Entrata, Knock, Paycor, SOCi, Snappt, NurtureBoss, MSOE</div>
             </div>
             <div class="card">
                 <h3>Customer Experience</h3>
-                <div class="flex" style="justify-content:space-between"><span style="font-size:.85rem">1 of 4 completed</span><span style="font-weight:700;color:var(--amber)">25%</span></div>
-                <div class="progress-bar lg"><div class="progress-fill" style="width:25%;background:var(--amber)"></div></div>
-                <div style="margin-top:8px;font-size:.78rem;color:var(--muted)">The RISE Experience, Empowered Connections, Crucial Conversations</div>
+                <div class="flex" style="justify-content:space-between"><span style="font-size:.85rem">1 of 8 completed</span><span style="font-weight:700;color:var(--red)">13%</span></div>
+                <div class="progress-bar lg"><div class="progress-fill" style="width:13%;background:var(--red)"></div></div>
+                <div style="margin-top:8px;font-size:.78rem;color:var(--muted)">RISE Experience, Empowered Connections, Resident Retention, Event Planning</div>
             </div>
             <div class="card">
                 <h3>Reporting & General</h3>
-                <div class="flex" style="justify-content:space-between"><span style="font-size:.85rem">2 of 9 completed</span><span style="font-weight:700;color:var(--amber)">22%</span></div>
-                <div class="progress-bar lg"><div class="progress-fill" style="width:22%;background:var(--amber)"></div></div>
-                <div style="margin-top:8px;font-size:.78rem;color:var(--muted)">Delinquency, Rent Roll, Rental Criteria, Help Desk</div>
+                <div class="flex" style="justify-content:space-between"><span style="font-size:.85rem">2 of 15 completed</span><span style="font-weight:700;color:var(--red)">13%</span></div>
+                <div class="progress-bar lg"><div class="progress-fill" style="width:13%;background:var(--red)"></div></div>
+                <div style="margin-top:8px;font-size:.78rem;color:var(--muted)">Delinquency, Rent Roll, DLR/WPO, Month-End Close, KPI Dashboard</div>
+            </div>
+            <div class="card">
+                <h3>Leasing & Sales</h3>
+                <div class="flex" style="justify-content:space-between"><span style="font-size:.85rem">1 of 9 completed</span><span style="font-weight:700;color:var(--red)">11%</span></div>
+                <div class="progress-bar lg"><div class="progress-fill" style="width:11%;background:var(--red)"></div></div>
+                <div style="margin-top:8px;font-size:.78rem;color:var(--muted)">Tour Technique, Closing, Objection Handling, Renewals, Market Comp</div>
+            </div>
+            <div class="card">
+                <h3>Leadership, Comm & Tech</h3>
+                <div class="flex" style="justify-content:space-between"><span style="font-size:.85rem">1 of 14 completed</span><span style="font-weight:700;color:var(--red)">7%</span></div>
+                <div class="progress-bar lg"><div class="progress-fill" style="width:7%;background:var(--red)"></div></div>
+                <div style="margin-top:8px;font-size:.78rem;color:var(--muted)">Leadership, Coaching, Public Speaking, PropTech, AI Tools</div>
             </div>
         </div>
 
@@ -591,7 +622,7 @@
                 <div class="stat-label">Month 2: Skill Building</div>
                 <div class="stat" style="color:var(--blue)">35%</div>
                 <div class="progress-bar"><div class="progress-fill" style="width:35%;background:var(--blue)"></div></div>
-                <div class="stat-sub">In progress ‚Äî current phase</div>
+                <div class="stat-sub">In progress — current phase</div>
             </div>
             <div class="card" style="border-top:4px solid var(--border)">
                 <div class="stat-label">Month 3: Mastery</div>
@@ -649,43 +680,43 @@
                     <td><strong>30-Day Foundations Assessment</strong></td>
                     <td>Day 30 (Feb 6, 2026)</td>
                     <td><span class="badge badge-green">Completed</span></td>
-                    <td>Signed ‚Äî M. Rodriguez, Feb 6</td>
+                    <td>Signed — M. Rodriguez, Feb 6</td>
                     <td>Progressing as expected. Strong on compliance. Improve Entrata speed.</td>
                 </tr>
                 <tr>
                     <td><strong>60-Day Skill Progression</strong></td>
                     <td>Day 60 (Feb 26, 2026)</td>
                     <td><span class="badge badge-blue">Upcoming</span></td>
-                    <td>‚Äî</td>
+                    <td>—</td>
                     <td>18 days away</td>
                 </tr>
                 <tr>
                     <td><strong>90-Day Independence Assessment</strong></td>
                     <td>Day 90 (Mar 28, 2026)</td>
                     <td><span class="badge badge-gray">Scheduled</span></td>
-                    <td>‚Äî</td>
-                    <td>‚Äî</td>
+                    <td>—</td>
+                    <td>—</td>
                 </tr>
                 <tr>
                     <td><strong>120-Day Autonomy Confirmed</strong></td>
                     <td>Day 120</td>
                     <td><span class="badge badge-gray">Pending</span></td>
-                    <td>‚Äî</td>
-                    <td>‚Äî</td>
+                    <td>—</td>
+                    <td>—</td>
                 </tr>
                 <tr>
                     <td><strong>150-Day Excellence Review</strong></td>
                     <td>Day 150</td>
                     <td><span class="badge badge-gray">Pending</span></td>
-                    <td>‚Äî</td>
-                    <td>‚Äî</td>
+                    <td>—</td>
+                    <td>—</td>
                 </tr>
                 <tr>
                     <td><strong>180-Day Graduation Certification</strong></td>
                     <td>Day 180</td>
                     <td><span class="badge badge-gray">Pending</span></td>
-                    <td>‚Äî</td>
-                    <td>‚Äî</td>
+                    <td>—</td>
+                    <td>—</td>
                 </tr>
             </tbody>
         </table>
@@ -734,6 +765,34 @@
                     <td><span class="badge badge-amber">Developing</span></td>
                     <td>Good empathy, needs to document more thoroughly.</td>
                 </tr>
+                <tr>
+                    <td>Feb 17</td>
+                    <td>De-escalation Role Play</td>
+                    <td>M. Rodriguez</td>
+                    <td><span class="badge badge-amber">Developing</span></td>
+                    <td>Stayed calm but needs to redirect conversation faster.</td>
+                </tr>
+                <tr>
+                    <td>Feb 12</td>
+                    <td>Work Order Management</td>
+                    <td>S. Kim</td>
+                    <td><span class="badge badge-green">Proficient</span></td>
+                    <td>Correctly prioritized and dispatched all work orders.</td>
+                </tr>
+                <tr>
+                    <td>Feb 8</td>
+                    <td>Follow-Up Call Execution</td>
+                    <td>Emily Chen</td>
+                    <td><span class="badge badge-red">Needs Improvement</span></td>
+                    <td>Missed key re-engagement questions. Practice script provided.</td>
+                </tr>
+                <tr>
+                    <td>Jan 25</td>
+                    <td>Lease Application Review</td>
+                    <td>S. Kim</td>
+                    <td><span class="badge badge-green">Proficient</span></td>
+                    <td>Thoroughly checked all screening criteria. Accurate processing.</td>
+                </tr>
             </tbody>
         </table>
         <div class="card mt">
@@ -767,9 +826,16 @@
                 <tr><td><input type="checkbox" checked disabled></td><td>Outbound Follow-Up Calls</td><td>10 calls</td><td>10 / 10</td><td>Jan 15 - Jan 24</td><td>Emily Chen</td></tr>
                 <tr><td><input type="checkbox" checked disabled></td><td>Lease Application Processing</td><td>5 applications</td><td>5 / 5</td><td>Jan 19 - Jan 30</td><td>S. Kim</td></tr>
                 <tr><td><input type="checkbox"></td><td>Collections Conversation</td><td>3 calls</td><td>1 / 3</td><td>Feb 3</td><td>M. Rodriguez</td></tr>
-                <tr><td><input type="checkbox"></td><td>Vendor Coordination Call</td><td>2 calls</td><td>0 / 2</td><td>‚Äî</td><td>‚Äî</td></tr>
+                <tr><td><input type="checkbox"></td><td>Vendor Coordination Call</td><td>2 calls</td><td>0 / 2</td><td>—</td><td>—</td></tr>
                 <tr><td><input type="checkbox"></td><td>Property Walk/Inspection</td><td>2 walks</td><td>1 / 2</td><td>Feb 12</td><td>M. Rodriguez</td></tr>
                 <tr><td><input type="checkbox"></td><td>Resident Move-In</td><td>3 move-ins</td><td>2 / 3</td><td>Feb 1, Feb 8</td><td>Emily Chen</td></tr>
+                <tr><td><input type="checkbox"></td><td>Move-Out Inspection</td><td>3 inspections</td><td>0 / 3</td><td>—</td><td>—</td></tr>
+                <tr><td><input type="checkbox"></td><td>Market Survey / Comp Shopping</td><td>2 surveys</td><td>0 / 2</td><td>—</td><td>—</td></tr>
+                <tr><td><input type="checkbox"></td><td>Resident Event Setup & Execution</td><td>1 event</td><td>0 / 1</td><td>—</td><td>—</td></tr>
+                <tr><td><input type="checkbox"></td><td>Emergency Drill Participation</td><td>1 drill</td><td>0 / 1</td><td>—</td><td>—</td></tr>
+                <tr><td><input type="checkbox"></td><td>Delinquency / Collections Call</td><td>3 calls</td><td>0 / 3</td><td>—</td><td>—</td></tr>
+                <tr><td><input type="checkbox"></td><td>Lease Renewal Conversation</td><td>3 renewals</td><td>0 / 3</td><td>—</td><td>—</td></tr>
+                <tr><td><input type="checkbox"></td><td>Budget Review Meeting</td><td>1 meeting</td><td>0 / 1</td><td>—</td><td>—</td></tr>
             </tbody>
         </table>
     </div>
@@ -784,7 +850,7 @@
                     <div style="width:60px;height:60px;border-radius:50%;background:var(--blue);display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.5rem;font-weight:700">EC</div>
                     <div>
                         <div style="font-weight:700;font-size:1rem">Emily Chen</div>
-                        <div style="font-size:.85rem;color:var(--muted)">Leasing Manager ‚Äî Riverside Terrace</div>
+                        <div style="font-size:.85rem;color:var(--muted)">Leasing Manager — Riverside Terrace</div>
                         <div style="font-size:.82rem;color:var(--muted)">3 years experience | NALP Certified</div>
                     </div>
                 </div>
@@ -801,6 +867,10 @@
                         <tr><td>Feb 6</td><td>CRM best practices</td><td><span class="badge badge-green">Completed</span></td></tr>
                         <tr><td>Jan 30</td><td>Phone skills practice</td><td><span class="badge badge-green">Completed</span></td></tr>
                         <tr><td>Jan 23</td><td>Property knowledge Q&A</td><td><span class="badge badge-green">Completed</span></td></tr>
+                        <tr><td>Feb 20</td><td>Objection handling techniques</td><td><span class="badge badge-blue">Scheduled</span></td></tr>
+                        <tr><td>Feb 27</td><td>Lease renewal strategies</td><td><span class="badge badge-gray">Planned</span></td></tr>
+                        <tr><td>Mar 6</td><td>Market comp analysis walkthrough</td><td><span class="badge badge-gray">Planned</span></td></tr>
+                        <tr><td>Mar 13</td><td>Team leadership introduction</td><td><span class="badge badge-gray">Planned</span></td></tr>
                     </tbody>
                 </table>
             </div>
@@ -821,22 +891,22 @@
         <div class="grid g4 mb">
             <div class="card" style="border-top:4px solid var(--green)">
                 <div class="stat-label">On Track</div>
-                <div class="stat text-green">3</div>
+                <div class="stat text-green">6</div>
                 <div class="stat-sub">employees</div>
             </div>
             <div class="card" style="border-top:4px solid var(--amber)">
                 <div class="stat-label">At Risk</div>
-                <div class="stat text-amber">1</div>
-                <div class="stat-sub">employee</div>
+                <div class="stat text-amber">2</div>
+                <div class="stat-sub">employees</div>
             </div>
             <div class="card" style="border-top:4px solid var(--red)">
                 <div class="stat-label">Behind / Overdue</div>
-                <div class="stat text-red">1</div>
-                <div class="stat-sub">employee</div>
+                <div class="stat text-red">2</div>
+                <div class="stat-sub">employees</div>
             </div>
             <div class="card" style="border-top:4px solid var(--blue)">
                 <div class="stat-label">Total New Hires</div>
-                <div class="stat">5</div>
+                <div class="stat">10</div>
                 <div class="stat-sub">currently onboarding</div>
             </div>
         </div>
@@ -938,6 +1008,81 @@
                     <td><span class="badge badge-red">Behind</span></td>
                     <td><button class="btn btn-outline btn-sm" onclick="openSignoff('Jordan Lee')">View</button></td>
                 </tr>
+                <tr>
+                    <td><strong>Natalie Wong</strong></td>
+                    <td>Leasing Manager</td>
+                    <td>Feb 12, 2026</td>
+                    <td>7</td>
+                    <td>Month 1</td>
+                    <td>
+                        <div style="display:flex;align-items:center;gap:8px"><span style="font-weight:700">60%</span>
+                        <div class="progress-bar" style="flex:1"><div class="progress-fill" style="width:60%;background:var(--amber)"></div></div></div>
+                    </td>
+                    <td><span class="badge badge-amber">80%</span></td>
+                    <td>0</td>
+                    <td><span class="badge badge-amber">At Risk</span></td>
+                    <td><button class="btn btn-outline btn-sm" onclick="openSignoff('Natalie Wong')">View</button></td>
+                </tr>
+                <tr>
+                    <td><strong>Chris Taylor</strong></td>
+                    <td>Service Manager</td>
+                    <td>Jan 28, 2026</td>
+                    <td>22</td>
+                    <td>Month 1</td>
+                    <td>
+                        <div style="display:flex;align-items:center;gap:8px"><span style="font-weight:700">82%</span>
+                        <div class="progress-bar" style="flex:1"><div class="progress-fill" style="width:82%;background:var(--green)"></div></div></div>
+                    </td>
+                    <td><span class="badge badge-green">95%</span></td>
+                    <td>0</td>
+                    <td><span class="badge badge-green">On Track</span></td>
+                    <td><button class="btn btn-outline btn-sm" onclick="openSignoff('Chris Taylor')">View</button></td>
+                </tr>
+                <tr>
+                    <td><strong>Samantha Green</strong></td>
+                    <td>Leasing Professional</td>
+                    <td>Feb 5, 2026</td>
+                    <td>14</td>
+                    <td>Month 1</td>
+                    <td>
+                        <div style="display:flex;align-items:center;gap:8px"><span style="font-weight:700">68%</span>
+                        <div class="progress-bar" style="flex:1"><div class="progress-fill" style="width:68%;background:var(--amber)"></div></div></div>
+                    </td>
+                    <td><span class="badge badge-amber">75%</span></td>
+                    <td>0</td>
+                    <td><span class="badge badge-green">On Track</span></td>
+                    <td><button class="btn btn-outline btn-sm" onclick="openSignoff('Samantha Green')">View</button></td>
+                </tr>
+                <tr>
+                    <td><strong>Brandon James</strong></td>
+                    <td>Maintenance Technician</td>
+                    <td>Jan 20, 2026</td>
+                    <td>30</td>
+                    <td>Month 1</td>
+                    <td>
+                        <div style="display:flex;align-items:center;gap:8px"><span style="font-weight:700">90%</span>
+                        <div class="progress-bar" style="flex:1"><div class="progress-fill" style="width:90%;background:var(--green)"></div></div></div>
+                    </td>
+                    <td><span class="badge badge-green">100%</span></td>
+                    <td>0</td>
+                    <td><span class="badge badge-green">On Track</span></td>
+                    <td><button class="btn btn-outline btn-sm" onclick="openSignoff('Brandon James')">View</button></td>
+                </tr>
+                <tr>
+                    <td><strong>Maria Santos</strong></td>
+                    <td>Asst General Manager</td>
+                    <td>Feb 1, 2026</td>
+                    <td>18</td>
+                    <td>Month 1</td>
+                    <td>
+                        <div style="display:flex;align-items:center;gap:8px"><span style="font-weight:700">35%</span>
+                        <div class="progress-bar" style="flex:1"><div class="progress-fill" style="width:35%;background:var(--red)"></div></div></div>
+                    </td>
+                    <td><span class="badge badge-red">45%</span></td>
+                    <td><span class="badge badge-red">2</span></td>
+                    <td><span class="badge badge-red">Behind</span></td>
+                    <td><button class="btn btn-outline btn-sm" onclick="openSignoff('Maria Santos')">View</button></td>
+                </tr>
             </tbody>
         </table>
 
@@ -955,6 +1100,14 @@
                 <tr><td>Jordan Lee</td><td>Chemical Safety Certification</td><td>Feb 17, 2026</td><td class="text-red">-1 day (OVERDUE)</td><td><span class="badge badge-red">Critical</span></td></tr>
                 <tr><td>Marcus Rivera</td><td>Entrata: Applications Module</td><td>Feb 22, 2026</td><td>4 days</td><td><span class="badge badge-blue">Normal</span></td></tr>
                 <tr><td>Aisha Patel</td><td>30-Day Foundations Assessment</td><td>Feb 22, 2026</td><td>4 days</td><td><span class="badge badge-amber">High</span></td></tr>
+                <tr><td>Maria Santos</td><td>Cybersecurity Awareness</td><td>Feb 12, 2026</td><td class="text-red">-6 days (OVERDUE)</td><td><span class="badge badge-red">Critical</span></td></tr>
+                <tr><td>Maria Santos</td><td>Fair Housing Training</td><td>Feb 14, 2026</td><td class="text-red">-4 days (OVERDUE)</td><td><span class="badge badge-red">Critical</span></td></tr>
+                <tr><td>Natalie Wong</td><td>Entrata: Introduction</td><td>Feb 19, 2026</td><td>1 day</td><td><span class="badge badge-amber">High</span></td></tr>
+                <tr><td>Natalie Wong</td><td>Knock CRM Training</td><td>Feb 22, 2026</td><td>4 days</td><td><span class="badge badge-blue">Normal</span></td></tr>
+                <tr><td>Chris Taylor</td><td>OSHA Recordkeeping</td><td>Feb 25, 2026</td><td>7 days</td><td><span class="badge badge-blue">Normal</span></td></tr>
+                <tr><td>Brandon James</td><td>30-Day Foundations Assessment</td><td>Feb 20, 2026</td><td>2 days</td><td><span class="badge badge-amber">High</span></td></tr>
+                <tr><td>Samantha Green</td><td>Hazard Communications</td><td>Feb 24, 2026</td><td>6 days</td><td><span class="badge badge-blue">Normal</span></td></tr>
+                <tr><td>Tyler Brooks</td><td>PPE Certification</td><td>Feb 28, 2026</td><td>10 days</td><td><span class="badge badge-blue">Normal</span></td></tr>
             </tbody>
         </table>
     </div>
@@ -1013,51 +1166,108 @@
                         <button class="btn btn-amber btn-sm" onclick="returnRow(this)">Request Redo</button>
                     </td>
                 </tr>
+                <tr>
+                    <td>Chris Taylor</td>
+                    <td>30-Day Foundations Assessment</td>
+                    <td>Phase Sign-Off</td>
+                    <td>Feb 17, 2026</td>
+                    <td>
+                        <button class="btn btn-green btn-sm" onclick="approveRow(this)">Approve & Sign</button>
+                        <button class="btn btn-amber btn-sm" onclick="returnRow(this)">Request Redo</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Brandon James</td>
+                    <td>PPE Certification</td>
+                    <td>Compliance Sign-Off</td>
+                    <td>Feb 18, 2026</td>
+                    <td>
+                        <button class="btn btn-green btn-sm" onclick="approveRow(this)">Approve & Sign</button>
+                        <button class="btn btn-amber btn-sm" onclick="returnRow(this)">Request Redo</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Samantha Green</td>
+                    <td>Entrata Guest Cards Proficiency</td>
+                    <td>Competency Assessment</td>
+                    <td>Feb 19, 2026</td>
+                    <td>
+                        <button class="btn btn-green btn-sm" onclick="approveRow(this)">Approve & Sign</button>
+                        <button class="btn btn-amber btn-sm" onclick="returnRow(this)">Request Redo</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Natalie Wong</td>
+                    <td>Fair Housing Certification</td>
+                    <td>Compliance Sign-Off</td>
+                    <td>Feb 20, 2026</td>
+                    <td>
+                        <button class="btn btn-green btn-sm" onclick="approveRow(this)">Approve & Sign</button>
+                        <button class="btn btn-amber btn-sm" onclick="returnRow(this)">Request Redo</button>
+                    </td>
+                </tr>
             </tbody>
         </table>
     </div>
 
     <!-- COMPLIANCE TRACKER -->
     <div id="manager-compliance" class="sub-content">
-        <div class="section-title">Compliance Training Status ‚Äî All New Hires</div>
+        <div class="section-title">Compliance Training Status — All New Hires</div>
         <div class="alert-banner alert-red mb">
-            <strong>Risk Flags:</strong> Jordan Lee has 3 overdue compliance items. Jessica Harper has 1 overdue compliance item. Immediate action required for legal compliance.
+            <strong>Risk Flags:</strong> Jordan Lee has 3 overdue compliance items. Jessica Harper has 1 overdue. Maria Santos has 2 overdue. Immediate action required for legal compliance.
         </div>
+        <div style="overflow-x:auto">
         <table>
             <thead>
                 <tr>
                     <th>Training</th>
-                    <th>J. Harper</th>
-                    <th>M. Rivera</th>
-                    <th>A. Patel</th>
-                    <th>T. Brooks</th>
-                    <th>J. Lee</th>
+                    <th>J.H.</th>
+                    <th>M.R.</th>
+                    <th>A.P.</th>
+                    <th>T.B.</th>
+                    <th>J.L.</th>
+                    <th>N.W.</th>
+                    <th>C.T.</th>
+                    <th>S.G.</th>
+                    <th>B.J.</th>
+                    <th>M.S.</th>
                 </tr>
             </thead>
             <tbody>
-                <tr><td><strong>Fair Housing</strong></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-red">OVERDUE</span></td></tr>
-                <tr><td><strong>Sexual Harassment Prevention</strong></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-amber">In Progress</span></td></tr>
-                <tr><td><strong>Human Trafficking Awareness</strong></td><td><span class="badge badge-red">OVERDUE</span></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-blue">Upcoming</span></td><td><span class="badge badge-blue">Upcoming</span></td><td><span class="badge badge-gray">Pending</span></td></tr>
-                <tr><td><strong>Miya's Law Compliance</strong></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-blue">Upcoming</span></td><td><span class="badge badge-gray">Pending</span></td></tr>
-                <tr><td><strong>OSHA Recordkeeping</strong></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-amber">In Progress</span></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-red">OVERDUE</span></td></tr>
-                <tr><td><strong>Hazard Communications</strong></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-red">OVERDUE</span></td></tr>
-                <tr><td><strong>PPE Training</strong></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-blue">Upcoming</span></td><td><span class="badge badge-blue">Upcoming</span></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-gray">Pending</span></td></tr>
-                <tr><td><strong>Lockout/Tagout</strong></td><td><span class="badge badge-amber">Due Soon</span></td><td><span class="badge badge-blue">Upcoming</span></td><td><span class="badge badge-blue">Upcoming</span></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-gray">Pending</span></td></tr>
-                <tr><td><strong>Fire Prevention</strong></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-amber">In Progress</span></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-gray">Pending</span></td></tr>
-                <tr><td><strong>Cybersecurity Awareness</strong></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-blue">Upcoming</span></td><td><span class="badge badge-gray">Pending</span></td></tr>
+                <tr><td><strong>Fair Housing</strong></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-red">OVERDUE</span></td><td><span class="badge badge-amber">In Progress</span></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-red">OVERDUE</span></td></tr>
+                <tr><td><strong>Sexual Harassment Prevention</strong></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-amber">In Progress</span></td><td><span class="badge badge-blue">Upcoming</span></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-amber">In Progress</span></td></tr>
+                <tr><td><strong>Human Trafficking Awareness</strong></td><td><span class="badge badge-red">OVERDUE</span></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-blue">Upcoming</span></td><td><span class="badge badge-blue">Upcoming</span></td><td><span class="badge badge-gray">Pending</span></td><td><span class="badge badge-gray">Pending</span></td><td><span class="badge badge-blue">Upcoming</span></td><td><span class="badge badge-blue">Upcoming</span></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-gray">Pending</span></td></tr>
+                <tr><td><strong>Miya's Law Compliance</strong></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-blue">Upcoming</span></td><td><span class="badge badge-gray">Pending</span></td><td><span class="badge badge-gray">Pending</span></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-blue">Upcoming</span></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-gray">Pending</span></td></tr>
+                <tr><td><strong>OSHA Recordkeeping</strong></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-amber">In Progress</span></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-red">OVERDUE</span></td><td><span class="badge badge-blue">Upcoming</span></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-amber">In Progress</span></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-red">OVERDUE</span></td></tr>
+                <tr><td><strong>Hazard Communications</strong></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-red">OVERDUE</span></td><td><span class="badge badge-blue">Upcoming</span></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-blue">Upcoming</span></td></tr>
+                <tr><td><strong>PPE Training</strong></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-blue">Upcoming</span></td><td><span class="badge badge-blue">Upcoming</span></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-gray">Pending</span></td><td><span class="badge badge-gray">Pending</span></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-blue">Upcoming</span></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-gray">Pending</span></td></tr>
+                <tr><td><strong>Lockout/Tagout</strong></td><td><span class="badge badge-amber">Due Soon</span></td><td><span class="badge badge-blue">Upcoming</span></td><td><span class="badge badge-blue">Upcoming</span></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-gray">Pending</span></td><td><span class="badge badge-gray">Pending</span></td><td><span class="badge badge-blue">Upcoming</span></td><td><span class="badge badge-blue">Upcoming</span></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-gray">Pending</span></td></tr>
+                <tr><td><strong>Fire Prevention</strong></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-amber">In Progress</span></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-gray">Pending</span></td><td><span class="badge badge-gray">Pending</span></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-amber">In Progress</span></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-gray">Pending</span></td></tr>
+                <tr><td><strong>Cybersecurity Awareness</strong></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-blue">Upcoming</span></td><td><span class="badge badge-gray">Pending</span></td><td><span class="badge badge-blue">Upcoming</span></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-gray">Pending</span></td></tr>
+                <tr><td><strong>Bloodborne Pathogens</strong></td><td><span class="badge badge-blue">Upcoming</span></td><td><span class="badge badge-blue">Upcoming</span></td><td><span class="badge badge-gray">Pending</span></td><td><span class="badge badge-blue">Upcoming</span></td><td><span class="badge badge-gray">Pending</span></td><td><span class="badge badge-gray">Pending</span></td><td><span class="badge badge-blue">Upcoming</span></td><td><span class="badge badge-gray">Pending</span></td><td><span class="badge badge-blue">Upcoming</span></td><td><span class="badge badge-gray">Pending</span></td></tr>
+                <tr><td><strong>Emergency Evacuation</strong></td><td><span class="badge badge-blue">Upcoming</span></td><td><span class="badge badge-blue">Upcoming</span></td><td><span class="badge badge-gray">Pending</span></td><td><span class="badge badge-blue">Upcoming</span></td><td><span class="badge badge-gray">Pending</span></td><td><span class="badge badge-gray">Pending</span></td><td><span class="badge badge-blue">Upcoming</span></td><td><span class="badge badge-gray">Pending</span></td><td><span class="badge badge-blue">Upcoming</span></td><td><span class="badge badge-gray">Pending</span></td></tr>
+                <tr><td><strong>ADA Compliance</strong></td><td><span class="badge badge-gray">Pending</span></td><td><span class="badge badge-gray">Pending</span></td><td><span class="badge badge-gray">Pending</span></td><td><span class="badge badge-gray">Pending</span></td><td><span class="badge badge-gray">Pending</span></td><td><span class="badge badge-gray">Pending</span></td><td><span class="badge badge-gray">Pending</span></td><td><span class="badge badge-gray">Pending</span></td><td><span class="badge badge-gray">Pending</span></td><td><span class="badge badge-gray">Pending</span></td></tr>
+                <tr><td><strong>Lead Paint Safety</strong></td><td><span class="badge badge-gray">Pending</span></td><td><span class="badge badge-gray">Pending</span></td><td><span class="badge badge-gray">Pending</span></td><td><span class="badge badge-gray">Pending</span></td><td><span class="badge badge-gray">Pending</span></td><td><span class="badge badge-gray">Pending</span></td><td><span class="badge badge-gray">Pending</span></td><td><span class="badge badge-gray">Pending</span></td><td><span class="badge badge-gray">Pending</span></td><td><span class="badge badge-gray">Pending</span></td></tr>
+                <tr><td><strong>Pool Safety</strong></td><td><span class="badge badge-gray">Pending</span></td><td><span class="badge badge-gray">Pending</span></td><td><span class="badge badge-gray">Pending</span></td><td><span class="badge badge-blue">Upcoming</span></td><td><span class="badge badge-gray">Pending</span></td><td><span class="badge badge-gray">Pending</span></td><td><span class="badge badge-blue">Upcoming</span></td><td><span class="badge badge-gray">Pending</span></td><td><span class="badge badge-blue">Upcoming</span></td><td><span class="badge badge-gray">Pending</span></td></tr>
+                <tr><td><strong>Data Protection & Privacy</strong></td><td><span class="badge badge-gray">Pending</span></td><td><span class="badge badge-gray">Pending</span></td><td><span class="badge badge-gray">Pending</span></td><td><span class="badge badge-gray">Pending</span></td><td><span class="badge badge-gray">Pending</span></td><td><span class="badge badge-gray">Pending</span></td><td><span class="badge badge-gray">Pending</span></td><td><span class="badge badge-gray">Pending</span></td><td><span class="badge badge-gray">Pending</span></td><td><span class="badge badge-gray">Pending</span></td></tr>
+                <tr><td><strong>Workplace Violence Prevention</strong></td><td><span class="badge badge-gray">Pending</span></td><td><span class="badge badge-gray">Pending</span></td><td><span class="badge badge-gray">Pending</span></td><td><span class="badge badge-gray">Pending</span></td><td><span class="badge badge-gray">Pending</span></td><td><span class="badge badge-gray">Pending</span></td><td><span class="badge badge-gray">Pending</span></td><td><span class="badge badge-gray">Pending</span></td><td><span class="badge badge-gray">Pending</span></td><td><span class="badge badge-gray">Pending</span></td></tr>
+                <tr><td><strong>Electrical Safety</strong></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-blue">Upcoming</span></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-gray">Pending</span></td><td><span class="badge badge-gray">Pending</span></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-blue">Upcoming</span></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-gray">Pending</span></td></tr>
+                <tr><td><strong>Diversity in the Workplace</strong></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-blue">Upcoming</span></td><td><span class="badge badge-gray">Pending</span></td><td><span class="badge badge-gray">Pending</span></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-blue">Upcoming</span></td></tr>
+                <tr><td><strong>Drug & Alcohol Awareness</strong></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-blue">Upcoming</span></td><td><span class="badge badge-blue">Upcoming</span></td><td><span class="badge badge-gray">Pending</span></td><td><span class="badge badge-gray">Pending</span></td><td><span class="badge badge-blue">Upcoming</span></td><td><span class="badge badge-blue">Upcoming</span></td><td><span class="badge badge-green">Done</span></td><td><span class="badge badge-gray">Pending</span></td></tr>
             </tbody>
         </table>
+        </div>
     </div>
 </div>
 
 <!-- ==================== REGIONAL VIEW TAB ==================== -->
 <div id="tab-regional" class="tab-content">
-    <div class="section-title">Regional Onboarding Overview ‚Äî Southeast Region</div>
+    <div class="section-title">Regional Onboarding Overview — Southeast Region</div>
     <div class="grid g4 mb">
-        <div class="card" style="border-top:4px solid var(--green)"><div class="stat-label">On Track</div><div class="stat text-green">7</div><div class="stat-sub">employees</div></div>
-        <div class="card" style="border-top:4px solid var(--amber)"><div class="stat-label">At Risk</div><div class="stat text-amber">2</div><div class="stat-sub">employees</div></div>
-        <div class="card" style="border-top:4px solid var(--red)"><div class="stat-label">Behind / Overdue</div><div class="stat text-red">1</div><div class="stat-sub">employee</div></div>
-        <div class="card" style="border-top:4px solid var(--blue)"><div class="stat-label">Total New Hires (Region)</div><div class="stat">10</div><div class="stat-sub">across 4 properties</div></div>
+        <div class="card" style="border-top:4px solid var(--green)"><div class="stat-label">On Track</div><div class="stat text-green">14</div><div class="stat-sub">employees</div></div>
+        <div class="card" style="border-top:4px solid var(--amber)"><div class="stat-label">At Risk</div><div class="stat text-amber">4</div><div class="stat-sub">employees</div></div>
+        <div class="card" style="border-top:4px solid var(--red)"><div class="stat-label">Behind / Overdue</div><div class="stat text-red">2</div><div class="stat-sub">employees</div></div>
+        <div class="card" style="border-top:4px solid var(--blue)"><div class="stat-label">Total New Hires (Region)</div><div class="stat">20</div><div class="stat-sub">across 6 properties</div></div>
     </div>
     <div style="overflow-x:auto">
     <table>
@@ -1075,6 +1285,15 @@
             <tr><td><strong>Lisa Tran</strong></td><td>Leasing Professional</td><td>Magnolia Place</td><td>Feb 1</td><td>18</td><td>Month 1</td><td><div style="display:flex;align-items:center;gap:8px"><span style="font-weight:700">78%</span><div class="progress-bar" style="flex:1"><div class="progress-fill" style="width:78%;background:var(--green)"></div></div></div></td><td><span class="badge badge-green">100%</span></td><td>0</td><td><span class="badge badge-green">On Track</span></td></tr>
             <tr><td><strong>Carlos Mendez</strong></td><td>Maintenance Technician</td><td>Magnolia Place</td><td>Feb 5</td><td>14</td><td>Month 1</td><td><div style="display:flex;align-items:center;gap:8px"><span style="font-weight:700">70%</span><div class="progress-bar" style="flex:1"><div class="progress-fill" style="width:70%;background:var(--green)"></div></div></div></td><td><span class="badge badge-green">88%</span></td><td>0</td><td><span class="badge badge-green">On Track</span></td></tr>
             <tr><td><strong>Rachel Adams</strong></td><td>Asst General Manager</td><td>Summit Ridge</td><td>Jan 13</td><td>37</td><td>Month 2</td><td><div style="display:flex;align-items:center;gap:8px"><span style="font-weight:700">74%</span><div class="progress-bar" style="flex:1"><div class="progress-fill" style="width:74%;background:var(--green)"></div></div></div></td><td><span class="badge badge-green">92%</span></td><td>0</td><td><span class="badge badge-green">On Track</span></td></tr>
+            <tr><td><strong>Natalie Wong</strong></td><td>Leasing Manager</td><td>Harbor Point</td><td>Feb 12</td><td>7</td><td>Month 1</td><td><div style="display:flex;align-items:center;gap:8px"><span style="font-weight:700">60%</span><div class="progress-bar" style="flex:1"><div class="progress-fill" style="width:60%;background:var(--amber)"></div></div></div></td><td><span class="badge badge-amber">80%</span></td><td>0</td><td><span class="badge badge-amber">At Risk</span></td></tr>
+            <tr><td><strong>Chris Taylor</strong></td><td>Service Manager</td><td>Harbor Point</td><td>Jan 28</td><td>22</td><td>Month 1</td><td><div style="display:flex;align-items:center;gap:8px"><span style="font-weight:700">82%</span><div class="progress-bar" style="flex:1"><div class="progress-fill" style="width:82%;background:var(--green)"></div></div></div></td><td><span class="badge badge-green">95%</span></td><td>0</td><td><span class="badge badge-green">On Track</span></td></tr>
+            <tr><td><strong>Samantha Green</strong></td><td>Leasing Professional</td><td>Willow Creek Estates</td><td>Feb 5</td><td>14</td><td>Month 1</td><td><div style="display:flex;align-items:center;gap:8px"><span style="font-weight:700">68%</span><div class="progress-bar" style="flex:1"><div class="progress-fill" style="width:68%;background:var(--amber)"></div></div></div></td><td><span class="badge badge-amber">75%</span></td><td>0</td><td><span class="badge badge-amber">At Risk</span></td></tr>
+            <tr><td><strong>Brandon James</strong></td><td>Maintenance Technician</td><td>Willow Creek Estates</td><td>Jan 20</td><td>30</td><td>Month 1</td><td><div style="display:flex;align-items:center;gap:8px"><span style="font-weight:700">90%</span><div class="progress-bar" style="flex:1"><div class="progress-fill" style="width:90%;background:var(--green)"></div></div></div></td><td><span class="badge badge-green">100%</span></td><td>0</td><td><span class="badge badge-green">On Track</span></td></tr>
+            <tr><td><strong>Maria Santos</strong></td><td>Asst General Manager</td><td>Riverside Terrace</td><td>Feb 1</td><td>18</td><td>Month 1</td><td><div style="display:flex;align-items:center;gap:8px"><span style="font-weight:700">35%</span><div class="progress-bar" style="flex:1"><div class="progress-fill" style="width:35%;background:var(--red)"></div></div></div></td><td><span class="badge badge-red">45%</span></td><td><span class="badge badge-red">2</span></td><td><span class="badge badge-red">Behind</span></td></tr>
+            <tr><td><strong>Kevin Park</strong></td><td>General Manager</td><td>Cedar Heights</td><td>Jan 10</td><td>40</td><td>Month 2</td><td><div style="display:flex;align-items:center;gap:8px"><span style="font-weight:700">77%</span><div class="progress-bar" style="flex:1"><div class="progress-fill" style="width:77%;background:var(--green)"></div></div></div></td><td><span class="badge badge-green">90%</span></td><td>0</td><td><span class="badge badge-green">On Track</span></td></tr>
+            <tr><td><strong>Priya Sharma</strong></td><td>Leasing Professional</td><td>Cedar Heights</td><td>Feb 8</td><td>11</td><td>Month 1</td><td><div style="display:flex;align-items:center;gap:8px"><span style="font-weight:700">72%</span><div class="progress-bar" style="flex:1"><div class="progress-fill" style="width:72%;background:var(--green)"></div></div></div></td><td><span class="badge badge-green">88%</span></td><td>0</td><td><span class="badge badge-green">On Track</span></td></tr>
+            <tr><td><strong>Daniel Moreno</strong></td><td>Groundskeeper / Housekeeper</td><td>Harbor Point</td><td>Feb 14</td><td>5</td><td>Month 1</td><td><div style="display:flex;align-items:center;gap:8px"><span style="font-weight:700">55%</span><div class="progress-bar" style="flex:1"><div class="progress-fill" style="width:55%;background:var(--amber)"></div></div></div></td><td><span class="badge badge-amber">70%</span></td><td>0</td><td><span class="badge badge-amber">At Risk</span></td></tr>
+            <tr><td><strong>Ashley Williams</strong></td><td>Leasing Manager</td><td>Magnolia Place</td><td>Jan 18</td><td>32</td><td>Month 2</td><td><div style="display:flex;align-items:center;gap:8px"><span style="font-weight:700">84%</span><div class="progress-bar" style="flex:1"><div class="progress-fill" style="width:84%;background:var(--green)"></div></div></div></td><td><span class="badge badge-green">95%</span></td><td>0</td><td><span class="badge badge-green">On Track</span></td></tr>
         </tbody>
     </table>
     </div>
@@ -1088,12 +1307,12 @@
     </div>
 
     <div id="vpcoo-propmanagement" class="sub-content active">
-        <div class="section-title">Company-Wide Onboarding ‚Äî Property Management</div>
+        <div class="section-title">Company-Wide Onboarding — Property Management</div>
         <div class="grid g4 mb">
-            <div class="card" style="border-top:4px solid var(--green)"><div class="stat-label">On Track</div><div class="stat text-green">14</div><div class="stat-sub">employees</div></div>
-            <div class="card" style="border-top:4px solid var(--amber)"><div class="stat-label">At Risk</div><div class="stat text-amber">3</div><div class="stat-sub">employees</div></div>
-            <div class="card" style="border-top:4px solid var(--red)"><div class="stat-label">Behind</div><div class="stat text-red">2</div><div class="stat-sub">employees</div></div>
-            <div class="card" style="border-top:4px solid var(--blue)"><div class="stat-label">Total Onboarding</div><div class="stat">19</div><div class="stat-sub">across 3 regions</div></div>
+            <div class="card" style="border-top:4px solid var(--green)"><div class="stat-label">On Track</div><div class="stat text-green">24</div><div class="stat-sub">employees</div></div>
+            <div class="card" style="border-top:4px solid var(--amber)"><div class="stat-label">At Risk</div><div class="stat text-amber">6</div><div class="stat-sub">employees</div></div>
+            <div class="card" style="border-top:4px solid var(--red)"><div class="stat-label">Behind</div><div class="stat text-red">3</div><div class="stat-sub">employees</div></div>
+            <div class="card" style="border-top:4px solid var(--blue)"><div class="stat-label">Total Onboarding</div><div class="stat">33</div><div class="stat-sub">across 5 regions</div></div>
         </div>
         <div style="overflow-x:auto">
         <table>
@@ -1111,18 +1330,28 @@
                 <tr><td><strong>Nina Foster</strong></td><td>General Manager</td><td>Lakeview Apartments</td><td>Central</td><td>52</td><td><div style="display:flex;align-items:center;gap:8px"><span style="font-weight:700">62%</span><div class="progress-bar" style="flex:1"><div class="progress-fill" style="width:62%;background:var(--amber)"></div></div></div></td><td><span class="badge badge-green">88%</span></td><td><span class="badge badge-amber">At Risk</span></td></tr>
                 <tr><td><strong>James Wright</strong></td><td>Maintenance Technician</td><td>Lakeview Apartments</td><td>Central</td><td>22</td><td><div style="display:flex;align-items:center;gap:8px"><span style="font-weight:700">81%</span><div class="progress-bar" style="flex:1"><div class="progress-fill" style="width:81%;background:var(--green)"></div></div></div></td><td><span class="badge badge-green">100%</span></td><td><span class="badge badge-green">On Track</span></td></tr>
                 <tr><td><strong>Amanda Torres</strong></td><td>Leasing Professional</td><td>Pine Valley</td><td>West</td><td>10</td><td><div style="display:flex;align-items:center;gap:8px"><span style="font-weight:700">40%</span><div class="progress-bar" style="flex:1"><div class="progress-fill" style="width:40%;background:var(--red)"></div></div></div></td><td><span class="badge badge-amber">60%</span></td><td><span class="badge badge-red">Behind</span></td></tr>
+                <tr><td><strong>Kevin Park</strong></td><td>General Manager</td><td>Cedar Heights</td><td>Central</td><td>40</td><td><div style="display:flex;align-items:center;gap:8px"><span style="font-weight:700">77%</span><div class="progress-bar" style="flex:1"><div class="progress-fill" style="width:77%;background:var(--green)"></div></div></div></td><td><span class="badge badge-green">90%</span></td><td><span class="badge badge-green">On Track</span></td></tr>
+                <tr><td><strong>Natalie Wong</strong></td><td>Leasing Manager</td><td>Harbor Point</td><td>Southeast</td><td>7</td><td><div style="display:flex;align-items:center;gap:8px"><span style="font-weight:700">60%</span><div class="progress-bar" style="flex:1"><div class="progress-fill" style="width:60%;background:var(--amber)"></div></div></div></td><td><span class="badge badge-amber">80%</span></td><td><span class="badge badge-amber">At Risk</span></td></tr>
+                <tr><td><strong>Maria Santos</strong></td><td>Asst General Manager</td><td>Riverside Terrace</td><td>Southeast</td><td>18</td><td><div style="display:flex;align-items:center;gap:8px"><span style="font-weight:700">35%</span><div class="progress-bar" style="flex:1"><div class="progress-fill" style="width:35%;background:var(--red)"></div></div></div></td><td><span class="badge badge-red">45%</span></td><td><span class="badge badge-red">Behind</span></td></tr>
+                <tr><td><strong>Brandon James</strong></td><td>Maintenance Technician</td><td>Willow Creek Estates</td><td>Central</td><td>30</td><td><div style="display:flex;align-items:center;gap:8px"><span style="font-weight:700">90%</span><div class="progress-bar" style="flex:1"><div class="progress-fill" style="width:90%;background:var(--green)"></div></div></div></td><td><span class="badge badge-green">100%</span></td><td><span class="badge badge-green">On Track</span></td></tr>
+                <tr><td><strong>Priya Sharma</strong></td><td>Leasing Professional</td><td>Cedar Heights</td><td>Central</td><td>11</td><td><div style="display:flex;align-items:center;gap:8px"><span style="font-weight:700">72%</span><div class="progress-bar" style="flex:1"><div class="progress-fill" style="width:72%;background:var(--green)"></div></div></div></td><td><span class="badge badge-green">88%</span></td><td><span class="badge badge-green">On Track</span></td></tr>
+                <tr><td><strong>Ashley Williams</strong></td><td>Leasing Manager</td><td>Magnolia Place</td><td>Southeast</td><td>32</td><td><div style="display:flex;align-items:center;gap:8px"><span style="font-weight:700">84%</span><div class="progress-bar" style="flex:1"><div class="progress-fill" style="width:84%;background:var(--green)"></div></div></div></td><td><span class="badge badge-green">95%</span></td><td><span class="badge badge-green">On Track</span></td></tr>
+                <tr><td><strong>Ryan Cooper</strong></td><td>General Manager</td><td>Desert Bloom</td><td>West</td><td>45</td><td><div style="display:flex;align-items:center;gap:8px"><span style="font-weight:700">66%</span><div class="progress-bar" style="flex:1"><div class="progress-fill" style="width:66%;background:var(--amber)"></div></div></div></td><td><span class="badge badge-green">85%</span></td><td><span class="badge badge-amber">At Risk</span></td></tr>
+                <tr><td><strong>Tanya Rhodes</strong></td><td>Leasing Professional</td><td>Mountain View Terrace</td><td>Northwest</td><td>20</td><td><div style="display:flex;align-items:center;gap:8px"><span style="font-weight:700">78%</span><div class="progress-bar" style="flex:1"><div class="progress-fill" style="width:78%;background:var(--green)"></div></div></div></td><td><span class="badge badge-green">92%</span></td><td><span class="badge badge-green">On Track</span></td></tr>
+                <tr><td><strong>Marcus Bell</strong></td><td>Service Manager</td><td>Peachtree Crossing</td><td>Northeast</td><td>33</td><td><div style="display:flex;align-items:center;gap:8px"><span style="font-weight:700">81%</span><div class="progress-bar" style="flex:1"><div class="progress-fill" style="width:81%;background:var(--green)"></div></div></div></td><td><span class="badge badge-green">100%</span></td><td><span class="badge badge-green">On Track</span></td></tr>
+                <tr><td><strong>Lisa Chen</strong></td><td>Leasing Manager</td><td>Desert Bloom</td><td>West</td><td>15</td><td><div style="display:flex;align-items:center;gap:8px"><span style="font-weight:700">62%</span><div class="progress-bar" style="flex:1"><div class="progress-fill" style="width:62%;background:var(--amber)"></div></div></div></td><td><span class="badge badge-amber">75%</span></td><td><span class="badge badge-amber">At Risk</span></td></tr>
             </tbody>
         </table>
         </div>
     </div>
 
     <div id="vpcoo-corporate" class="sub-content">
-        <div class="section-title">Company-Wide Onboarding ‚Äî Corporate</div>
+        <div class="section-title">Company-Wide Onboarding — Corporate</div>
         <div class="grid g4 mb">
-            <div class="card" style="border-top:4px solid var(--green)"><div class="stat-label">On Track</div><div class="stat text-green">3</div><div class="stat-sub">employees</div></div>
-            <div class="card" style="border-top:4px solid var(--amber)"><div class="stat-label">At Risk</div><div class="stat text-amber">1</div><div class="stat-sub">employee</div></div>
-            <div class="card" style="border-top:4px solid var(--red)"><div class="stat-label">Behind</div><div class="stat text-red">0</div><div class="stat-sub">employees</div></div>
-            <div class="card" style="border-top:4px solid var(--blue)"><div class="stat-label">Total Onboarding</div><div class="stat">4</div><div class="stat-sub">corporate staff</div></div>
+            <div class="card" style="border-top:4px solid var(--green)"><div class="stat-label">On Track</div><div class="stat text-green">5</div><div class="stat-sub">employees</div></div>
+            <div class="card" style="border-top:4px solid var(--amber)"><div class="stat-label">At Risk</div><div class="stat text-amber">2</div><div class="stat-sub">employees</div></div>
+            <div class="card" style="border-top:4px solid var(--red)"><div class="stat-label">Behind</div><div class="stat text-red">1</div><div class="stat-sub">employee</div></div>
+            <div class="card" style="border-top:4px solid var(--blue)"><div class="stat-label">Total Onboarding</div><div class="stat">8</div><div class="stat-sub">corporate staff</div></div>
         </div>
         <div style="overflow-x:auto">
         <table>
@@ -1134,6 +1363,10 @@
                 <tr><td><strong>Michael Nguyen</strong></td><td>Corporate Staff</td><td>Corporate HQ</td><td>Marketing</td><td>14</td><td><div style="display:flex;align-items:center;gap:8px"><span style="font-weight:700">75%</span><div class="progress-bar" style="flex:1"><div class="progress-fill" style="width:75%;background:var(--green)"></div></div></div></td><td><span class="badge badge-green">90%</span></td><td><span class="badge badge-green">On Track</span></td></tr>
                 <tr><td><strong>Emily Watson</strong></td><td>Corporate Staff</td><td>Corporate HQ</td><td>Human Resources</td><td>35</td><td><div style="display:flex;align-items:center;gap:8px"><span style="font-weight:700">55%</span><div class="progress-bar" style="flex:1"><div class="progress-fill" style="width:55%;background:var(--amber)"></div></div></div></td><td><span class="badge badge-amber">75%</span></td><td><span class="badge badge-amber">At Risk</span></td></tr>
                 <tr><td><strong>Derek Sullivan</strong></td><td>Corporate Staff</td><td>Corporate HQ</td><td>IT</td><td>21</td><td><div style="display:flex;align-items:center;gap:8px"><span style="font-weight:700">88%</span><div class="progress-bar" style="flex:1"><div class="progress-fill" style="width:88%;background:var(--green)"></div></div></div></td><td><span class="badge badge-green">100%</span></td><td><span class="badge badge-green">On Track</span></td></tr>
+                <tr><td><strong>Patricia Gomez</strong></td><td>Corporate Staff</td><td>Corporate HQ</td><td>Legal / Compliance</td><td>18</td><td><div style="display:flex;align-items:center;gap:8px"><span style="font-weight:700">72%</span><div class="progress-bar" style="flex:1"><div class="progress-fill" style="width:72%;background:var(--green)"></div></div></div></td><td><span class="badge badge-green">90%</span></td><td><span class="badge badge-green">On Track</span></td></tr>
+                <tr><td><strong>Jason Kim</strong></td><td>Corporate Staff</td><td>Corporate HQ</td><td>Operations</td><td>42</td><td><div style="display:flex;align-items:center;gap:8px"><span style="font-weight:700">58%</span><div class="progress-bar" style="flex:1"><div class="progress-fill" style="width:58%;background:var(--amber)"></div></div></div></td><td><span class="badge badge-amber">70%</span></td><td><span class="badge badge-amber">At Risk</span></td></tr>
+                <tr><td><strong>Laura Thompson</strong></td><td>Corporate Staff</td><td>Corporate HQ</td><td>Property Acquisitions</td><td>8</td><td><div style="display:flex;align-items:center;gap:8px"><span style="font-weight:700">45%</span><div class="progress-bar" style="flex:1"><div class="progress-fill" style="width:45%;background:var(--red)"></div></div></div></td><td><span class="badge badge-amber">60%</span></td><td><span class="badge badge-red">Behind</span></td></tr>
+                <tr><td><strong>Anthony Davis</strong></td><td>Corporate Staff</td><td>Corporate HQ</td><td>Training & Development</td><td>25</td><td><div style="display:flex;align-items:center;gap:8px"><span style="font-weight:700">80%</span><div class="progress-bar" style="flex:1"><div class="progress-fill" style="width:80%;background:var(--green)"></div></div></div></td><td><span class="badge badge-green">95%</span></td><td><span class="badge badge-green">On Track</span></td></tr>
             </tbody>
         </table>
         </div>
@@ -1185,6 +1418,44 @@
             <div style="font-size:2rem;margin-bottom:8px">&#128195;</div>
             <h3>RISE Leadership Playbook</h3>
             <p style="font-size:.82rem;color:var(--muted)">Leadership guidelines, management expectations, communication standards, and team operations.</p>
+            <div style="margin-top:12px;font-size:.78rem;color:var(--muted);font-weight:600">Coming Soon</div>
+        </div>
+        <a href="https://nflow.risere.com/DepartmentForms" target="_blank" style="text-decoration:none;color:inherit">
+            <div class="card" style="border-top:4px solid var(--amber);cursor:pointer">
+                <div style="font-size:2rem;margin-bottom:8px">&#128196;</div>
+                <h3>Department Forms Library</h3>
+                <p style="font-size:.82rem;color:var(--muted)">All standardized forms for leasing, maintenance, accounting, and HR operations.</p>
+                <div style="margin-top:12px;font-size:.78rem;color:var(--blue);font-weight:600">Open in nFlow &rarr;</div>
+            </div>
+        </a>
+        <div class="card" style="border-top:4px solid var(--navy);opacity:.7">
+            <div style="font-size:2rem;margin-bottom:8px">&#128736;</div>
+            <h3>Vendor Management Portal</h3>
+            <p style="font-size:.82rem;color:var(--muted)">Approved vendor directory, service agreements, contact information, and ordering procedures.</p>
+            <div style="margin-top:12px;font-size:.78rem;color:var(--muted);font-weight:600">Coming Soon</div>
+        </div>
+        <div class="card" style="border-top:4px solid var(--green);opacity:.7">
+            <div style="font-size:2rem;margin-bottom:8px">&#128295;</div>
+            <h3>Maintenance SOP Library</h3>
+            <p style="font-size:.82rem;color:var(--muted)">Standard operating procedures for all maintenance tasks, preventive maintenance schedules, and work order protocols.</p>
+            <div style="margin-top:12px;font-size:.78rem;color:var(--muted);font-weight:600">Coming Soon</div>
+        </div>
+        <div class="card" style="border-top:4px solid var(--blue);opacity:.7">
+            <div style="font-size:2rem;margin-bottom:8px">&#128227;</div>
+            <h3>Marketing & SOCi Guides</h3>
+            <p style="font-size:.82rem;color:var(--muted)">Social media templates, reputation management guidelines, and marketing campaign playbooks.</p>
+            <div style="margin-top:12px;font-size:.78rem;color:var(--muted);font-weight:600">Coming Soon</div>
+        </div>
+        <div class="card" style="border-top:4px solid var(--purple);opacity:.7">
+            <div style="font-size:2rem;margin-bottom:8px">&#127968;</div>
+            <h3>Fair Housing Resource Center</h3>
+            <p style="font-size:.82rem;color:var(--muted)">Fair housing guidelines, testing scenarios, protected class reference, and compliance checklists.</p>
+            <div style="margin-top:12px;font-size:.78rem;color:var(--muted);font-weight:600">Coming Soon</div>
+        </div>
+        <div class="card" style="border-top:4px solid var(--orange);opacity:.7">
+            <div style="font-size:2rem;margin-bottom:8px">&#128172;</div>
+            <h3>Resident Communication Templates</h3>
+            <p style="font-size:.82rem;color:var(--muted)">Pre-written templates for notices, lease reminders, welcome letters, and community announcements.</p>
             <div style="margin-top:12px;font-size:.78rem;color:var(--muted);font-weight:600">Coming Soon</div>
         </div>
     </div>
@@ -1284,10 +1555,10 @@
             </div>
             <div class="card">
                 <h3>Critical Compliance Items</h3>
-                <div class="alert-banner alert-red" style="margin-top:8px">Jordan Lee ‚Äî Fair Housing (5 days overdue)</div>
-                <div class="alert-banner alert-red">Jessica Harper ‚Äî Human Trafficking Awareness (3 days overdue)</div>
-                <div class="alert-banner alert-red">Jordan Lee ‚Äî Hazard Communications (1 day overdue)</div>
-                <div class="alert-banner alert-red">Jordan Lee ‚Äî OSHA Recordkeeping (1 day overdue)</div>
+                <div class="alert-banner alert-red" style="margin-top:8px">Jordan Lee — Fair Housing (5 days overdue)</div>
+                <div class="alert-banner alert-red">Jessica Harper — Human Trafficking Awareness (3 days overdue)</div>
+                <div class="alert-banner alert-red">Jordan Lee — Hazard Communications (1 day overdue)</div>
+                <div class="alert-banner alert-red">Jordan Lee — OSHA Recordkeeping (1 day overdue)</div>
             </div>
         </div>
         <button class="btn btn-blue" onclick="exportReport()">Export Compliance Report (PDF)</button>
@@ -1446,7 +1717,71 @@ const trainingData = [
     {name:"Help Desk / Ticketing System (nFlow)",category:"reporting",delivery:"Online",duration:"20 min",dueDay:7,phase:1,status:"completed",dateCompleted:"Jan 14, 2026"},
     {name:"Purchase Order Process",category:"reporting",delivery:"In Person/Virtual",duration:"45 min",dueDay:55,phase:2,status:"pending",dateCompleted:null},
     {name:"Preliminary Financial Review",category:"reporting",delivery:"In Person/Virtual",duration:"60 min",dueDay:60,phase:2,status:"pending",dateCompleted:null},
-    {name:"Accounts Payable Process",category:"reporting",delivery:"In Person/Virtual",duration:"45 min",dueDay:60,phase:2,status:"pending",dateCompleted:null}
+    {name:"Accounts Payable Process",category:"reporting",delivery:"In Person/Virtual",duration:"45 min",dueDay:60,phase:2,status:"pending",dateCompleted:null},
+    // Additional Compliance & Safety
+    {name:"Cold Weather Safety",category:"compliance",delivery:"Online",duration:"18 min",dueDay:70,phase:3,status:"pending",dateCompleted:null},
+    {name:"Golf Cart / UTV Safety",category:"compliance",delivery:"Online",duration:"19 min",dueDay:35,phase:2,status:"pending",dateCompleted:null},
+    {name:"Hand and Power Tools Safety",category:"compliance",delivery:"Online",duration:"21 min",dueDay:55,phase:2,status:"pending",dateCompleted:null},
+    {name:"Bed Bug Prevention & Response",category:"compliance",delivery:"Online",duration:"20 min",dueDay:70,phase:3,status:"pending",dateCompleted:null},
+    {name:"Reasonable Suspicion Training",category:"compliance",delivery:"Online",duration:"24 min",dueDay:40,phase:2,status:"pending",dateCompleted:null},
+    {name:"Workplace Violence Prevention",category:"compliance",delivery:"Online",duration:"30 min",dueDay:75,phase:3,status:"pending",dateCompleted:null},
+    {name:"ADA Compliance Awareness",category:"compliance",delivery:"Online",duration:"25 min",dueDay:80,phase:3,status:"pending",dateCompleted:null},
+    {name:"Data Protection & Privacy",category:"compliance",delivery:"Online",duration:"30 min",dueDay:85,phase:3,status:"pending",dateCompleted:null},
+    {name:"Pool Safety Certification",category:"compliance",delivery:"In Person",duration:"45 min",dueDay:70,phase:3,status:"pending",dateCompleted:null},
+    {name:"Conflict of Interest Policy",category:"compliance",delivery:"Online",duration:"20 min",dueDay:90,phase:3,status:"pending",dateCompleted:null},
+    // Additional Systems
+    {name:"Facilities App",category:"systems",delivery:"In Person/Virtual",duration:"30 min",dueDay:30,phase:1,status:"pending",dateCompleted:null},
+    {name:"MSOE: Inspections",category:"systems",delivery:"In Person/Virtual",duration:"60 min",dueDay:65,phase:3,status:"pending",dateCompleted:null},
+    {name:"Gallagher Verify",category:"systems",delivery:"In Person/Virtual",duration:"60 min",dueDay:65,phase:3,status:"pending",dateCompleted:null},
+    {name:"Opiniion: Survey Platform",category:"systems",delivery:"In Person/Virtual",duration:"60 min",dueDay:90,phase:3,status:"pending",dateCompleted:null},
+    {name:"Flex: Resident Payments",category:"systems",delivery:"In Person/Virtual",duration:"60 min",dueDay:70,phase:3,status:"pending",dateCompleted:null},
+    {name:"Snappt: ID Verification",category:"systems",delivery:"In Person/Virtual",duration:"60 min",dueDay:50,phase:2,status:"pending",dateCompleted:null},
+    {name:"Nurture Boss: Automated Marketing",category:"systems",delivery:"In Person/Virtual",duration:"60 min",dueDay:90,phase:3,status:"pending",dateCompleted:null},
+    {name:"Self-Guided Tours Setup",category:"systems",delivery:"In Person/Virtual",duration:"60 min",dueDay:55,phase:2,status:"pending",dateCompleted:null},
+    {name:"MoonRise: Resident Portal",category:"systems",delivery:"In Person/Virtual",duration:"30 min",dueDay:60,phase:2,status:"pending",dateCompleted:null},
+    {name:"Budgets & Expense Management",category:"systems",delivery:"In Person/Virtual",duration:"60 min",dueDay:90,phase:3,status:"pending",dateCompleted:null},
+    {name:"Mystery Shop Program",category:"systems",delivery:"In Person/Virtual",duration:"30 min",dueDay:90,phase:3,status:"pending",dateCompleted:null},
+    {name:"ResMan: Revenue Management",category:"systems",delivery:"Virtual",duration:"45 min",dueDay:85,phase:3,status:"pending",dateCompleted:null},
+    // Additional Reporting/General
+    {name:"DLR/WPO Reporting",category:"reporting",delivery:"In Person/Virtual",duration:"60 min",dueDay:65,phase:3,status:"pending",dateCompleted:null},
+    {name:"Repayment Agreement Process",category:"reporting",delivery:"In Person/Virtual",duration:"60 min",dueDay:70,phase:3,status:"pending",dateCompleted:null},
+    {name:"Understanding Gross Rent Potential Report",category:"reporting",delivery:"In Person/Virtual",duration:"60 min",dueDay:75,phase:3,status:"pending",dateCompleted:null},
+    {name:"Weekly Maintenance Report",category:"reporting",delivery:"In Person/Virtual",duration:"30 min",dueDay:30,phase:1,status:"pending",dateCompleted:null},
+    {name:"Month-End Close Procedures",category:"reporting",delivery:"In Person/Virtual",duration:"90 min",dueDay:85,phase:3,status:"pending",dateCompleted:null},
+    {name:"KPI Dashboard Navigation",category:"reporting",delivery:"Online",duration:"30 min",dueDay:65,phase:3,status:"pending",dateCompleted:null},
+    // Leasing Fundamentals
+    {name:"Tour Technique Mastery",category:"leasing",delivery:"In Person",duration:"90 min",dueDay:35,phase:2,status:"pending",dateCompleted:null},
+    {name:"Renewal Negotiation Skills",category:"leasing",delivery:"Workshop",duration:"60 min",dueDay:80,phase:3,status:"pending",dateCompleted:null},
+    {name:"Market Comp Analysis",category:"leasing",delivery:"In Person/Virtual",duration:"60 min",dueDay:70,phase:3,status:"pending",dateCompleted:null},
+    {name:"Lease Renewals Process",category:"leasing",delivery:"In Person/Virtual",duration:"60 min",dueDay:85,phase:3,status:"pending",dateCompleted:null},
+    {name:"Move-In / Move-Out Procedures",category:"leasing",delivery:"In Person",duration:"90 min",dueDay:40,phase:2,status:"pending",dateCompleted:null},
+    // Sales Skills
+    {name:"Objection Handling Workshop",category:"sales",delivery:"Workshop",duration:"60 min",dueDay:45,phase:2,status:"pending",dateCompleted:null},
+    {name:"Closing Techniques",category:"sales",delivery:"Workshop",duration:"60 min",dueDay:50,phase:2,status:"pending",dateCompleted:null},
+    {name:"Prospect Follow-Up Best Practices",category:"sales",delivery:"Online",duration:"30 min",dueDay:25,phase:1,status:"completed",dateCompleted:"Feb 1, 2026"},
+    {name:"Phone & Email Sales Skills",category:"sales",delivery:"Online",duration:"45 min",dueDay:35,phase:2,status:"pending",dateCompleted:null},
+    // Customer Experience additions
+    {name:"Resident Retention Strategies",category:"customer",delivery:"Online",duration:"45 min",dueDay:75,phase:3,status:"pending",dateCompleted:null},
+    {name:"Community Event Planning",category:"customer",delivery:"Workshop",duration:"60 min",dueDay:80,phase:3,status:"pending",dateCompleted:null},
+    {name:"Handling Resident Complaints",category:"customer",delivery:"Workshop",duration:"60 min",dueDay:50,phase:2,status:"pending",dateCompleted:null},
+    {name:"Online Reputation Management",category:"customer",delivery:"Online",duration:"30 min",dueDay:65,phase:3,status:"pending",dateCompleted:null},
+    // Leadership Development
+    {name:"Situational Leadership Basics",category:"leadership",delivery:"Workshop",duration:"90 min",dueDay:100,phase:4,status:"pending",dateCompleted:null},
+    {name:"Coaching & Feedback Skills",category:"leadership",delivery:"Workshop",duration:"60 min",dueDay:110,phase:4,status:"pending",dateCompleted:null},
+    {name:"Team Building & Motivation",category:"leadership",delivery:"Workshop",duration:"60 min",dueDay:120,phase:4,status:"pending",dateCompleted:null},
+    {name:"Delegation & Accountability",category:"leadership",delivery:"Online",duration:"45 min",dueDay:130,phase:5,status:"pending",dateCompleted:null},
+    {name:"Managing Difficult Conversations",category:"leadership",delivery:"Workshop",duration:"90 min",dueDay:140,phase:5,status:"pending",dateCompleted:null},
+    {name:"Performance Management Fundamentals",category:"leadership",delivery:"Workshop",duration:"60 min",dueDay:150,phase:5,status:"pending",dateCompleted:null},
+    // Communication Skills
+    {name:"Professional Email & Written Communication",category:"communication",delivery:"Online",duration:"30 min",dueDay:15,phase:1,status:"completed",dateCompleted:"Jan 20, 2026"},
+    {name:"Active Listening & Empathy",category:"communication",delivery:"Workshop",duration:"60 min",dueDay:40,phase:2,status:"pending",dateCompleted:null},
+    {name:"Public Speaking & Presentation Skills",category:"communication",delivery:"Workshop",duration:"90 min",dueDay:100,phase:4,status:"pending",dateCompleted:null},
+    {name:"Cross-Team Collaboration",category:"communication",delivery:"Workshop",duration:"45 min",dueDay:120,phase:4,status:"pending",dateCompleted:null},
+    // Technology & Innovation
+    {name:"PropTech Industry Overview",category:"technology",delivery:"Online",duration:"30 min",dueDay:90,phase:3,status:"pending",dateCompleted:null},
+    {name:"Data-Driven Decision Making",category:"technology",delivery:"Online",duration:"45 min",dueDay:110,phase:4,status:"pending",dateCompleted:null},
+    {name:"AI Tools in Property Management",category:"technology",delivery:"Online",duration:"30 min",dueDay:130,phase:5,status:"pending",dateCompleted:null},
+    {name:"Smart Home Technology Basics",category:"technology",delivery:"In Person",duration:"45 min",dueDay:100,phase:4,status:"pending",dateCompleted:null}
 ];
 
 // ===== MILESTONES DATA =====
@@ -1461,18 +1796,30 @@ const milestones = [
     {name:"60-Day Skill Certified",icon:"&#127775;",day:60,status:"pending",signedBy:null,signDate:null},
     {name:"Compliance Certification Complete",icon:"&#9989;",day:65,status:"pending",signedBy:null,signDate:null},
     {name:"90-Day Independence Certified",icon:"&#128170;",day:90,status:"pending",signedBy:null,signDate:null},
+    {name:"First Renewal Processed",icon:"&#128260;",day:50,status:"pending",signedBy:null,signDate:null},
+    {name:"First Eviction Notice Drafted",icon:"&#128220;",day:55,status:"pending",signedBy:null,signDate:null},
+    {name:"Revenue Goal Hit (First Month)",icon:"&#128176;",day:60,status:"pending",signedBy:null,signDate:null},
+    {name:"First Market Survey Completed",icon:"&#128270;",day:70,status:"pending",signedBy:null,signDate:null},
+    {name:"Community Event Led",icon:"&#127881;",day:75,status:"pending",signedBy:null,signDate:null},
+    {name:"Vendor Negotiation Completed",icon:"&#129309;",day:80,status:"pending",signedBy:null,signDate:null},
+    {name:"Resident Satisfaction Above Target",icon:"&#11088;",day:95,status:"pending",signedBy:null,signDate:null},
+    {name:"Training a New Hire",icon:"&#128105;",day:100,status:"pending",signedBy:null,signDate:null},
+    {name:"Emergency Response Drill Led",icon:"&#128680;",day:105,status:"pending",signedBy:null,signDate:null},
+    {name:"Portfolio Performance Review",icon:"&#128202;",day:110,status:"pending",signedBy:null,signDate:null},
     {name:"120-Day Autonomy Confirmed",icon:"&#128293;",day:120,status:"pending",signedBy:null,signDate:null},
+    {name:"Budget Management Certified",icon:"&#128181;",day:130,status:"pending",signedBy:null,signDate:null},
+    {name:"150-Day Excellence Confirmed",icon:"&#127942;",day:150,status:"pending",signedBy:null,signDate:null},
     {name:"180-Day Program Graduate",icon:"&#127891;",day:180,status:"pending",signedBy:null,signDate:null}
 ];
 
 // ===== PHASES DATA =====
 const phases = [
-    {num:1,name:"Foundations",theme:"Learn the Business, the Culture, and Your Role",days:"Day 1-30",cls:"phase-1",goals:["Understand the multifamily business model","Master company systems and tools","Complete all compliance training","Shadow experienced team members","Begin hands-on work under supervision"]},
-    {num:2,name:"Skill Building",theme:"Develop Core Competencies, Gain Confidence",days:"Day 31-60",cls:"phase-2",goals:["Operate semi-independently in routine situations","Master customer experience fundamentals","Handle increasing complexity","Build resident relationship skills"]},
-    {num:3,name:"Mastery",theme:"Own Your Role, Drive Results",days:"Day 61-90",cls:"phase-3",goals:["Operate independently in most situations","Meet or exceed performance benchmarks","Handle complex situations with minimal guidance","Begin contributing to team goals"]},
-    {num:4,name:"Autonomy",theme:"Full Independence, Consistent Excellence",days:"Day 91-120",cls:"phase-4",goals:["Operate fully independently","Consistently meet or exceed all KPIs","Train and mentor newer team members","Take ownership of outcomes"]},
-    {num:5,name:"Excellence",theme:"Exceed Expectations, Build Expertise",days:"Day 121-150",cls:"phase-5",goals:["Consistently exceed performance standards","Develop specialized expertise","Contribute to team and company success","Prepare for leadership opportunities"]},
-    {num:6,name:"Leadership Readiness",theme:"Certification, Career Planning, Long-Term Success",days:"Day 151-180",cls:"phase-6",goals:["Complete onboarding certification","Demonstrate sustained excellence","Establish clear career trajectory","Position for promotion or specialization"]}
+    {num:1,name:"Foundations",theme:"Learn the Business, the Culture, and Your Role",days:"Day 1-30",cls:"phase-1",goals:["Understand the multifamily business model and RISE company culture","Master company systems and tools (Entrata, Knock, Paycor, nFlow)","Complete all required compliance and safety training","Shadow experienced team members across all key functions","Begin hands-on work under direct supervision","Develop professional communication and email standards","Complete property-specific orientation and meet all team members","Pass 30-Day Foundations Assessment with manager sign-off"]},
+    {num:2,name:"Skill Building",theme:"Develop Core Competencies, Gain Confidence",days:"Day 31-60",cls:"phase-2",goals:["Operate semi-independently in routine leasing and operations","Master customer experience fundamentals and resident relations","Handle increasing complexity in daily tasks with less guidance","Build resident relationship and conflict resolution skills","Complete intermediate systems training (advanced Entrata, Knock CRM)","Begin conducting solo tours and prospect follow-ups","Achieve first lease signing or renewal under mentorship","Pass 60-Day Skill Building Assessment"]},
+    {num:3,name:"Mastery",theme:"Own Your Role, Drive Results",days:"Day 61-90",cls:"phase-3",goals:["Operate independently in most daily situations","Meet or exceed key performance benchmarks and KPIs","Handle complex situations including escalations with minimal guidance","Begin contributing meaningfully to team and property goals","Complete all remaining compliance and safety certifications","Master reporting tools and generate accurate weekly reports","Conduct independent market surveys and competitive analysis","Pass 90-Day Independence Certification"]},
+    {num:4,name:"Autonomy",theme:"Full Independence, Consistent Excellence",days:"Day 91-120",cls:"phase-4",goals:["Operate fully independently across all role responsibilities","Consistently meet or exceed all assigned KPIs","Train and mentor newer team members on core procedures","Take full ownership of outcomes and property performance","Begin leadership development and coaching skills training","Manage vendor relationships and budget items independently","Lead team huddles and contribute to strategic planning","Pass 120-Day Autonomy Assessment"]},
+    {num:5,name:"Excellence",theme:"Exceed Expectations, Build Expertise",days:"Day 121-150",cls:"phase-5",goals:["Consistently exceed performance standards across all metrics","Develop specialized expertise in chosen focus area","Contribute to team success through collaboration and innovation","Prepare for leadership opportunities and career advancement","Complete advanced leadership and management training modules","Present property improvement initiatives to regional leadership","Demonstrate ability to manage difficult conversations independently","Pass 150-Day Excellence Confirmation"]},
+    {num:6,name:"Leadership Readiness",theme:"Certification, Career Planning, Long-Term Success",days:"Day 151-180",cls:"phase-6",goals:["Complete full RISE onboarding certification program","Demonstrate sustained excellence across all performance areas","Establish clear career trajectory with manager and HR","Position for promotion, specialization, or expanded responsibilities","Complete graduation project and present to leadership","Develop 90-day forward plan for continued growth","Serve as peer mentor for incoming new hires","Receive final assessment and RISE University completion certificate"]}
 ];
 
 // ===== TAB NAVIGATION =====
@@ -1506,9 +1853,9 @@ function renderTraining(){
         if(phaseFilter!=='all'&&t.phase!==parseInt(phaseFilter))return false;
         return true;
     });
-    const catColors={compliance:'#f8d7da',systems:'#d1ecf1',customer:'#d4edda',leasing:'#d4edda',fairhousing:'#e8d5f5',emergency:'#fff3cd',sales:'#ffe0b2',reporting:'#e9ecef'};
-    const catTextColors={compliance:'#721c24',systems:'#0c5460',customer:'#155724',leasing:'#155724',fairhousing:'#4a1a6b',emergency:'#856404',sales:'#e65100',reporting:'#495057'};
-    const catNames={compliance:'Compliance & Safety',systems:'Systems',customer:'Customer Experience',leasing:'Leasing',fairhousing:'Fair Housing',emergency:'Emergency',sales:'Sales',reporting:'Reporting/General'};
+    const catColors={compliance:'#f8d7da',systems:'#d1ecf1',customer:'#d4edda',leasing:'#d4edda',fairhousing:'#e8d5f5',emergency:'#fff3cd',sales:'#ffe0b2',reporting:'#e9ecef',leadership:'#e0d4f5',communication:'#d1f2eb',technology:'#e8f4fd'};
+    const catTextColors={compliance:'#721c24',systems:'#0c5460',customer:'#155724',leasing:'#155724',fairhousing:'#4a1a6b',emergency:'#856404',sales:'#e65100',reporting:'#495057',leadership:'#4a1a6b',communication:'#0c5460',technology:'#0c5460'};
+    const catNames={compliance:'Compliance & Safety',systems:'Systems',customer:'Customer Experience',leasing:'Leasing',fairhousing:'Fair Housing',emergency:'Emergency',sales:'Sales',reporting:'Reporting/General',leadership:'Leadership',communication:'Communication',technology:'Technology'};
     const statusBadges={completed:'<span class="badge badge-green">Completed</span>',pending:'<span class="badge badge-gray">Pending</span>',overdue:'<span class="badge badge-red">Overdue</span>'};
     tbody.innerHTML=filtered.map((t,i)=>`
         <tr class="${t.status==='completed'?'completed-item':''}">
@@ -1555,12 +1902,12 @@ function updateStats(){
 
 // ===== LOCATION-SPECIFIC TASKS BY PHASE =====
 const locationTasks = {
-    1:["Complete full property tour with General Manager","Meet maintenance/service team and review equipment","Review property-specific emergency action plan","Learn property access codes, gate systems, and key protocols","Review property-specific lease addenda and community rules","Tour model units and learn unit types/pricing"],
-    2:["Shadow site-specific leasing procedures and tour routes","Learn local vendor contacts and service agreements","Review property delinquency and collections procedures","Understand property-specific utility billing setup","Learn community event calendar and resident engagement plan"],
-    3:["Lead a full property walk/inspection independently","Handle site-specific resident issues without supervision","Conduct independent market survey of local competitors","Manage property-specific move-in/move-out process end-to-end"],
-    4:["Complete property performance review with Regional Manager","Conduct local market comp analysis and pricing recommendation","Manage vendor relationships independently","Lead Take 10 Huddle for on-site team"],
-    5:["Present property performance trends to leadership","Identify and implement one property-specific improvement initiative","Mentor a new team member on site-specific procedures"],
-    6:["Complete final property operations assessment","Develop 90-day forward plan for your property","Present graduation project to regional leadership"]
+    1:["Complete full property tour with General Manager","Meet maintenance/service team and review equipment","Review property-specific emergency action plan","Learn property access codes, gate systems, and key protocols","Review property-specific lease addenda and community rules","Tour model units and learn unit types/pricing","Review property amenity package and common area operations","Understand parking policies, pet policies, and towing procedures","Learn trash/recycling schedule and waste management procedures","Review property landscaping and curb appeal standards","Meet on-site vendor contacts (pest control, landscaping, etc.)","Review property-specific HOA or owner communication requirements"],
+    2:["Shadow site-specific leasing procedures and tour routes","Learn local vendor contacts and service agreements","Review property delinquency and collections procedures","Understand property-specific utility billing setup","Learn community event calendar and resident engagement plan","Practice property-specific tour script and selling points","Review local fair housing regulations and testing protocols","Understand property-specific maintenance request workflow","Complete first supervised property walk/inspection","Review site-specific safety equipment locations and procedures","Learn resident communication preferences for your community","Understand property-specific insurance and liability requirements"],
+    3:["Lead a full property walk/inspection independently","Handle site-specific resident issues without supervision","Conduct independent market survey of local competitors","Manage property-specific move-in/move-out process end-to-end","Complete first independent vendor coordination (repair/service call)","Lead a resident engagement or community event on-site","Prepare first property-level report for manager review","Handle an after-hours emergency call independently","Conduct a mystery shop review of your own property","Manage a lease renewal negotiation independently","Coordinate a unit turnover from move-out to move-in ready","Process a resident complaint through full resolution cycle"],
+    4:["Complete property performance review with Regional Manager","Conduct local market comp analysis and pricing recommendation","Manage vendor relationships independently","Lead Take 10 Huddle for on-site team","Prepare and present property budget variance report","Coordinate a property capital improvement project","Train a newer team member on your property's unique procedures","Manage a full week of property operations with minimal oversight","Conduct performance reviews of property-level vendors","Lead a property safety drill or emergency response exercise","Prepare quarterly property performance presentation","Manage resident retention initiative for your property"],
+    5:["Present property performance trends to leadership","Identify and implement one property-specific improvement initiative","Mentor a new team member on site-specific procedures","Lead a cross-property collaboration or best practice sharing session","Prepare a comprehensive competitive market analysis report","Manage a property renovation or upgrade project independently","Develop a property-specific marketing strategy","Lead a resident satisfaction improvement initiative","Present a cost-saving recommendation to regional leadership","Coordinate a community partnership or outreach event","Complete a property technology optimization review","Prepare a succession plan for your property responsibilities"],
+    6:["Complete final property operations assessment","Develop 90-day forward plan for your property","Present graduation project to regional leadership","Prepare comprehensive property operations manual for successor","Lead a full property audit and compliance review","Complete handoff documentation for all vendor relationships","Present final property performance scorecard to VP/COO","Mentor incoming new hire through their first week on-site","Complete RISE University final capstone project","Prepare transition plan if moving to new property or role","Lead a cross-functional team meeting at property level","Receive property-level graduation endorsement from Regional Manager"]
 };
 
 // ===== RENDER PHASES =====
@@ -1645,32 +1992,62 @@ let calMonth=1, calYear=2026; // Feb = 1
 const monthNames=["January","February","March","April","May","June","July","August","September","October","November","December"];
 
 const calEvents=[
+    // February events
+    {day:2,month:1,text:"Team Meeting (All Hands)",cls:"checkin"},
     {day:3,month:1,text:"Manager Check-in",cls:"checkin"},
     {day:4,month:1,text:"Entrata: Leasing Module",cls:"systems"},
     {day:5,month:1,text:"De-escalation Workshop",cls:"compliance"},
     {day:6,month:1,text:"Knock CRM Training",cls:"systems"},
     {day:7,month:1,text:"Weekly Reflection Due",cls:"checkin"},
+    {day:9,month:1,text:"Property Tour — Prospect",cls:"leasing"},
     {day:10,month:1,text:"Manager Check-in",cls:"checkin"},
     {day:10,month:1,text:"Entrata: Applications",cls:"systems"},
+    {day:11,month:1,text:"Vendor Visit — HVAC",cls:"safety"},
     {day:12,month:1,text:"Property Walk",cls:"leasing"},
     {day:13,month:1,text:"Human Trafficking (OVERDUE)",cls:"compliance"},
+    {day:13,month:1,text:"Resident Appreciation Event",cls:"leasing"},
     {day:14,month:1,text:"Weekly Reflection Due",cls:"checkin"},
+    {day:16,month:1,text:"Reasonable Suspicion Training",cls:"compliance"},
     {day:17,month:1,text:"Manager Check-in",cls:"checkin"},
     {day:18,month:1,text:"Entrata: Leasing Module",cls:"systems"},
     {day:18,month:1,text:"Shadow Team Member",cls:"leasing"},
+    {day:19,month:1,text:"Snappt ID Verification Demo",cls:"systems"},
     {day:20,month:1,text:"Lockout/Tagout Due",cls:"safety"},
     {day:20,month:1,text:"Mentor Session",cls:"checkin"},
     {day:21,month:1,text:"Weekly Reflection Due",cls:"checkin"},
+    {day:23,month:1,text:"Golf Cart Safety Training",cls:"safety"},
     {day:24,month:1,text:"Manager Check-in",cls:"checkin"},
     {day:25,month:1,text:"Miya's Law Training",cls:"compliance"},
+    {day:25,month:1,text:"Active Listening Workshop",cls:"checkin"},
     {day:26,month:1,text:"60-Day Evaluation",cls:"milestone"},
     {day:28,month:1,text:"Weekly Reflection Due",cls:"checkin"},
     // March events
     {day:2,month:2,text:"Financial Literacy Module",cls:"leasing"},
+    {day:3,month:2,text:"Entrata: Work Orders",cls:"systems"},
     {day:5,month:2,text:"Manager Check-in",cls:"checkin"},
+    {day:7,month:2,text:"Weekly Reflection Due",cls:"checkin"},
+    {day:8,month:2,text:"Vendor Coordination Meeting",cls:"leasing"},
     {day:10,month:2,text:"Resident Retention Focus",cls:"leasing"},
+    {day:12,month:2,text:"Manager Check-in",cls:"checkin"},
+    {day:14,month:2,text:"Weekly Reflection Due",cls:"checkin"},
     {day:15,month:2,text:"Compliance Audit",cls:"compliance"},
+    {day:17,month:2,text:"Lead Paint Safety Training",cls:"compliance"},
+    {day:19,month:2,text:"Market Comp Analysis",cls:"leasing"},
+    {day:20,month:2,text:"SOCi Training",cls:"systems"},
+    {day:21,month:2,text:"Weekly Reflection Due",cls:"checkin"},
+    {day:24,month:2,text:"Apartment IQ Training",cls:"systems"},
+    {day:26,month:2,text:"Manager Check-in",cls:"checkin"},
     {day:28,month:2,text:"90-Day Evaluation",cls:"milestone"},
+    // April events
+    {day:1,month:3,text:"Q2 Planning Meeting",cls:"checkin"},
+    {day:3,month:3,text:"Asbestos Awareness Training",cls:"compliance"},
+    {day:7,month:3,text:"Manager Check-in",cls:"checkin"},
+    {day:10,month:3,text:"Resident Event Planning",cls:"leasing"},
+    {day:14,month:3,text:"120-Day Evaluation",cls:"milestone"},
+    {day:17,month:3,text:"Leadership Workshop",cls:"checkin"},
+    {day:21,month:3,text:"Budget Review Session",cls:"systems"},
+    {day:25,month:3,text:"Portfolio Review",cls:"milestone"},
+    {day:28,month:3,text:"Manager Check-in",cls:"checkin"},
 ];
 
 function renderCalendar(){
@@ -1707,14 +2084,14 @@ function renderWeeklyChart(){
     // Gridlines
     for(let i=0;i<=4;i++){
         const y=h-(i*45);
-        svgContent+=`<line x1="40" y1="${y}" x2="780" y2="${y}" stroke="#e0e4e8" stroke-width="1"/>`;
+        svgContent+=`<line x1="40" y1="${y}" x2="780" y2="${y}" stroke="#DBDBDB" stroke-width="1"/>`;
         svgContent+=`<text x="35" y="${y+4}" font-size="11" fill="#6c757d" text-anchor="end">${i*25}%</text>`;
     }
     data.forEach((d,i)=>{
         const x=startX+i*(barW+gap);
         const barH=(d.v/maxV)*h;
         const y=h-barH;
-        const color=i<5?'#2E86AB':'#1B2A4A';
+        const color=i<5?'#63B6D2':'#002D40';
         svgContent+=`<rect x="${x}" y="${y}" width="${barW}" height="${barH}" rx="4" fill="${color}" opacity=".8"/>`;
         svgContent+=`<text x="${x+barW/2}" y="${y-6}" font-size="12" fill="#333" text-anchor="middle" font-weight="600">${d.v}%</text>`;
         svgContent+=`<text x="${x+barW/2}" y="${h+16}" font-size="11" fill="#6c757d" text-anchor="middle">${d.w}</text>`;
