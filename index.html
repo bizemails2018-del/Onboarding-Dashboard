@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -147,8 +147,8 @@
         .gamification-badges{display:flex;gap:12px;flex-wrap:wrap}
         .badge-item{width:80px;text-align:center;opacity:.3;transition:.3s}
         .badge-item.earned{opacity:1}
-        .badge-item .badge-icon{width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin:0 auto 6px;border:3px solid var(--border)}
-        .badge-item.earned .badge-icon{border-color:var(--navy);box-shadow:0 0 12px rgba(0,45,64,.3)}
+        .badge-item .badge-icon{width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 6px}
+        .badge-item.earned .badge-icon{box-shadow:0 2px 8px rgba(0,0,0,.15)}
         .badge-item .badge-name{font-size:.68rem;font-weight:600;color:var(--navy)}
         .filter-bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;align-items:center}
         .filter-bar select,.filter-bar input{padding:8px 12px;border:1px solid var(--border);border-radius:6px;font-size:.82rem}
@@ -349,29 +349,29 @@
         <!-- Gamification Badges -->
         <div class="section-title">Achievement Badges</div>
         <div class="gamification-badges mb">
-            <div class="badge-item earned"><div class="badge-icon" style="background:#63B6D2;color:#fff">&#127919;</div><div class="badge-name">Day 1 Complete</div></div>
-            <div class="badge-item earned"><div class="badge-icon" style="background:#63B6D2;color:#fff">&#128218;</div><div class="badge-name">Fair Housing Certified</div></div>
-            <div class="badge-item earned"><div class="badge-icon" style="background:#63B6D2;color:#fff">&#9889;</div><div class="badge-name">Systems Starter</div></div>
-            <div class="badge-item earned"><div class="badge-icon" style="background:#63B6D2;color:#fff">&#128101;</div><div class="badge-name">Shadow Complete</div></div>
-            <div class="badge-item"><div class="badge-icon" style="background:#63B6D2;color:#fff">&#127942;</div><div class="badge-name">30-Day Certified</div></div>
-            <div class="badge-item"><div class="badge-icon" style="background:#63B6D2;color:#fff">&#128640;</div><div class="badge-name">First Solo Tour</div></div>
-            <div class="badge-item"><div class="badge-icon" style="background:#63B6D2;color:#fff">&#128221;</div><div class="badge-name">First Lease</div></div>
-            <div class="badge-item"><div class="badge-icon" style="background:#63B6D2;color:#fff">&#127775;</div><div class="badge-name">60-Day Star</div></div>
-            <div class="badge-item"><div class="badge-icon" style="background:#63B6D2;color:#fff">&#128170;</div><div class="badge-name">Independence</div></div>
-            <div class="badge-item"><div class="badge-icon" style="background:#63B6D2;color:#fff">&#127891;</div><div class="badge-name">Graduate</div></div>
+            <div class="badge-item earned"><div class="badge-icon" style="background:#63B6D2"><svg width="24" height="24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div><div class="badge-name">Day 1 Complete</div></div>
+            <div class="badge-item earned"><div class="badge-icon" style="background:#63B6D2"><svg width="24" height="24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div><div class="badge-name">Fair Housing Certified</div></div>
+            <div class="badge-item earned"><div class="badge-icon" style="background:#63B6D2"><svg width="24" height="24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></div><div class="badge-name">Systems Starter</div></div>
+            <div class="badge-item earned"><div class="badge-icon" style="background:#63B6D2"><svg width="24" height="24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div><div class="badge-name">Shadow Complete</div></div>
+            <div class="badge-item"><div class="badge-icon" style="background:#63B6D2"><svg width="24" height="24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg></div><div class="badge-name">30-Day Certified</div></div>
+            <div class="badge-item"><div class="badge-icon" style="background:#63B6D2"><svg width="24" height="24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg></div><div class="badge-name">First Solo Tour</div></div>
+            <div class="badge-item"><div class="badge-icon" style="background:#63B6D2"><svg width="24" height="24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/></svg></div><div class="badge-name">First Lease</div></div>
+            <div class="badge-item"><div class="badge-icon" style="background:#63B6D2"><svg width="24" height="24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><div class="badge-name">60-Day Star</div></div>
+            <div class="badge-item"><div class="badge-icon" style="background:#63B6D2"><svg width="24" height="24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg></div><div class="badge-name">Independence</div></div>
+            <div class="badge-item"><div class="badge-icon" style="background:#63B6D2"><svg width="24" height="24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1.66 2.69 3 6 3s6-1.34 6-3v-5"/></svg></div><div class="badge-name">Graduate</div></div>
         </div>
 
         <div class="section-title">Manager Awards <span style="font-size:.75rem;font-weight:400;color:var(--muted);margin-left:8px">Awarded by Manager & above</span></div>
         <div class="gamification-badges mb">
-            <div class="badge-item"><div class="badge-icon" style="background:#6B7280;color:#fff">&#10084;&#65039;</div><div class="badge-name">Love.Serve.Care</div></div>
-            <div class="badge-item"><div class="badge-icon" style="background:#6B7280;color:#fff">&#9878;&#65039;</div><div class="badge-name">Reasonable</div></div>
-            <div class="badge-item"><div class="badge-icon" style="background:#6B7280;color:#fff">&#128737;</div><div class="badge-name">Reliable</div></div>
-            <div class="badge-item"><div class="badge-icon" style="background:#6B7280;color:#fff">&#128161;</div><div class="badge-name">Inspired</div></div>
-            <div class="badge-item"><div class="badge-icon" style="background:#6B7280;color:#fff">&#128165;</div><div class="badge-name">Impactful</div></div>
-            <div class="badge-item"><div class="badge-icon" style="background:#6B7280;color:#fff">&#129309;</div><div class="badge-name">Serve</div></div>
-            <div class="badge-item"><div class="badge-icon" style="background:#6B7280;color:#fff">&#129513;</div><div class="badge-name">Simplify</div></div>
-            <div class="badge-item"><div class="badge-icon" style="background:#6B7280;color:#fff">&#127941;</div><div class="badge-name">Experienced</div></div>
-            <div class="badge-item"><div class="badge-icon" style="background:#6B7280;color:#fff">&#128640;</div><div class="badge-name">Empowering</div></div>
+            <div class="badge-item"><div class="badge-icon" style="background:#6B7280"><svg width="24" height="24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div><div class="badge-name">Love.Serve.Care</div></div>
+            <div class="badge-item"><div class="badge-icon" style="background:#6B7280"><svg width="24" height="24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="3" x2="12" y2="15"/><rect x="2" y="15" width="6" height="6" rx="1"/><rect x="16" y="15" width="6" height="6" rx="1"/><path d="M5 15V9a7 7 0 0 1 14 0v6"/></svg></div><div class="badge-name">Reasonable</div></div>
+            <div class="badge-item"><div class="badge-icon" style="background:#6B7280"><svg width="24" height="24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div class="badge-name">Reliable</div></div>
+            <div class="badge-item"><div class="badge-icon" style="background:#6B7280"><svg width="24" height="24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><line x1="12" y1="2" x2="12" y2="6"/><circle cx="12" cy="12" r="6"/></svg></div><div class="badge-name">Inspired</div></div>
+            <div class="badge-item"><div class="badge-icon" style="background:#6B7280"><svg width="24" height="24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div><div class="badge-name">Impactful</div></div>
+            <div class="badge-item"><div class="badge-icon" style="background:#6B7280"><svg width="24" height="24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M6 8H5a4 4 0 0 0 0 8h1"/><line x1="6" y1="12" x2="18" y2="12"/><path d="M12 6v12"/></svg></div><div class="badge-name">Serve</div></div>
+            <div class="badge-item"><div class="badge-icon" style="background:#6B7280"><svg width="24" height="24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></div><div class="badge-name">Simplify</div></div>
+            <div class="badge-item"><div class="badge-icon" style="background:#6B7280"><svg width="24" height="24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg></div><div class="badge-name">Experienced</div></div>
+            <div class="badge-item"><div class="badge-icon" style="background:#6B7280"><svg width="24" height="24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div><div class="badge-name">Empowering</div></div>
         </div>
 
         <!-- Current Phase Detail -->
