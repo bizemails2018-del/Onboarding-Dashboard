@@ -6,15 +6,15 @@
     <title>RISE Training & Onboarding Dashboard</title>
     <style>
         *{box-sizing:border-box;margin:0;padding:0}
-        :root{--navy:#002D40;--blue:#63B6D2;--green:#28a745;--amber:#F5B64C;--red:#dc3545;--bg:#f4f6f9;--card:#fff;--text:#333;--muted:#6c757d;--border:#DBDBDB;--shadow:0 2px 8px rgba(0,0,0,.08);--radius:10px;--teal:#20c997;--purple:#6f42c1;--orange:#fd7e14;--pink:#e83e8c}
-        body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.5;min-height:100vh}
+        :root{--navy:#002D40;--blue:#63B6D2;--green:#28a745;--amber:#F5B64C;--red:#dc3545;--bg:#f4f6f9;--card:#fff;--text:#333;--muted:#6c757d;--border:#DBDBDB;--shadow:0 1px 4px rgba(0,0,0,0.06);--radius:8px;--teal:#20c997;--purple:#6f42c1;--orange:#fd7e14;--pink:#e83e8c;--mid-blue:#1a3a5c;--rule:#E5E7EB;--lt-gray:#F3F4F6;--d-gray:#374151;--gray:#6B7280}
+        body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.5;min-height:100vh;font-size:13px}
         header{background:var(--navy);color:#fff;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
         header h1{font-size:1.3rem;font-weight:700;letter-spacing:.5px}
         header .header-right{display:flex;align-items:center;gap:16px;font-size:.85rem}
         header .header-right select{background:rgba(255,255,255,.15);color:#fff;border:1px solid rgba(255,255,255,.3);padding:6px 10px;border-radius:6px;font-size:.82rem}
         header .header-right select option{color:#333;background:#fff}
-        .tabs{background:#fff;border-bottom:2px solid var(--border);display:flex;overflow-x:auto;padding:0 16px}
-        .tabs button{background:none;border:none;padding:12px 20px;font-size:.9rem;font-weight:600;color:var(--muted);cursor:pointer;border-bottom:3px solid transparent;white-space:nowrap;transition:.2s}
+        .tabs{background:#fff;border-bottom:1px solid var(--rule);display:flex;overflow-x:auto;padding:0 16px}
+        .tabs button{background:none;border:none;padding:10px 18px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap;transition:.2s}
         .tabs button:hover{color:var(--navy)}
         .tabs button.active{color:var(--navy);border-bottom-color:var(--blue)}
         .sub-tabs{background:#f8f9fa;border-bottom:1px solid var(--border);display:flex;overflow-x:auto;padding:0 16px}
@@ -30,13 +30,13 @@
         .g3{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
         .g4{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
         .g5{grid-template-columns:repeat(auto-fit,minmax(160px,1fr))}
-        .card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:20px;transition:.15s}
-        .card:hover{box-shadow:0 4px 16px rgba(0,0,0,.12)}
-        .card h3{font-size:.95rem;color:var(--navy);margin-bottom:12px;display:flex;align-items:center;gap:6px}
-        .stat{font-size:1.8rem;font-weight:700;color:var(--navy)}
-        .stat-label{font-size:.78rem;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px}
+        .card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);border:1px solid var(--rule);padding:20px;transition:.15s}
+        .card:hover{box-shadow:0 2px 8px rgba(0,0,0,0.1)}
+        .card h3{font-size:11px;text-transform:uppercase;letter-spacing:0.07em;color:var(--gray);margin-bottom:12px;display:flex;align-items:center;gap:6px}
+        .stat{font-size:1.6rem;font-weight:700;color:var(--navy)}
+        .stat-label{font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:4px}
         .stat-sub{font-size:.82rem;color:var(--muted);margin-top:2px}
-        .badge{display:inline-block;padding:2px 10px;border-radius:20px;font-size:.75rem;font-weight:600}
+        .badge{display:inline-block;padding:3px 8px;border-radius:12px;font-size:10px;font-weight:700}
         .badge-green{background:#d4edda;color:#155724}
         .badge-amber{background:#fff3cd;color:#856404}
         .badge-red{background:#f8d7da;color:#721c24}
@@ -44,16 +44,16 @@
         .badge-gray{background:#e9ecef;color:#495057}
         .badge-purple{background:#e8d5f5;color:#4a1a6b}
         .badge-teal{background:#d1f2eb;color:#0c5460}
-        table{width:100%;border-collapse:collapse;font-size:.85rem}
-        th{text-align:left;padding:10px 12px;background:var(--navy);color:#fff;font-weight:600}
-        td{padding:10px 12px;border-bottom:1px solid var(--border)}
-        tr:nth-child(even){background:#f8f9fa}
-        tr:hover{background:#e9ecef}
-        .section-title{font-size:1.1rem;font-weight:700;color:var(--navy);margin:24px 0 12px;padding-bottom:6px;border-bottom:2px solid var(--blue)}
+        table{width:100%;border-collapse:collapse;font-size:12px}
+        th{text-align:left;padding:9px 14px;background:var(--lt-gray);color:var(--gray);font-size:10px;text-transform:uppercase;letter-spacing:0.06em;font-weight:700;border-bottom:1px solid var(--rule)}
+        td{padding:10px 14px;border-bottom:1px solid var(--rule);font-size:12px}
+        tr:nth-child(even){background:#FAFAFA}
+        tr:hover{background:#F3F4F6}
+        .section-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;color:var(--gray);margin:24px 0 12px;padding-bottom:6px;border-bottom:1px solid var(--rule)}
         .section-title:first-child{margin-top:0}
-        .progress-bar{background:#e9ecef;border-radius:8px;height:10px;overflow:hidden;margin-top:6px}
-        .progress-bar.lg{height:16px}
-        .progress-fill{height:100%;border-radius:8px;transition:width .5s}
+        .progress-bar{background:var(--lt-gray);border-radius:4px;height:7px;overflow:hidden;margin-top:6px}
+        .progress-bar.lg{height:10px}
+        .progress-fill{height:100%;border-radius:4px;transition:width 0.6s cubic-bezier(.4,0,.2,1)}
         .btn{padding:8px 18px;border:none;border-radius:6px;font-size:.82rem;font-weight:600;cursor:pointer;transition:.15s;display:inline-block}
         .btn:hover{opacity:.85}
         .btn-green{background:var(--green);color:#fff}
@@ -136,10 +136,10 @@
         .readiness-gauge .gauge-text{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center}
         .readiness-gauge .gauge-text .score{font-size:2rem;font-weight:800;color:var(--navy)}
         .readiness-gauge .gauge-text .label{font-size:.72rem;color:var(--muted);text-transform:uppercase}
-        .alert-banner{padding:12px 16px;border-radius:8px;margin-bottom:12px;font-size:.85rem;display:flex;align-items:center;gap:10px}
-        .alert-banner.alert-red{background:#f8d7da;border:1px solid #f5c6cb;color:#721c24}
-        .alert-banner.alert-amber{background:#fff3cd;border:1px solid #ffeeba;color:#856404}
-        .alert-banner.alert-blue{background:#d1ecf1;border:1px solid #bee5eb;color:#0c5460}
+        .alert-banner{padding:10px 14px;border-radius:4px;margin-bottom:12px;font-size:11px;display:flex;align-items:center;gap:10px;border-left:3px solid}
+        .alert-banner.alert-red{background:#f8d7da;border-left-color:#dc3545;color:#721c24}
+        .alert-banner.alert-amber{background:#fff3cd;border-left-color:#F5B64C;color:#856404}
+        .alert-banner.alert-blue{background:#d1ecf1;border-left-color:#63B6D2;color:#0c5460}
         .signoff-modal{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.5);z-index:1000;align-items:center;justify-content:center}
         .signoff-modal.active{display:flex}
         .signoff-modal .modal-content{background:#fff;border-radius:var(--radius);padding:24px;max-width:500px;width:90%;max-height:80vh;overflow-y:auto}
@@ -148,20 +148,27 @@
         .badge-item{width:80px;text-align:center;opacity:.3;transition:.3s}
         .badge-item.earned{opacity:1}
         .badge-item .badge-icon{width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin:0 auto 6px;border:3px solid var(--border)}
-        .badge-item.earned .badge-icon{border-color:var(--green);box-shadow:0 0 12px rgba(40,167,69,.3)}
+        .badge-item.earned .badge-icon{border-color:var(--navy);box-shadow:0 0 12px rgba(0,45,64,.3)}
         .badge-item .badge-name{font-size:.68rem;font-weight:600;color:var(--navy)}
         .filter-bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;align-items:center}
         .filter-bar select,.filter-bar input{padding:8px 12px;border:1px solid var(--border);border-radius:6px;font-size:.82rem}
         .week-view-item{background:#fff;border-radius:8px;padding:14px;border-left:4px solid var(--blue);margin-bottom:8px;box-shadow:var(--shadow)}
         .week-view-item h4{font-size:.88rem;color:var(--navy);margin-bottom:4px}
         .week-view-item .wv-meta{font-size:.78rem;color:var(--muted)}
+        .info-bar{background:var(--mid-blue);padding:8px 24px;display:flex;align-items:center;gap:0;overflow-x:auto}
+        .info-chip{display:flex;flex-direction:column;padding:4px 20px}
+        .info-chip label{font-size:9px;font-weight:700;color:#93A3C0;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:1px}
+        .info-chip span{font-size:13px;color:#fff;font-weight:600}
+        .info-divider{width:1px;height:28px;background:rgba(255,255,255,.15);flex-shrink:0}
         @media(max-width:768px){
             header{padding:10px 16px;flex-direction:column;align-items:flex-start}
             header h1{font-size:1.05rem}
             header .header-right{width:100%;flex-wrap:wrap;gap:8px}
             header .header-right select{flex:1;min-width:140px}
+            .info-bar{padding:6px 12px;gap:0;flex-wrap:wrap}
+            .info-chip{padding:3px 12px}
             .tabs{padding:0 8px}
-            .tabs button{padding:8px 12px;font-size:.78rem}
+            .tabs button{padding:8px 12px;font-size:9px}
             .sub-tabs button{padding:6px 10px;font-size:.75rem}
             .tab-content{padding:12px}
             .grid.g2,.grid.g3,.grid.g4,.grid.g5{grid-template-columns:1fr}
@@ -194,7 +201,7 @@
             .tabs button{padding:6px 8px;font-size:.72rem}
             .stat{font-size:1.2rem}
             .stat-label{font-size:.7rem}
-            .section-title{font-size:.95rem}
+            .section-title{font-size:10px}
             .card h3{font-size:.85rem}
             .badge-item{width:58px}
             .badge-item .badge-icon{width:42px;height:42px;font-size:1rem}
@@ -228,6 +235,18 @@
         <span>Jessica Harper | Day 42 of 180</span>
     </div>
 </header>
+
+<div class="info-bar">
+    <div class="info-chip"><label>Current Day</label><span>42 of 180</span></div>
+    <div class="info-divider"></div>
+    <div class="info-chip"><label>Overall Progress</label><span>21%</span></div>
+    <div class="info-divider"></div>
+    <div class="info-chip"><label>Current Phase</label><span>Month 2: Skill Building</span></div>
+    <div class="info-divider"></div>
+    <div class="info-chip"><label>Role</label><span>General Manager</span></div>
+    <div class="info-divider"></div>
+    <div class="info-chip"><label>Compliance</label><span>45%</span></div>
+</div>
 
 <div class="tabs" id="tabBar">
     <button class="active" onclick="showTab('employee')">My Onboarding</button>
@@ -278,7 +297,7 @@
                 <div>
                     <h3 style="color:var(--navy);margin-bottom:8px">Readiness-to-Operate Score</h3>
                     <p style="font-size:.82rem;color:var(--muted);margin-bottom:8px">Based on completed competencies, compliance training, and manager evaluations.</p>
-                    <div style="font-size:.82rem"><strong>Current Phase:</strong> Month 2 — Skill Building</div>
+                    <div style="font-size:.82rem"><strong>Current Phase:</strong> Month 2 ‚Äî Skill Building</div>
                     <div style="font-size:.82rem;margin-top:4px"><strong>Target:</strong> Semi-independent operation by Day 60</div>
                 </div>
             </div>
@@ -340,16 +359,6 @@
             <div class="badge-item"><div class="badge-icon" style="background:#d4edda">&#127775;</div><div class="badge-name">60-Day Star</div></div>
             <div class="badge-item"><div class="badge-icon" style="background:#e8d5f5">&#128170;</div><div class="badge-name">Independence</div></div>
             <div class="badge-item"><div class="badge-icon" style="background:#fff3cd">&#127891;</div><div class="badge-name">Graduate</div></div>
-            <div class="badge-item"><div class="badge-icon" style="background:#d4edda">&#128149;</div><div class="badge-name">Resident Champion</div></div>
-            <div class="badge-item"><div class="badge-icon" style="background:#d1ecf1">&#128260;</div><div class="badge-name">Renewal Pro</div></div>
-            <div class="badge-item"><div class="badge-icon" style="background:#fff3cd">&#128295;</div><div class="badge-name">Maintenance Guru</div></div>
-            <div class="badge-item"><div class="badge-icon" style="background:#e8d5f5">&#128181;</div><div class="badge-name">Budget Boss</div></div>
-            <div class="badge-item"><div class="badge-icon" style="background:#d4edda">&#129309;</div><div class="badge-name">Team Player</div></div>
-            <div class="badge-item"><div class="badge-icon" style="background:#d1ecf1">&#128187;</div><div class="badge-name">Tech Whiz</div></div>
-            <div class="badge-item"><div class="badge-icon" style="background:#f8d7da">&#128721;</div><div class="badge-name">Safety Star</div></div>
-            <div class="badge-item"><div class="badge-icon" style="background:#ffe0b2">&#127963;</div><div class="badge-name">Community Builder</div></div>
-            <div class="badge-item"><div class="badge-icon" style="background:#e9ecef">&#128230;</div><div class="badge-name">Vendor Expert</div></div>
-            <div class="badge-item"><div class="badge-icon" style="background:#d1f2eb">&#128203;</div><div class="badge-name">Process Pro</div></div>
         </div>
 
         <div class="section-title">Manager Awards <span style="font-size:.75rem;font-weight:400;color:var(--muted);margin-left:8px">Awarded by Manager & above</span></div>
@@ -447,7 +456,7 @@
         </div>
         <div class="card" style="opacity:.7">
             <h3>Week 5 Reflection <span class="badge badge-green">Submitted</span></h3>
-            <p style="font-size:.85rem;color:var(--muted)">Submitted on Feb 10, 2026 — Reviewed by Manager on Feb 11, 2026</p>
+            <p style="font-size:.85rem;color:var(--muted)">Submitted on Feb 10, 2026 ‚Äî Reviewed by Manager on Feb 11, 2026</p>
             <p style="font-size:.85rem;margin-top:8px"><strong>Manager Feedback:</strong> Great progress on Entrata proficiency. Focus on improving follow-up timing with prospects this week.</p>
         </div>
     </div>
@@ -481,42 +490,42 @@
     <div id="calendar-weekly" class="sub-content">
         <div class="flex mb" style="justify-content:space-between">
             <button class="btn btn-outline btn-sm" onclick="changeWeek(-1)">&larr; Previous Week</button>
-            <h2 style="color:var(--navy)" id="weekTitle">Week 6 — Feb 16-22, 2026</h2>
+            <h2 style="color:var(--navy)" id="weekTitle">Week 6 ‚Äî Feb 16-22, 2026</h2>
             <button class="btn btn-outline btn-sm" onclick="changeWeek(1)">Next Week &rarr;</button>
         </div>
         <div class="section-title">Week 6: Conflict Resolution & Difficult Conversations</div>
         <p style="font-size:.85rem;color:var(--muted);margin-bottom:16px">Focus: De-escalation techniques, handling complaints, lease violations conversations</p>
         <div id="weeklyItems">
             <div class="week-view-item" style="border-left-color:var(--red)">
-                <h4>Monday — De-escalation Techniques Workshop</h4>
+                <h4>Monday ‚Äî De-escalation Techniques Workshop</h4>
                 <div class="wv-meta">9:00 AM - 11:00 AM | In Person | Compliance & Safety</div>
             </div>
             <div class="week-view-item" style="border-left-color:var(--blue)">
-                <h4>Monday — Entrata: Managing Leads (Online)</h4>
+                <h4>Monday ‚Äî Entrata: Managing Leads (Online)</h4>
                 <div class="wv-meta">Self-paced | 45 min | Systems Training</div>
             </div>
             <div class="week-view-item" style="border-left-color:var(--green)">
-                <h4>Tuesday — Handling Complaints & Service Failures</h4>
+                <h4>Tuesday ‚Äî Handling Complaints & Service Failures</h4>
                 <div class="wv-meta">10:00 AM - 12:00 PM | Workshop | Customer Experience</div>
             </div>
             <div class="week-view-item" style="border-left-color:var(--purple)">
-                <h4>Wednesday — Manager Check-in (1-on-1)</h4>
+                <h4>Wednesday ‚Äî Manager Check-in (1-on-1)</h4>
                 <div class="wv-meta">2:00 PM - 2:30 PM | Office | Manager Evaluation</div>
             </div>
             <div class="week-view-item" style="border-left-color:var(--amber)">
-                <h4>Thursday — Lease Violations & Collections Conversations</h4>
+                <h4>Thursday ‚Äî Lease Violations & Collections Conversations</h4>
                 <div class="wv-meta">9:00 AM - 11:00 AM | Workshop | Leasing Fundamentals</div>
             </div>
             <div class="week-view-item" style="border-left-color:var(--blue)">
-                <h4>Thursday — Knock CRM Training</h4>
+                <h4>Thursday ‚Äî Knock CRM Training</h4>
                 <div class="wv-meta">1:00 PM - 2:30 PM | Virtual | Systems Training</div>
             </div>
             <div class="week-view-item" style="border-left-color:var(--green)">
-                <h4>Friday — Documentation Requirements Review</h4>
+                <h4>Friday ‚Äî Documentation Requirements Review</h4>
                 <div class="wv-meta">Self-paced | 30 min | Compliance</div>
             </div>
             <div class="week-view-item" style="border-left-color:var(--purple)">
-                <h4>Friday — Weekly Reflection Due</h4>
+                <h4>Friday ‚Äî Weekly Reflection Due</h4>
                 <div class="wv-meta">Submit by 5:00 PM | Self | Reflection</div>
             </div>
         </div>
@@ -525,22 +534,22 @@
     <div id="calendar-daily" class="sub-content">
         <div class="flex mb" style="justify-content:space-between">
             <button class="btn btn-outline btn-sm" onclick="changeDay(-1)">&larr; Previous Day</button>
-            <h2 style="color:var(--navy)" id="dayTitle">Wednesday, February 18, 2026 — Day 42</h2>
+            <h2 style="color:var(--navy)" id="dayTitle">Wednesday, February 18, 2026 ‚Äî Day 42</h2>
             <button class="btn btn-outline btn-sm" onclick="changeDay(1)">Next Day &rarr;</button>
         </div>
         <div class="grid g2">
             <div>
                 <div class="section-title">Today's Schedule</div>
                 <div class="week-view-item" style="border-left-color:var(--purple)">
-                    <h4>2:00 PM — Manager Check-in (1-on-1)</h4>
+                    <h4>2:00 PM ‚Äî Manager Check-in (1-on-1)</h4>
                     <div class="wv-meta">With: Regional Manager | Duration: 30 min</div>
                 </div>
                 <div class="week-view-item" style="border-left-color:var(--blue)">
-                    <h4>Self-Paced — Entrata: Leasing Module</h4>
+                    <h4>Self-Paced ‚Äî Entrata: Leasing Module</h4>
                     <div class="wv-meta">Online | 60 min | Due today</div>
                 </div>
                 <div class="week-view-item" style="border-left-color:var(--green)">
-                    <h4>Ongoing — Shadow experienced team member</h4>
+                    <h4>Ongoing ‚Äî Shadow experienced team member</h4>
                     <div class="wv-meta">Observe 2 resident interactions</div>
                 </div>
             </div>
@@ -622,7 +631,7 @@
                 <div class="stat-label">Month 2: Skill Building</div>
                 <div class="stat" style="color:var(--blue)">35%</div>
                 <div class="progress-bar"><div class="progress-fill" style="width:35%;background:var(--blue)"></div></div>
-                <div class="stat-sub">In progress — current phase</div>
+                <div class="stat-sub">In progress ‚Äî current phase</div>
             </div>
             <div class="card" style="border-top:4px solid var(--border)">
                 <div class="stat-label">Month 3: Mastery</div>
@@ -680,43 +689,43 @@
                     <td><strong>30-Day Foundations Assessment</strong></td>
                     <td>Day 30 (Feb 6, 2026)</td>
                     <td><span class="badge badge-green">Completed</span></td>
-                    <td>Signed — M. Rodriguez, Feb 6</td>
+                    <td>Signed ‚Äî M. Rodriguez, Feb 6</td>
                     <td>Progressing as expected. Strong on compliance. Improve Entrata speed.</td>
                 </tr>
                 <tr>
                     <td><strong>60-Day Skill Progression</strong></td>
                     <td>Day 60 (Feb 26, 2026)</td>
                     <td><span class="badge badge-blue">Upcoming</span></td>
-                    <td>—</td>
+                    <td>‚Äî</td>
                     <td>18 days away</td>
                 </tr>
                 <tr>
                     <td><strong>90-Day Independence Assessment</strong></td>
                     <td>Day 90 (Mar 28, 2026)</td>
                     <td><span class="badge badge-gray">Scheduled</span></td>
-                    <td>—</td>
-                    <td>—</td>
+                    <td>‚Äî</td>
+                    <td>‚Äî</td>
                 </tr>
                 <tr>
                     <td><strong>120-Day Autonomy Confirmed</strong></td>
                     <td>Day 120</td>
                     <td><span class="badge badge-gray">Pending</span></td>
-                    <td>—</td>
-                    <td>—</td>
+                    <td>‚Äî</td>
+                    <td>‚Äî</td>
                 </tr>
                 <tr>
                     <td><strong>150-Day Excellence Review</strong></td>
                     <td>Day 150</td>
                     <td><span class="badge badge-gray">Pending</span></td>
-                    <td>—</td>
-                    <td>—</td>
+                    <td>‚Äî</td>
+                    <td>‚Äî</td>
                 </tr>
                 <tr>
                     <td><strong>180-Day Graduation Certification</strong></td>
                     <td>Day 180</td>
                     <td><span class="badge badge-gray">Pending</span></td>
-                    <td>—</td>
-                    <td>—</td>
+                    <td>‚Äî</td>
+                    <td>‚Äî</td>
                 </tr>
             </tbody>
         </table>
@@ -826,16 +835,16 @@
                 <tr><td><input type="checkbox" checked disabled></td><td>Outbound Follow-Up Calls</td><td>10 calls</td><td>10 / 10</td><td>Jan 15 - Jan 24</td><td>Emily Chen</td></tr>
                 <tr><td><input type="checkbox" checked disabled></td><td>Lease Application Processing</td><td>5 applications</td><td>5 / 5</td><td>Jan 19 - Jan 30</td><td>S. Kim</td></tr>
                 <tr><td><input type="checkbox"></td><td>Collections Conversation</td><td>3 calls</td><td>1 / 3</td><td>Feb 3</td><td>M. Rodriguez</td></tr>
-                <tr><td><input type="checkbox"></td><td>Vendor Coordination Call</td><td>2 calls</td><td>0 / 2</td><td>—</td><td>—</td></tr>
+                <tr><td><input type="checkbox"></td><td>Vendor Coordination Call</td><td>2 calls</td><td>0 / 2</td><td>‚Äî</td><td>‚Äî</td></tr>
                 <tr><td><input type="checkbox"></td><td>Property Walk/Inspection</td><td>2 walks</td><td>1 / 2</td><td>Feb 12</td><td>M. Rodriguez</td></tr>
                 <tr><td><input type="checkbox"></td><td>Resident Move-In</td><td>3 move-ins</td><td>2 / 3</td><td>Feb 1, Feb 8</td><td>Emily Chen</td></tr>
-                <tr><td><input type="checkbox"></td><td>Move-Out Inspection</td><td>3 inspections</td><td>0 / 3</td><td>—</td><td>—</td></tr>
-                <tr><td><input type="checkbox"></td><td>Market Survey / Comp Shopping</td><td>2 surveys</td><td>0 / 2</td><td>—</td><td>—</td></tr>
-                <tr><td><input type="checkbox"></td><td>Resident Event Setup & Execution</td><td>1 event</td><td>0 / 1</td><td>—</td><td>—</td></tr>
-                <tr><td><input type="checkbox"></td><td>Emergency Drill Participation</td><td>1 drill</td><td>0 / 1</td><td>—</td><td>—</td></tr>
-                <tr><td><input type="checkbox"></td><td>Delinquency / Collections Call</td><td>3 calls</td><td>0 / 3</td><td>—</td><td>—</td></tr>
-                <tr><td><input type="checkbox"></td><td>Lease Renewal Conversation</td><td>3 renewals</td><td>0 / 3</td><td>—</td><td>—</td></tr>
-                <tr><td><input type="checkbox"></td><td>Budget Review Meeting</td><td>1 meeting</td><td>0 / 1</td><td>—</td><td>—</td></tr>
+                <tr><td><input type="checkbox"></td><td>Move-Out Inspection</td><td>3 inspections</td><td>0 / 3</td><td>‚Äî</td><td>‚Äî</td></tr>
+                <tr><td><input type="checkbox"></td><td>Market Survey / Comp Shopping</td><td>2 surveys</td><td>0 / 2</td><td>‚Äî</td><td>‚Äî</td></tr>
+                <tr><td><input type="checkbox"></td><td>Resident Event Setup & Execution</td><td>1 event</td><td>0 / 1</td><td>‚Äî</td><td>‚Äî</td></tr>
+                <tr><td><input type="checkbox"></td><td>Emergency Drill Participation</td><td>1 drill</td><td>0 / 1</td><td>‚Äî</td><td>‚Äî</td></tr>
+                <tr><td><input type="checkbox"></td><td>Delinquency / Collections Call</td><td>3 calls</td><td>0 / 3</td><td>‚Äî</td><td>‚Äî</td></tr>
+                <tr><td><input type="checkbox"></td><td>Lease Renewal Conversation</td><td>3 renewals</td><td>0 / 3</td><td>‚Äî</td><td>‚Äî</td></tr>
+                <tr><td><input type="checkbox"></td><td>Budget Review Meeting</td><td>1 meeting</td><td>0 / 1</td><td>‚Äî</td><td>‚Äî</td></tr>
             </tbody>
         </table>
     </div>
@@ -850,7 +859,7 @@
                     <div style="width:60px;height:60px;border-radius:50%;background:var(--blue);display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.5rem;font-weight:700">EC</div>
                     <div>
                         <div style="font-weight:700;font-size:1rem">Emily Chen</div>
-                        <div style="font-size:.85rem;color:var(--muted)">Leasing Manager — Riverside Terrace</div>
+                        <div style="font-size:.85rem;color:var(--muted)">Leasing Manager ‚Äî Riverside Terrace</div>
                         <div style="font-size:.82rem;color:var(--muted)">3 years experience | NALP Certified</div>
                     </div>
                 </div>
@@ -1212,7 +1221,7 @@
 
     <!-- COMPLIANCE TRACKER -->
     <div id="manager-compliance" class="sub-content">
-        <div class="section-title">Compliance Training Status — All New Hires</div>
+        <div class="section-title">Compliance Training Status ‚Äî All New Hires</div>
         <div class="alert-banner alert-red mb">
             <strong>Risk Flags:</strong> Jordan Lee has 3 overdue compliance items. Jessica Harper has 1 overdue. Maria Santos has 2 overdue. Immediate action required for legal compliance.
         </div>
@@ -1262,7 +1271,7 @@
 
 <!-- ==================== REGIONAL VIEW TAB ==================== -->
 <div id="tab-regional" class="tab-content">
-    <div class="section-title">Regional Onboarding Overview — Southeast Region</div>
+    <div class="section-title">Regional Onboarding Overview ‚Äî Southeast Region</div>
     <div class="grid g4 mb">
         <div class="card" style="border-top:4px solid var(--green)"><div class="stat-label">On Track</div><div class="stat text-green">14</div><div class="stat-sub">employees</div></div>
         <div class="card" style="border-top:4px solid var(--amber)"><div class="stat-label">At Risk</div><div class="stat text-amber">4</div><div class="stat-sub">employees</div></div>
@@ -1307,7 +1316,7 @@
     </div>
 
     <div id="vpcoo-propmanagement" class="sub-content active">
-        <div class="section-title">Company-Wide Onboarding — Property Management</div>
+        <div class="section-title">Company-Wide Onboarding ‚Äî Property Management</div>
         <div class="grid g4 mb">
             <div class="card" style="border-top:4px solid var(--green)"><div class="stat-label">On Track</div><div class="stat text-green">24</div><div class="stat-sub">employees</div></div>
             <div class="card" style="border-top:4px solid var(--amber)"><div class="stat-label">At Risk</div><div class="stat text-amber">6</div><div class="stat-sub">employees</div></div>
@@ -1346,7 +1355,7 @@
     </div>
 
     <div id="vpcoo-corporate" class="sub-content">
-        <div class="section-title">Company-Wide Onboarding — Corporate</div>
+        <div class="section-title">Company-Wide Onboarding ‚Äî Corporate</div>
         <div class="grid g4 mb">
             <div class="card" style="border-top:4px solid var(--green)"><div class="stat-label">On Track</div><div class="stat text-green">5</div><div class="stat-sub">employees</div></div>
             <div class="card" style="border-top:4px solid var(--amber)"><div class="stat-label">At Risk</div><div class="stat text-amber">2</div><div class="stat-sub">employees</div></div>
@@ -1555,10 +1564,10 @@
             </div>
             <div class="card">
                 <h3>Critical Compliance Items</h3>
-                <div class="alert-banner alert-red" style="margin-top:8px">Jordan Lee — Fair Housing (5 days overdue)</div>
-                <div class="alert-banner alert-red">Jessica Harper — Human Trafficking Awareness (3 days overdue)</div>
-                <div class="alert-banner alert-red">Jordan Lee — Hazard Communications (1 day overdue)</div>
-                <div class="alert-banner alert-red">Jordan Lee — OSHA Recordkeeping (1 day overdue)</div>
+                <div class="alert-banner alert-red" style="margin-top:8px">Jordan Lee ‚Äî Fair Housing (5 days overdue)</div>
+                <div class="alert-banner alert-red">Jessica Harper ‚Äî Human Trafficking Awareness (3 days overdue)</div>
+                <div class="alert-banner alert-red">Jordan Lee ‚Äî Hazard Communications (1 day overdue)</div>
+                <div class="alert-banner alert-red">Jordan Lee ‚Äî OSHA Recordkeeping (1 day overdue)</div>
             </div>
         </div>
         <button class="btn btn-blue" onclick="exportReport()">Export Compliance Report (PDF)</button>
@@ -1999,10 +2008,10 @@ const calEvents=[
     {day:5,month:1,text:"De-escalation Workshop",cls:"compliance"},
     {day:6,month:1,text:"Knock CRM Training",cls:"systems"},
     {day:7,month:1,text:"Weekly Reflection Due",cls:"checkin"},
-    {day:9,month:1,text:"Property Tour — Prospect",cls:"leasing"},
+    {day:9,month:1,text:"Property Tour ‚Äî Prospect",cls:"leasing"},
     {day:10,month:1,text:"Manager Check-in",cls:"checkin"},
     {day:10,month:1,text:"Entrata: Applications",cls:"systems"},
-    {day:11,month:1,text:"Vendor Visit — HVAC",cls:"safety"},
+    {day:11,month:1,text:"Vendor Visit ‚Äî HVAC",cls:"safety"},
     {day:12,month:1,text:"Property Walk",cls:"leasing"},
     {day:13,month:1,text:"Human Trafficking (OVERDUE)",cls:"compliance"},
     {day:13,month:1,text:"Resident Appreciation Event",cls:"leasing"},
